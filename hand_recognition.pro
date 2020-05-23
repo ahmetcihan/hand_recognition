@@ -13,8 +13,12 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    ann.cpp \
+    activation_function.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    ann.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    ann.ui
