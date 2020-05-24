@@ -1,9 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#define INPUT_COUNT     76800
-#define HIDDEN_COUNT_1  1024
-#define HIDDEN_COUNT_2  1024
+#define INPUT_COUNT     1344
+#define HIDDEN_COUNT_1  512
+#define HIDDEN_COUNT_2  512
 #define OUTPUT_COUNT    6
 #define IO_ARRAY_LENGTH 6
 
@@ -20,9 +20,9 @@ double ann::_76800_1024_1024_6_ann_calculate_total_error(void){
     }
     return total_error;
 }
-void ann::_76800_1024_1024_6_ann_test(  double input[76800],
-                                        double hidden_neuron_bias_1[1024], double hidden_neuron_bias_2[1024], double output_bias[6],
-                                        double w_input_to_hidden[76800][1024], double w_hidden_to_hidden[1024][1024], double w_hidden_to_output[1024][6]){
+void ann::_76800_1024_1024_6_ann_test(  double input[1344],
+                                        double hidden_neuron_bias_1[512], double hidden_neuron_bias_2[512], double output_bias[6],
+                                        double w_input_to_hidden[1344][512], double w_hidden_to_hidden[512][512], double w_hidden_to_output[512][6]){
     double hidden_neuron_in_1[HIDDEN_COUNT_1];
     double hidden_neuron_out_1[HIDDEN_COUNT_1];
 
@@ -109,9 +109,9 @@ void ann::_76800_1024_1024_6_ann_test(  double input[76800],
 
 }
 
-void ann::_76800_1024_1024_6_ann_train(double input[76800][6], double desired_output[6][6], double calculated_output[6][6],
-                                        double hidden_neuron_bias_1[1024], double hidden_neuron_bias_2[1024], double output_bias[6],
-                                        double w_input_to_hidden[76800][1024], double w_hidden_to_hidden[1024][1024], double w_hidden_to_output[1024][6],
+void ann::_76800_1024_1024_6_ann_train(double input[1344][6], double desired_output[6][6], double calculated_output[6][6],
+                                        double hidden_neuron_bias_1[512], double hidden_neuron_bias_2[512], double output_bias[6],
+                                        double w_input_to_hidden[512][512], double w_hidden_to_hidden[512][512], double w_hidden_to_output[512][6],
                                         u32 epoch, double learning_rate){
 
     double hidden_neuron_in_1[HIDDEN_COUNT_1];
@@ -220,16 +220,40 @@ void ann::_76800_1024_1024_6_ann_train(double input[76800][6], double desired_ou
 void MainWindow::_76800_1024_1024_6_random_initilize_handler(void){
     _76800_1024_1024_6_picture_to_arrays();
 
-    for(u8 k = 0; k < OUTPUT_COUNT; k++){
-        for(u32 i = 0; i < 16; i++){
-            for(u32 j = 0; j < 16; j++){
-                //ann_class->net_76800_1024_1024_6.input[16*i + j][k] = alphabet.letter[k][i][j];
-            }
+    for(u32 j = 0; j < 42; j++){
+        for(u32 i = 0; i < 32; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 32*j][0] = fist_image[i][j];
+        }
+    }
+    for(u32 j = 0; j < 42; j++){
+        for(u32 i = 0; i < 32; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 32*j][1] = one_image[i][j];
+        }
+    }
+    for(u32 j = 0; j < 42; j++){
+        for(u32 i = 0; i < 32; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 32*j][2] = two_image[i][j];
+        }
+    }
+    for(u32 j = 0; j < 42; j++){
+        for(u32 i = 0; i < 32; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 32*j][3] = three_image[i][j];
+        }
+    }
+    for(u32 j = 0; j < 42; j++){
+        for(u32 i = 0; i < 32; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 32*j][4] = four_image[i][j];
+        }
+    }
+    for(u32 j = 0; j < 42; j++){
+        for(u32 i = 0; i < 32; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 32*j][5] = five_image[i][j];
         }
     }
 
-    for(u32 i = 0; i < 26; i++){
-        for(u32 j = 0; j < 26; j++){
+
+    for(u32 i = 0; i < OUTPUT_COUNT; i++){
+        for(u32 j = 0; j < OUTPUT_COUNT; j++){
             ann_class->net_76800_1024_1024_6.desired_output[i][j] = 0;
             if(i == j){
                 ann_class->net_76800_1024_1024_6.desired_output[i][j] = 1;
@@ -268,15 +292,14 @@ void MainWindow::_76800_1024_1024_6_random_initilize_handler(void){
     ui->label_76800_1024_1024_6_random_initilize->setText("Initilized randomly");
 }
 void MainWindow::_76800_1024_1024_6_train_handler(void){
-    ann_class->train_status = 3;
+    ann_class->train_status = 1;
     ann_class->stop_the_training = 0;
 }
 void MainWindow::_76800_1024_1024_6_test_handler(void){
-    //image_to_array_16x16("/home/ahmet/Desktop/arial_fonts_16x16/tester.png",alphabet.tester);
 
-    for(u32 i = 0; i < 16; i++){
-        for(u32 j = 0; j < 16; j++){
-            //ann_class->net_76800_1024_1024_6.test_input[16*i + j] = alphabet.tester[i][j];
+    for(u32 j = 0; j < 42; j++){
+        for(u32 i = 0; i < 32; i++){
+            ann_class->net_76800_1024_1024_6.test_input[i + 32*j] = two_image[i][j];
         }
     }
 
@@ -387,9 +410,14 @@ void MainWindow::_76800_1024_1024_6_stop_train_handler(void){
     ann_class->stop_the_training = 1;
 }
 void MainWindow::_76800_1024_1024_6_picture_to_arrays(void){
-    image_to_array_240x320("/home/ahmet/Desktop/arial_fonts_16x16/A.png",fist_image);
+    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast/fist.jpg",fist_image);
+    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast/one.jpg",one_image);
+    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast/two.jpg",two_image);
+    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast/three.jpg",three_image);
+    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast/four.jpg",four_image);
+    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast/five.jpg",five_image);
 }
-void MainWindow::image_to_array_240x320(QString location, u8 image_array[240][320]){
+void MainWindow::image_to_array_240x320(QString location, u8 image_array[32][42]){
     QImage read_image;
 
     read_image.load(location);

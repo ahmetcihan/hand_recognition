@@ -1,5 +1,7 @@
 #include "ann.h"
+#include "mainwindow.h"
 #include "ui_ann.h"
+#include "ui_mainwindow.h"
 
 ann::ann(MainWindow *master, QWidget *parent) :
     QWidget(parent),
@@ -15,9 +17,44 @@ ann::ann(MainWindow *master, QWidget *parent) :
     connect(thread_timer, SIGNAL(timeout()), SLOT(thread_handler()), Qt::DirectConnection);
     QObject::connect(thread_1, SIGNAL(started()), thread_timer, SLOT(start()));
     thread_1->start();
+
+    stop_the_training = 0;
+
 }
 void ann::thread_handler(void){
-    qDebug() << "giriyor";
+    if(train_status == 1){
+        _76800_1024_1024_6_ann_train(  net_76800_1024_1024_6.input,
+                                    net_76800_1024_1024_6.desired_output,
+                                    net_76800_1024_1024_6.calculated_output,
+                                    net_76800_1024_1024_6.hidden_neuron_bias_1,
+                                    net_76800_1024_1024_6.hidden_neuron_bias_2,
+                                    net_76800_1024_1024_6.output_bias,
+                                    net_76800_1024_1024_6.w_input_to_hidden,
+                                    net_76800_1024_1024_6.w_hidden_to_hidden,
+                                    net_76800_1024_1024_6.w_hidden_to_output,
+                                    100000, 100);
+
+        for(u8 i = 0; i < 6; i++){
+            for(u8 j = 0; j < 6; j++){
+                qDebug() << QString("desired output[%1][%2] : ").arg(i).arg(j) << net_76800_1024_1024_6.desired_output[i][j] <<
+                            QString("calculated output[%1][%2] : ").arg(i).arg(j) << net_76800_1024_1024_6.calculated_output[i][j];
+            }
+        }
+
+        double total_error = 0;
+        double aux;
+
+        for(u8 i = 0; i < 6; i++){
+            for(u8 j = 0; j < 6; j++){
+                aux = net_76800_1024_1024_6.desired_output[i][j] - net_76800_1024_1024_6.calculated_output[i][j];
+                aux = aux * aux;
+                total_error += aux;
+            }
+        }
+
+        mainwindow->ui->label_76800_1024_1024_6_train->setText(QString("Trained. Total error is %1").arg(total_error));
+        train_status = 0;
+    }
 }
 
 ann::~ann()

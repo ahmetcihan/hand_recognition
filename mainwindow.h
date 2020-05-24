@@ -23,9 +23,14 @@ public:
     ~MainWindow();
     Ui::MainWindow *ui;
 
-    u8 fist_image[240][320];
+    u8 fist_image[32][42];
+    u8 one_image[32][42];
+    u8 two_image[32][42];
+    u8 three_image[32][42];
+    u8 four_image[32][42];
+    u8 five_image[32][42];
 
-    void image_to_array_240x320(QString location, u8 image_array[240][320]);
+    void image_to_array_240x320(QString location, u8 image_array[32][42]);
 
 private:
     ann *ann_class;
