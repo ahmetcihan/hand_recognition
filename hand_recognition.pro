@@ -15,7 +15,8 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     ann.cpp \
-    activation_function.cpp
+    activation_function.cpp \
+    net_76800_1024_1024_6.cpp
 
 HEADERS  += mainwindow.h \
     ann.h
