@@ -32,7 +32,7 @@ void ann::thread_handler(void){
                                     net_76800_1024_1024_6.w_input_to_hidden,
                                     net_76800_1024_1024_6.w_hidden_to_hidden,
                                     net_76800_1024_1024_6.w_hidden_to_output,
-                                    100000, 100);
+                                    100000, 0.001);
 
         for(u8 i = 0; i < 6; i++){
             for(u8 j = 0; j < 6; j++){

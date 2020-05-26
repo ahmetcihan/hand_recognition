@@ -30,7 +30,7 @@ void MainWindow::_100_msec_timer_handle(void){
     if(ann_class->train_status == 1){
         ui->label_76800_1024_1024_6_train->setText(QString("training status %  %1").arg(ann_class->epoch_status));
         ui->label_76800_1024_1024_6_train_status->setText(QString("Epoch : %1 , Error : %2 , ob-0 : %3").
-                                                        arg(ann_class->epoch_no).arg(ann_class->_76800_1024_1024_6_ann_calculate_total_error()).
+                                                        arg(ann_class->epoch_no).arg(ann_class->net_76800_1024_1024_6.total_err).
                                                         arg(ann_class->net_76800_1024_1024_6.output_bias[0]));
         ui->label_76800_1024_1024_6_train_status_2->setText(QString("hb1-0 : %1 , hb2-0 : %2 , wh2h-0 : %3").
                                                         arg(ann_class->net_76800_1024_1024_6.hidden_neuron_bias_1[0]).

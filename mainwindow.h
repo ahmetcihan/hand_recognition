@@ -23,12 +23,26 @@ public:
     ~MainWindow();
     Ui::MainWindow *ui;
 
-    u8 fist_image[32][42];
-    u8 one_image[32][42];
-    u8 two_image[32][42];
-    u8 three_image[32][42];
-    u8 four_image[32][42];
-    u8 five_image[32][42];
+    u8 fist_image_1[32][42];
+    u8 one_image_1[32][42];
+    u8 two_image_1[32][42];
+    u8 three_image_1[32][42];
+    u8 four_image_1[32][42];
+    u8 five_image_1[32][42];
+
+    u8 fist_image_2[32][42];
+    u8 one_image_2[32][42];
+    u8 two_image_2[32][42];
+    u8 three_image_2[32][42];
+    u8 four_image_2[32][42];
+    u8 five_image_2[32][42];
+
+    u8 fist_image_3[32][42];
+    u8 one_image_3[32][42];
+    u8 two_image_3[32][42];
+    u8 three_image_3[32][42];
+    u8 four_image_3[32][42];
+    u8 five_image_3[32][42];
 
     void image_to_array_240x320(QString location, u8 image_array[32][42]);
 
