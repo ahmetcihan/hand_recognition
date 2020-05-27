@@ -33,24 +33,24 @@ public:
         double input[1344][6*3];
         double desired_output[6][6];
         double calculated_output[6][6];
-        double hidden_neuron_bias_1[512];
-        double hidden_neuron_bias_2[512];
+        double hidden_neuron_bias_1[1024];
+        double hidden_neuron_bias_2[1024];
         double output_bias[6];
-        double w_input_to_hidden[1344][512];
-        double w_hidden_to_hidden[512][512];
-        double w_hidden_to_output[512][6];
+        double w_input_to_hidden[1344][1024];
+        double w_hidden_to_hidden[1024][1024];
+        double w_hidden_to_output[1024][6];
         double test_input[1344];
         double total_err;
     };
     struct _76800_1024_1024_6_str net_76800_1024_1024_6;
 
     void _76800_1024_1024_6_ann_train(double input[1344][6*3], double desired_output[6][6], double calculated_output[6][6],
-                                double hidden_neuron_bias_1[512], double hidden_neuron_bias_2[512], double output_bias[6],
-                                double w_input_to_hidden[1344][512], double w_hidden_to_hidden[512][512], double w_hidden_to_output[512][6],
+                                double hidden_neuron_bias_1[1024], double hidden_neuron_bias_2[1024], double output_bias[6],
+                                double w_input_to_hidden[1344][1024], double w_hidden_to_hidden[1024][1024], double w_hidden_to_output[1024][6],
                                 u32 epoch, double learning_rate);
     void _76800_1024_1024_6_ann_test(  double input[1344],
-                                    double hidden_neuron_bias_1[512], double hidden_neuron_bias_2[512], double output_bias[6],
-                                    double w_input_to_hidden[1344][512], double w_hidden_to_hidden[512][512], double w_hidden_to_output[512][6]);
+                                    double hidden_neuron_bias_1[1024], double hidden_neuron_bias_2[1024], double output_bias[6],
+                                    double w_input_to_hidden[1344][1024], double w_hidden_to_hidden[1024][1024], double w_hidden_to_output[1024][6]);
     double _76800_1024_1024_6_ann_calculate_total_error(void);
 
 private:

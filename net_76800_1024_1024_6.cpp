@@ -22,8 +22,8 @@ double ann::_76800_1024_1024_6_ann_calculate_total_error(void){
     return total_error;
 }
 void ann::_76800_1024_1024_6_ann_test(  double input[1344],
-                                        double hidden_neuron_bias_1[512], double hidden_neuron_bias_2[512], double output_bias[6],
-                                        double w_input_to_hidden[1344][512], double w_hidden_to_hidden[512][512], double w_hidden_to_output[512][6]){
+                                        double hidden_neuron_bias_1[1024], double hidden_neuron_bias_2[1024], double output_bias[6],
+                                        double w_input_to_hidden[1344][1024], double w_hidden_to_hidden[1024][1024], double w_hidden_to_output[1024][6]){
     double hidden_neuron_in_1[HIDDEN_COUNT_1];
     double hidden_neuron_out_1[HIDDEN_COUNT_1];
 
@@ -111,8 +111,8 @@ void ann::_76800_1024_1024_6_ann_test(  double input[1344],
 }
 
 void ann::_76800_1024_1024_6_ann_train(double input[1344][6*3], double desired_output[6][6], double calculated_output[6][6],
-                                        double hidden_neuron_bias_1[512], double hidden_neuron_bias_2[512], double output_bias[6],
-                                        double w_input_to_hidden[512][512], double w_hidden_to_hidden[512][512], double w_hidden_to_output[512][6],
+                                        double hidden_neuron_bias_1[1024], double hidden_neuron_bias_2[1024], double output_bias[6],
+                                        double w_input_to_hidden[1344][1024], double w_hidden_to_hidden[1024][1024], double w_hidden_to_output[1024][6],
                                         u32 epoch, double learning_rate){
 
     double hidden_neuron_in_1[HIDDEN_COUNT_1];
@@ -218,7 +218,7 @@ void ann::_76800_1024_1024_6_ann_train(double input[1344][6*3], double desired_o
             }
             inset_error[inset] = _76800_1024_1024_6_ann_calculate_total_error();
         }
-        net_76800_1024_1024_6.total_err =  (inset_error[0] + inset_error[1] + inset_error[2])/3;
+        net_76800_1024_1024_6.total_err =  (inset_error[0]*inset_error[0] + inset_error[1]*inset_error[1] + inset_error[2]*inset_error[2])/3;
         epoch_no = era;
         epoch_status = (era*100)/epoch;
         if(stop_the_training == 1) break;
@@ -371,7 +371,7 @@ void MainWindow::_76800_1024_1024_6_test_handler(void){
 
     for(u32 j = 0; j < 42; j++){
         for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.test_input[i + 32*j] = fist_image_3[i][j];
+            ann_class->net_76800_1024_1024_6.test_input[i + 32*j] = five_image_2[i][j];
         }
     }
 
