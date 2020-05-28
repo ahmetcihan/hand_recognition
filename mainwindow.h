@@ -44,6 +44,20 @@ public:
     u8 four_image_3[32][42];
     u8 five_image_3[32][42];
 
+    u8 fist_image_4[32][42];
+    u8 one_image_4[32][42];
+    u8 two_image_4[32][42];
+    u8 three_image_4[32][42];
+    u8 four_image_4[32][42];
+    u8 five_image_4[32][42];
+
+    u8 fist_image_5[32][42];
+    u8 one_image_5[32][42];
+    u8 two_image_5[32][42];
+    u8 three_image_5[32][42];
+    u8 four_image_5[32][42];
+    u8 five_image_5[32][42];
+
     void image_to_array_240x320(QString location, u8 image_array[32][42]);
 
 private:

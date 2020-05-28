@@ -2,12 +2,12 @@
 #include "ui_mainwindow.h"
 
 #define INPUT_COUNT     1344
-#define HIDDEN_COUNT_1  128
+#define HIDDEN_COUNT_1  256
 #define HIDDEN_COUNT_2  128
 #define HIDDEN_COUNT_3  128
 #define OUTPUT_COUNT    6
 #define IO_ARRAY_LENGTH 6
-#define INPUT_SET       3
+#define INPUT_SET       5
 
 double ann::_76800_1024_1024_6_ann_calculate_total_error(void){
     double total_error = 0;
@@ -136,7 +136,7 @@ void ann::_76800_1024_1024_6_ann_test(  double input[1344],
 
 }
 
-void ann::_76800_1024_1024_6_ann_train( double input[1344][6*3], double desired_output[6][6], double calculated_output[6][6],
+void ann::_76800_1024_1024_6_ann_train( double input[1344][6*5], double desired_output[6][6], double calculated_output[6][6],
                                         double hidden_neuron_bias_1[1024], double hidden_neuron_bias_2[1024],double hidden_neuron_bias_3[1024],
                                         double output_bias[6],
                                         double w_input_to_hidden_1[1344][1024],
@@ -288,7 +288,10 @@ void ann::_76800_1024_1024_6_ann_train( double input[1344][6*3], double desired_
             }
             inset_error[inset] = _76800_1024_1024_6_ann_calculate_total_error();
         }
-        net_76800_1024_1024_6.total_err =  (inset_error[0]*inset_error[0] + inset_error[1]*inset_error[1] + inset_error[2]*inset_error[2])/3;
+        net_76800_1024_1024_6.total_err =  (inset_error[0]*inset_error[0]
+                + inset_error[1]*inset_error[1]
+                + inset_error[2]*inset_error[2]
+                + inset_error[3]*inset_error[3] + inset_error[4]*inset_error[4])/5;
         epoch_no = era;
         epoch_status = (era*100)/epoch;
         if(stop_the_training == 1) break;
@@ -393,6 +396,69 @@ void MainWindow::_76800_1024_1024_6_random_initilize_handler(void){
         }
     }
 
+    /********************************SET 4***********************************/
+    for(u32 j = 0; j < 42; j++){
+        for(u32 i = 0; i < 32; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 32*j][18] = fist_image_4[i][j];
+        }
+    }
+    for(u32 j = 0; j < 42; j++){
+        for(u32 i = 0; i < 32; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 32*j][19] = one_image_4[i][j];
+        }
+    }
+    for(u32 j = 0; j < 42; j++){
+        for(u32 i = 0; i < 32; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 32*j][20] = two_image_4[i][j];
+        }
+    }
+    for(u32 j = 0; j < 42; j++){
+        for(u32 i = 0; i < 32; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 32*j][21] = three_image_4[i][j];
+        }
+    }
+    for(u32 j = 0; j < 42; j++){
+        for(u32 i = 0; i < 32; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 32*j][22] = four_image_4[i][j];
+        }
+    }
+    for(u32 j = 0; j < 42; j++){
+        for(u32 i = 0; i < 32; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 32*j][23] = five_image_4[i][j];
+        }
+    }
+
+    /********************************SET 5***********************************/
+    for(u32 j = 0; j < 42; j++){
+        for(u32 i = 0; i < 32; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 32*j][24] = fist_image_5[i][j];
+        }
+    }
+    for(u32 j = 0; j < 42; j++){
+        for(u32 i = 0; i < 32; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 32*j][25] = one_image_5[i][j];
+        }
+    }
+    for(u32 j = 0; j < 42; j++){
+        for(u32 i = 0; i < 32; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 32*j][26] = two_image_5[i][j];
+        }
+    }
+    for(u32 j = 0; j < 42; j++){
+        for(u32 i = 0; i < 32; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 32*j][27] = three_image_5[i][j];
+        }
+    }
+    for(u32 j = 0; j < 42; j++){
+        for(u32 i = 0; i < 32; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 32*j][28] = four_image_5[i][j];
+        }
+    }
+    for(u32 j = 0; j < 42; j++){
+        for(u32 i = 0; i < 32; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 32*j][29] = five_image_5[i][j];
+        }
+    }
 
     for(u32 i = 0; i < OUTPUT_COUNT; i++){
         for(u32 j = 0; j < OUTPUT_COUNT; j++){
@@ -457,7 +523,7 @@ void MainWindow::_76800_1024_1024_6_test_handler(void){
 
     for(u32 j = 0; j < 42; j++){
         for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.test_input[i + 32*j] = five_image_2[i][j];
+            ann_class->net_76800_1024_1024_6.test_input[i + 32*j] = one_image_5[i][j];
         }
     }
 
@@ -607,6 +673,27 @@ void MainWindow::_76800_1024_1024_6_picture_to_arrays(void){
     image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_2/three.jpg",three_image_2);
     image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_2/four.jpg",four_image_2);
     image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_2/five.jpg",five_image_2);
+
+    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_3/fist.jpg",fist_image_3);
+    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_3/one.jpg",one_image_3);
+    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_3/two.jpg",two_image_3);
+    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_3/three.jpg",three_image_3);
+    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_3/four.jpg",four_image_3);
+    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_3/five.jpg",five_image_3);
+
+    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_4/fist.jpg",fist_image_4);
+    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_4/one.jpg",one_image_4);
+    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_4/two.jpg",two_image_4);
+    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_4/three.jpg",three_image_4);
+    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_4/four.jpg",four_image_4);
+    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_4/five.jpg",five_image_4);
+
+    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_5/fist.jpg",fist_image_5);
+    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_5/one.jpg",one_image_5);
+    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_5/two.jpg",two_image_5);
+    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_5/three.jpg",three_image_5);
+    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_5/four.jpg",four_image_5);
+    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_5/five.jpg",five_image_5);
 }
 void MainWindow::image_to_array_240x320(QString location, u8 image_array[32][42]){
     QImage read_image;
