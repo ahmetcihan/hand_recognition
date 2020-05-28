@@ -60,6 +60,8 @@ private:
 
     double sigmoid_func(double val);
     double derivative_of_sigmoid_func(double val);
+    double output_sigmoid_func(double val);
+    double output_derivative_of_sigmoid_func(double val);
 
 
 private slots:
