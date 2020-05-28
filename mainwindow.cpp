@@ -35,7 +35,7 @@ void MainWindow::_100_msec_timer_handle(void){
         ui->label_76800_1024_1024_6_train_status_2->setText(QString("hb1-0 : %1 , hb2-0 : %2 , wh2h-0 : %3").
                                                         arg(ann_class->net_76800_1024_1024_6.hidden_neuron_bias_1[0]).
                                                         arg(ann_class->net_76800_1024_1024_6.hidden_neuron_bias_2[0]).
-                                                        arg(ann_class->net_76800_1024_1024_6.w_hidden_to_hidden[0][0]));
+                                                        arg(ann_class->net_76800_1024_1024_6.w_hidden_1_to_hidden_2[0][0]));
     }
 }
 
