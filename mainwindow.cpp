@@ -112,43 +112,39 @@ void MainWindow::capture_video(void){
     small_scale = rotated_image.scaled(QSize(32,42),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     QPixmap small_picture = QPixmap::fromImage(small_scale);
     ui->label_video_small_monochrome->setPixmap(small_picture);
-
-    QImage small_different;
-    small_different = rotated_image.scaled(QSize(32,42),Qt::KeepAspectRatioByExpanding,Qt::FastTransformation);
-    QPixmap small_diff = QPixmap::fromImage(small_different);
-    ui->label_video_small_monochrome_2->setPixmap(small_diff);
-
+    ui->label_video_small_monochrome_2->setPixmap(small_picture);
     ui->label_hand_two->setPixmap(small_picture);
+
     original_frame.release();
     rotated_frame.release();
 
-//    u8 tester[32][42];
+    u8 tester[32][42];
 
-//    for(u8 i = 0; i < small_scale.width();i++){
-//        for(u8 j = 0; j < small_scale.height();j++){
-//            tester[i][j] = 0;
-//            if((small_scale.pixel(i,j) & 0xFF) == 0xFF){
-//                tester[i][j] = 1;
-//            }
-//        }
-//    }
+    for(u8 i = 0; i < small_scale.width();i++){
+        for(u8 j = 0; j < small_scale.height();j++){
+            tester[i][j] = 0;
+            if((small_scale.pixel(i,j) & 0xFF) == 0xFF){
+                tester[i][j] = 1;
+            }
+        }
+    }
 
 
-//    for(u32 j = 0; j < 42; j++){
-//        for(u32 i = 0; i < 32; i++){
-//            ann_class->net_76800_1024_1024_6.test_input[i + 32*j] = tester[i][j];
-//        }
-//    }
+    for(u32 j = 0; j < 42; j++){
+        for(u32 i = 0; i < 32; i++){
+            ann_class->net_76800_1024_1024_6.test_input[i + 32*j] = tester[i][j];
+        }
+    }
 
-//    ann_class->_76800_1024_1024_6_ann_test( ann_class->net_76800_1024_1024_6.test_input,
-//                                            ann_class->net_76800_1024_1024_6.hidden_neuron_bias_1,
-//                                            ann_class->net_76800_1024_1024_6.hidden_neuron_bias_2,
-//                                            ann_class->net_76800_1024_1024_6.hidden_neuron_bias_3,
-//                                            ann_class->net_76800_1024_1024_6.output_bias,
-//                                            ann_class->net_76800_1024_1024_6.w_input_to_hidden_1,
-//                                            ann_class->net_76800_1024_1024_6.w_hidden_1_to_hidden_2,
-//                                            ann_class->net_76800_1024_1024_6.w_hidden_2_to_hidden_3,
-//                                            ann_class->net_76800_1024_1024_6.w_hidden_3_to_output);
+    ann_class->_76800_1024_1024_6_ann_test( ann_class->net_76800_1024_1024_6.test_input,
+                                            ann_class->net_76800_1024_1024_6.hidden_neuron_bias_1,
+                                            ann_class->net_76800_1024_1024_6.hidden_neuron_bias_2,
+                                            ann_class->net_76800_1024_1024_6.hidden_neuron_bias_3,
+                                            ann_class->net_76800_1024_1024_6.output_bias,
+                                            ann_class->net_76800_1024_1024_6.w_input_to_hidden_1,
+                                            ann_class->net_76800_1024_1024_6.w_hidden_1_to_hidden_2,
+                                            ann_class->net_76800_1024_1024_6.w_hidden_2_to_hidden_3,
+                                            ann_class->net_76800_1024_1024_6.w_hidden_3_to_output);
 
 
     qDebug() << "elapsed time" << my_timer.elapsed();

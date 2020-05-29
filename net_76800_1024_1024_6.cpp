@@ -3,8 +3,8 @@
 
 #define INPUT_COUNT     1344
 #define HIDDEN_COUNT_1  256
-#define HIDDEN_COUNT_2  128
-#define HIDDEN_COUNT_3  128
+#define HIDDEN_COUNT_2  256
+#define HIDDEN_COUNT_3  256
 #define OUTPUT_COUNT    6
 #define IO_ARRAY_LENGTH 6
 #define INPUT_SET       5
@@ -528,7 +528,7 @@ void MainWindow::_76800_1024_1024_6_test_handler(void){
 
     for(u32 j = 0; j < 42; j++){
         for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.test_input[i + 32*j] = one_image_1[i][j];
+            ann_class->net_76800_1024_1024_6.test_input[i + 32*j] = four_image_5[i][j];
         }
     }
 
@@ -629,6 +629,7 @@ void MainWindow::_76800_1024_1024_6_load_saved_weights_handler(void){
     for(u32 i = 0; i < HIDDEN_COUNT_1; i++){
         ann_class->net_76800_1024_1024_6.hidden_neuron_bias_1[i] = settings.value(QString("w/hb1-%1").arg(i)).toDouble();
     }
+    qDebug() << "value" << ann_class->net_76800_1024_1024_6.hidden_neuron_bias_1[0];
     for(u32 i = 0; i < HIDDEN_COUNT_2; i++){
         ann_class->net_76800_1024_1024_6.hidden_neuron_bias_2[i] = settings.value(QString("w/hb2-%1").arg(i)).toDouble();
     }
