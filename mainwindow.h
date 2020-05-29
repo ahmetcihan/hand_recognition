@@ -9,6 +9,10 @@
 #include <QProcess>
 #include <QPainter>
 #include <QPixmap>
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
+#include <opencv2/opencv.hpp>
 
 namespace Ui {
 class MainWindow;
@@ -63,8 +67,13 @@ public:
 private:
     ann *ann_class;
     QTimer *_100_msec_timer;
+    QTimer *periodic_timer;
+
+    cv::VideoCapture my_vid;
 
 private slots:
+    void capture_video(void);
+
     void _100_msec_timer_handle(void);
 
     void _76800_1024_1024_6_random_initilize_handler(void);
