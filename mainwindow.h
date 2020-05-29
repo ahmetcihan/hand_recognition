@@ -85,6 +85,37 @@ private slots:
     void _76800_1024_1024_6_stop_train_handler(void);
     void _76800_1024_1024_6_picture_to_arrays(void);
 
+    void get_fist_1_picture();
+    void get_fist_2_picture();
+    void get_fist_3_picture();
+    void get_fist_4_picture();
+    void get_fist_5_picture();
+    void get_one_1_picture();
+    void get_one_2_picture();
+    void get_one_3_picture();
+    void get_one_4_picture();
+    void get_one_5_picture();
+    void get_two_1_picture();
+    void get_two_2_picture();
+    void get_two_3_picture();
+    void get_two_4_picture();
+    void get_two_5_picture();
+    void get_three_1_picture();
+    void get_three_2_picture();
+    void get_three_3_picture();
+    void get_three_4_picture();
+    void get_three_5_picture();
+    void get_four_1_picture();
+    void get_four_2_picture();
+    void get_four_3_picture();
+    void get_four_4_picture();
+    void get_four_5_picture();
+    void get_five_1_picture();
+    void get_five_2_picture();
+    void get_five_3_picture();
+    void get_five_4_picture();
+    void get_five_5_picture();
+
 };
 
 #endif // MAINWINDOW_H

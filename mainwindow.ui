@@ -6,317 +6,1164 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>672</width>
-    <height>793</height>
+    <width>688</width>
+    <height>446</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QLabel" name="label_hand_two">
-    <property name="geometry">
-     <rect>
-      <x>570</x>
-      <y>10</y>
-      <width>32</width>
-      <height>42</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_76800_1024_1024_6_train">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>90</y>
-      <width>211</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Train</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_76800_1024_1024_6_random_initilize">
+   <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>211</width>
-      <height>31</height>
+      <width>671</width>
+      <height>401</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Random Initilize</string>
+    <property name="currentIndex">
+     <number>2</number>
     </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_76800_1024_1024_6_load_saved_weights">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>50</y>
-      <width>211</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Load Saved Weights</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_76800_1024_1024_6_train">
-    <property name="geometry">
-     <rect>
-      <x>230</x>
-      <y>90</y>
-      <width>200</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>-----------------</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_76800_1024_1024_6_stop_train">
-    <property name="geometry">
-     <rect>
-      <x>520</x>
-      <y>50</y>
-      <width>91</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Stop Train</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_76800_1024_1024_6_test">
-    <property name="geometry">
-     <rect>
-      <x>230</x>
-      <y>130</y>
-      <width>200</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>-----------------</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_76800_1024_1024_6_train_status_2">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>330</y>
-      <width>401</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>-----------------</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_76800_1024_1024_6_show_weights">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>170</y>
-      <width>211</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Show Weights</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_76800_1024_1024_6_show_weights">
-    <property name="geometry">
-     <rect>
-      <x>230</x>
-      <y>170</y>
-      <width>200</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>-----------------</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_76800_1024_1024_6_save_weights">
-    <property name="geometry">
-     <rect>
-      <x>230</x>
-      <y>210</y>
-      <width>200</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>-----------------</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_76800_1024_1024_6_load_saved_weights">
-    <property name="geometry">
-     <rect>
-      <x>230</x>
-      <y>50</y>
-      <width>200</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>-----------------</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_76800_1024_1024_6_train_status">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>290</y>
-      <width>401</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>-----------------</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_76800_1024_1024_6_save_weights">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>210</y>
-      <width>211</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Save Weights</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_76800_1024_1024_6_test">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>130</y>
-      <width>211</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Test</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_76800_1024_1024_6_random_initilize">
-    <property name="geometry">
-     <rect>
-      <x>230</x>
-      <y>10</y>
-      <width>200</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>-----------------</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_76800_1024_1024_6_test_2">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>250</y>
-      <width>210</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Learning Rate</string>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="doubleSpinBox">
-    <property name="geometry">
-     <rect>
-      <x>219</x>
-      <y>250</y>
-      <width>131</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-     </font>
-    </property>
-    <property name="decimals">
-     <number>6</number>
-    </property>
-    <property name="maximum">
-     <double>10.000000000000000</double>
-    </property>
-    <property name="singleStep">
-     <double>0.000001000000000</double>
-    </property>
-    <property name="value">
-     <double>0.000001000000000</double>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="doubleSpinBox_2">
-    <property name="geometry">
-     <rect>
-      <x>400</x>
-      <y>250</y>
-      <width>131</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-     </font>
-    </property>
-    <property name="decimals">
-     <number>6</number>
-    </property>
-    <property name="maximum">
-     <double>10.000000000000000</double>
-    </property>
-    <property name="singleStep">
-     <double>0.000001000000000</double>
-    </property>
-    <property name="value">
-     <double>1.000000000000000</double>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_hand_two_2">
-    <property name="geometry">
-     <rect>
-      <x>360</x>
-      <y>250</y>
-      <width>32</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>X</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_video">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>430</y>
-      <width>480</width>
-      <height>270</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
-    </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>LEARNING</string>
+     </attribute>
+     <widget class="QLabel" name="label_76800_1024_1024_6_train_status_2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>330</y>
+        <width>401</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>-----------------</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_76800_1024_1024_6_save_weights">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>210</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Save Weights</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_76800_1024_1024_6_save_weights">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>210</y>
+        <width>200</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>-----------------</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_76800_1024_1024_6_train">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>90</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Train</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_76800_1024_1024_6_train_status">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>290</y>
+        <width>401</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>-----------------</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_76800_1024_1024_6_load_saved_weights">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>50</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Load Saved Weights</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_76800_1024_1024_6_load_saved_weights">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>50</y>
+        <width>200</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>-----------------</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_76800_1024_1024_6_show_weights">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>170</y>
+        <width>200</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>-----------------</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_76800_1024_1024_6_show_weights">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>170</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Show Weights</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_hand_two_2">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>250</y>
+        <width>32</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>X</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_76800_1024_1024_6_test">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>130</y>
+        <width>200</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>-----------------</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_76800_1024_1024_6_random_initilize">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>10</y>
+        <width>200</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>-----------------</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_76800_1024_1024_6_train">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>90</y>
+        <width>200</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>-----------------</string>
+      </property>
+     </widget>
+     <widget class="QDoubleSpinBox" name="doubleSpinBox">
+      <property name="geometry">
+       <rect>
+        <x>209</x>
+        <y>250</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
+      <property name="decimals">
+       <number>6</number>
+      </property>
+      <property name="maximum">
+       <double>10.000000000000000</double>
+      </property>
+      <property name="singleStep">
+       <double>0.000001000000000</double>
+      </property>
+      <property name="value">
+       <double>0.000001000000000</double>
+      </property>
+     </widget>
+     <widget class="QDoubleSpinBox" name="doubleSpinBox_2">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>250</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
+      <property name="decimals">
+       <number>6</number>
+      </property>
+      <property name="maximum">
+       <double>10.000000000000000</double>
+      </property>
+      <property name="singleStep">
+       <double>0.000001000000000</double>
+      </property>
+      <property name="value">
+       <double>1.000000000000000</double>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_76800_1024_1024_6_test_2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>250</y>
+        <width>210</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Learning Rate</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_76800_1024_1024_6_test">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>130</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Test</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_76800_1024_1024_6_random_initilize">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>10</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Random Initilize</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_hand_two">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>10</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_76800_1024_1024_6_stop_train">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>60</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Stop Train</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>CAMERA</string>
+     </attribute>
+     <widget class="QLabel" name="label_video">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>320</width>
+        <height>240</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_video_rotated">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>10</y>
+        <width>240</width>
+        <height>320</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_video_small_monochrome">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>310</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_shot">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>310</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>SHOT</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_3">
+     <attribute name="title">
+      <string>SNAPSHOTS</string>
+     </attribute>
+     <widget class="QPushButton" name="pushButton_snapshot_fist_1">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>70</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>FIST 1</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_snapshot_fist_1">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>10</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_snapshot_one_1">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>60</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_snapshot_one_1">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>70</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>ONE 1</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_snapshot_two_1">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>110</y>
+        <width>70</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TWO 1</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_snapshot_two_1">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>110</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_snapshot_three_1">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>160</y>
+        <width>70</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>THREE 1</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_snapshot_three_1">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>160</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_snapshot_four_1">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>210</y>
+        <width>70</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>FOUR 1</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_snapshot_four_1">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>210</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_snapshot_five_1">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>260</y>
+        <width>70</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>FIVE 1</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_snapshot_five_1">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>260</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_snapshot_one_2">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>60</y>
+        <width>70</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>ONE 2</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_snapshot_fist_2">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>10</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_snapshot_four_2">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>210</y>
+        <width>70</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>FOUR 2</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_snapshot_four_2">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>210</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_snapshot_fist_2">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>10</y>
+        <width>70</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>FIST 2</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_snapshot_three_2">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>160</y>
+        <width>70</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>THREE 2</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_snapshot_five_2">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>260</y>
+        <width>70</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>FIVE 2</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_snapshot_one_2">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>60</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_snapshot_two_2">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>110</y>
+        <width>70</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TWO 2</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_snapshot_two_2">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>110</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_snapshot_five_2">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>260</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_snapshot_three_2">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>160</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_snapshot_one_3">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>60</y>
+        <width>70</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>ONE 3</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_snapshot_fist_3">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>10</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_snapshot_four_3">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>210</y>
+        <width>70</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>FOUR 3</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_snapshot_four_3">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>210</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_snapshot_fist_3">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>10</y>
+        <width>70</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>FIST 3</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_snapshot_three_3">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>160</y>
+        <width>70</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>THREE 3</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_snapshot_five_3">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>260</y>
+        <width>70</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>FIVE 3</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_snapshot_one_3">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>60</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_snapshot_two_3">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>110</y>
+        <width>70</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TWO 3</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_snapshot_two_3">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>110</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_snapshot_five_3">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>260</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_snapshot_three_3">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>160</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_snapshot_one_4">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>60</y>
+        <width>70</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>ONE 4</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_snapshot_fist_4">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>10</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_snapshot_four_4">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>210</y>
+        <width>70</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>FOUR 4</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_snapshot_four_4">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>210</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_snapshot_fist_4">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>10</y>
+        <width>70</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>FIST 4</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_snapshot_three_4">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>160</y>
+        <width>70</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>THREE 4</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_snapshot_five_4">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>260</y>
+        <width>70</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>FIVE 4</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_snapshot_one_4">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>60</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_snapshot_two_4">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>110</y>
+        <width>70</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TWO 4</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_snapshot_two_4">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>110</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_snapshot_five_4">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>260</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_snapshot_three_4">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>160</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_snapshot_one_5">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>60</y>
+        <width>70</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>ONE 5</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_snapshot_fist_5">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>10</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_snapshot_four_5">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>210</y>
+        <width>70</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>FOUR 5</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_snapshot_four_5">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>210</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_snapshot_fist_5">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>10</y>
+        <width>70</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>FIST 5</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_snapshot_three_5">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>160</y>
+        <width>70</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>THREE 5</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_snapshot_five_5">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>260</y>
+        <width>70</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>FIVE 5</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_snapshot_one_5">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>60</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_snapshot_two_5">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>110</y>
+        <width>70</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TWO 5</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_snapshot_two_5">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>110</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_snapshot_five_5">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>260</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_snapshot_three_5">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>160</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -324,7 +1171,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>672</width>
+     <width>688</width>
      <height>25</height>
     </rect>
    </property>
