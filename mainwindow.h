@@ -5,6 +5,7 @@
 #include "ann.h"
 #include <math.h>
 #include <QDateTime>
+#include <QElapsedTimer>
 #include <QSettings>
 #include <QProcess>
 #include <QPainter>
@@ -117,6 +118,8 @@ private slots:
     void get_five_5_picture();
 
     void load_snapshot_pictures();
+
+    void start_stream(void);
 
 };
 

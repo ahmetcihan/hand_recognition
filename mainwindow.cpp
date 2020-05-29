@@ -59,9 +59,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButton_76800_1024_1024_6_stop_train,SIGNAL(clicked(bool)),this,SLOT(_76800_1024_1024_6_stop_train_handler()));
 
     periodic_timer = new QTimer(this);
-    periodic_timer->setInterval(1000);
+    periodic_timer->setInterval(500);
     connect(periodic_timer,SIGNAL(timeout()),this,SLOT(capture_video()));
-    periodic_timer->start();
+    //periodic_timer->start();
+    connect(ui->pushButton_start_stream,SIGNAL(clicked(bool)),this,SLOT(start_stream()));
 
     //connect(ui->pushButton_shot,SIGNAL(clicked(bool)),this,SLOT(capture_video()));
 
@@ -69,7 +70,14 @@ MainWindow::MainWindow(QWidget *parent) :
     my_vid.open(0);
 
 }
+void MainWindow::start_stream(void){
+    periodic_timer->start();
+}
 void MainWindow::capture_video(void){
+    static QElapsedTimer my_timer;
+
+    my_timer.restart();
+
     cv::Mat original_frame;
     cv::Mat rotated_frame;
 
@@ -89,7 +97,7 @@ void MainWindow::capture_video(void){
     for(u16 i = 0; i < rotated_image.width(); i++){
         for(u16 j = 0; j < rotated_image.height(); j++){
             //qDebug() << QString("pixel-%1-%2").arg(i).arg(j) << QColor(show_small_image.pixel(i,j)).black();
-            if(QColor(rotated_image.pixel(i,j)).black() < 64){
+            if(QColor(rotated_image.pixel(i,j)).black() < 78){
                 rotated_image.setPixel(i,j,qRgb(255,255,255));
             }
             else{
@@ -101,24 +109,67 @@ void MainWindow::capture_video(void){
     ui->label_video_rotated->setPixmap(rotated_monochrome);
 
     QImage small_scale;
-    small_scale = rotated_image.scaled(QSize(32,42));
+    small_scale = rotated_image.scaled(QSize(32,42),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     QPixmap small_picture = QPixmap::fromImage(small_scale);
     ui->label_video_small_monochrome->setPixmap(small_picture);
 
+    QImage small_different;
+    small_different = rotated_image.scaled(QSize(32,42),Qt::KeepAspectRatioByExpanding,Qt::FastTransformation);
+    QPixmap small_diff = QPixmap::fromImage(small_different);
+    ui->label_video_small_monochrome_2->setPixmap(small_diff);
+
+    ui->label_hand_two->setPixmap(small_picture);
     original_frame.release();
     rotated_frame.release();
+
+//    u8 tester[32][42];
+
+//    for(u8 i = 0; i < small_scale.width();i++){
+//        for(u8 j = 0; j < small_scale.height();j++){
+//            tester[i][j] = 0;
+//            if((small_scale.pixel(i,j) & 0xFF) == 0xFF){
+//                tester[i][j] = 1;
+//            }
+//        }
+//    }
+
+
+//    for(u32 j = 0; j < 42; j++){
+//        for(u32 i = 0; i < 32; i++){
+//            ann_class->net_76800_1024_1024_6.test_input[i + 32*j] = tester[i][j];
+//        }
+//    }
+
+//    ann_class->_76800_1024_1024_6_ann_test( ann_class->net_76800_1024_1024_6.test_input,
+//                                            ann_class->net_76800_1024_1024_6.hidden_neuron_bias_1,
+//                                            ann_class->net_76800_1024_1024_6.hidden_neuron_bias_2,
+//                                            ann_class->net_76800_1024_1024_6.hidden_neuron_bias_3,
+//                                            ann_class->net_76800_1024_1024_6.output_bias,
+//                                            ann_class->net_76800_1024_1024_6.w_input_to_hidden_1,
+//                                            ann_class->net_76800_1024_1024_6.w_hidden_1_to_hidden_2,
+//                                            ann_class->net_76800_1024_1024_6.w_hidden_2_to_hidden_3,
+//                                            ann_class->net_76800_1024_1024_6.w_hidden_3_to_output);
+
+
+    qDebug() << "elapsed time" << my_timer.elapsed();
 }
 
 void MainWindow::_100_msec_timer_handle(void){
     if(ann_class->train_status == 1){
         ui->label_76800_1024_1024_6_train->setText(QString("training status %  %1").arg(ann_class->epoch_status));
-        ui->label_76800_1024_1024_6_train_status->setText(QString("Epoch : %1 , Error : %2 , ob-0 : %3").
-                                                        arg(ann_class->epoch_no).arg(ann_class->net_76800_1024_1024_6.total_err).
-                                                        arg(ann_class->net_76800_1024_1024_6.output_bias[0]));
-        ui->label_76800_1024_1024_6_train_status_2->setText(QString("hb1-0 : %1 , hb2-0 : %2 , wh2h-0 : %3").
-                                                        arg(ann_class->net_76800_1024_1024_6.hidden_neuron_bias_1[0]).
-                                                        arg(ann_class->net_76800_1024_1024_6.hidden_neuron_bias_2[0]).
-                                                        arg(ann_class->net_76800_1024_1024_6.w_hidden_1_to_hidden_2[0][0]));
+        ui->label_76800_1024_1024_6_train_status->setText(QString("Epoch : %1 , Error : %2 , ob-0 : %3 , hb1-0 : %4").
+                                                            arg(ann_class->epoch_no).
+                                                            arg(ann_class->net_76800_1024_1024_6.total_err).
+                                                            arg(ann_class->net_76800_1024_1024_6.output_bias[0]).
+                                                            arg(ann_class->net_76800_1024_1024_6.hidden_neuron_bias_1[0]));
+        ui->label_76800_1024_1024_6_train_status_2->setText(QString("hb2-0 : %1 , hb3-0 : %2 , whi21-0 : %3").
+                                                            arg(ann_class->net_76800_1024_1024_6.hidden_neuron_bias_2[0]).
+                                                            arg(ann_class->net_76800_1024_1024_6.hidden_neuron_bias_3[0]).
+                                                            arg(ann_class->net_76800_1024_1024_6.w_input_to_hidden_1[0][0]));
+        ui->label_76800_1024_1024_6_train_status_3->setText(QString("wh122-0 : %1 , wh223-0 : %2 , wh32o-0 : %3").
+                                                            arg(ann_class->net_76800_1024_1024_6.w_hidden_1_to_hidden_2[0][0]).
+                                                            arg(ann_class->net_76800_1024_1024_6.w_hidden_2_to_hidden_3[0][0]).
+                                                            arg(ann_class->net_76800_1024_1024_6.w_hidden_3_to_output[0][0]));
     }
 }
 

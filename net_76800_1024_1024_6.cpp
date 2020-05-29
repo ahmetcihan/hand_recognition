@@ -23,7 +23,9 @@ double ann::_76800_1024_1024_6_ann_calculate_total_error(void){
     return total_error;
 }
 void ann::_76800_1024_1024_6_ann_test(  double input[1344],
-                                        double hidden_neuron_bias_1[1024], double hidden_neuron_bias_2[1024], double hidden_neuron_bias_3[1024],
+                                        double hidden_neuron_bias_1[1024],
+                                        double hidden_neuron_bias_2[1024],
+                                        double hidden_neuron_bias_3[1024],
                                         double output_bias[6],
                                         double w_input_to_hidden_1[1344][1024],
                                         double w_hidden_1_to_hidden_2[1024][1024],
@@ -137,7 +139,9 @@ void ann::_76800_1024_1024_6_ann_test(  double input[1344],
 }
 
 void ann::_76800_1024_1024_6_ann_train( double input[1344][6*5], double desired_output[6][6], double calculated_output[6][6],
-                                        double hidden_neuron_bias_1[1024], double hidden_neuron_bias_2[1024],double hidden_neuron_bias_3[1024],
+                                        double hidden_neuron_bias_1[1024],
+                                        double hidden_neuron_bias_2[1024],
+                                        double hidden_neuron_bias_3[1024],
                                         double output_bias[6],
                                         double w_input_to_hidden_1[1344][1024],
                                         double w_hidden_1_to_hidden_2[1024][1024],
@@ -288,10 +292,11 @@ void ann::_76800_1024_1024_6_ann_train( double input[1344][6*5], double desired_
             }
             inset_error[inset] = _76800_1024_1024_6_ann_calculate_total_error();
         }
-        net_76800_1024_1024_6.total_err =  (inset_error[0]*inset_error[0]
-                + inset_error[1]*inset_error[1]
-                + inset_error[2]*inset_error[2]
-                + inset_error[3]*inset_error[3] + inset_error[4]*inset_error[4])/5;
+        net_76800_1024_1024_6.total_err =   ( inset_error[0]*inset_error[0]
+                                            + inset_error[1]*inset_error[1]
+                                            + inset_error[2]*inset_error[2]
+                                            + inset_error[3]*inset_error[3]
+                                            + inset_error[4]*inset_error[4])/5;
         epoch_no = era;
         epoch_status = (era*100)/epoch;
         if(stop_the_training == 1) break;
@@ -523,7 +528,7 @@ void MainWindow::_76800_1024_1024_6_test_handler(void){
 
     for(u32 j = 0; j < 42; j++){
         for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.test_input[i + 32*j] = one_image_5[i][j];
+            ann_class->net_76800_1024_1024_6.test_input[i + 32*j] = one_image_1[i][j];
         }
     }
 
@@ -660,40 +665,40 @@ void MainWindow::_76800_1024_1024_6_stop_train_handler(void){
     ann_class->stop_the_training = 1;
 }
 void MainWindow::_76800_1024_1024_6_picture_to_arrays(void){
-    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast/fist.jpg",fist_image_1);
-    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast/one.jpg",one_image_1);
-    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast/two.jpg",two_image_1);
-    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast/three.jpg",three_image_1);
-    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast/four.jpg",four_image_1);
-    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast/five.jpg",five_image_1);
+    image_to_array_240x320("/home/ahmet/Desktop/hands/fist_1.jpg",  fist_image_1);
+    image_to_array_240x320("/home/ahmet/Desktop/hands/one_1.jpg",   one_image_1);
+    image_to_array_240x320("/home/ahmet/Desktop/hands/two_1.jpg",   two_image_1);
+    image_to_array_240x320("/home/ahmet/Desktop/hands/three_1.jpg", three_image_1);
+    image_to_array_240x320("/home/ahmet/Desktop/hands/four_1.jpg",  four_image_1);
+    image_to_array_240x320("/home/ahmet/Desktop/hands/five_1.jpg",  five_image_1);
 
-    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_2/fist.jpg",fist_image_2);
-    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_2/one.jpg",one_image_2);
-    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_2/two.jpg",two_image_2);
-    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_2/three.jpg",three_image_2);
-    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_2/four.jpg",four_image_2);
-    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_2/five.jpg",five_image_2);
+    image_to_array_240x320("/home/ahmet/Desktop/hands/fist_2.jpg",  fist_image_2);
+    image_to_array_240x320("/home/ahmet/Desktop/hands/one_2.jpg",   one_image_2);
+    image_to_array_240x320("/home/ahmet/Desktop/hands/two_2.jpg",   two_image_2);
+    image_to_array_240x320("/home/ahmet/Desktop/hands/three_2.jpg", three_image_2);
+    image_to_array_240x320("/home/ahmet/Desktop/hands/four_2.jpg",  four_image_2);
+    image_to_array_240x320("/home/ahmet/Desktop/hands/five_2.jpg",  five_image_2);
 
-    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_3/fist.jpg",fist_image_3);
-    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_3/one.jpg",one_image_3);
-    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_3/two.jpg",two_image_3);
-    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_3/three.jpg",three_image_3);
-    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_3/four.jpg",four_image_3);
-    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_3/five.jpg",five_image_3);
+    image_to_array_240x320("/home/ahmet/Desktop/hands/fist_3.jpg",  fist_image_3);
+    image_to_array_240x320("/home/ahmet/Desktop/hands/one_3.jpg",   one_image_3);
+    image_to_array_240x320("/home/ahmet/Desktop/hands/two_3.jpg",   two_image_3);
+    image_to_array_240x320("/home/ahmet/Desktop/hands/three_3.jpg", three_image_3);
+    image_to_array_240x320("/home/ahmet/Desktop/hands/four_3.jpg",  four_image_3);
+    image_to_array_240x320("/home/ahmet/Desktop/hands/five_3.jpg",  five_image_3);
 
-    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_4/fist.jpg",fist_image_4);
-    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_4/one.jpg",one_image_4);
-    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_4/two.jpg",two_image_4);
-    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_4/three.jpg",three_image_4);
-    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_4/four.jpg",four_image_4);
-    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_4/five.jpg",five_image_4);
+    image_to_array_240x320("/home/ahmet/Desktop/hands/fist_4.jpg",  fist_image_4);
+    image_to_array_240x320("/home/ahmet/Desktop/hands/one_4.jpg",   one_image_4);
+    image_to_array_240x320("/home/ahmet/Desktop/hands/two_4.jpg",   two_image_4);
+    image_to_array_240x320("/home/ahmet/Desktop/hands/three_4.jpg", three_image_4);
+    image_to_array_240x320("/home/ahmet/Desktop/hands/four_4.jpg",  four_image_4);
+    image_to_array_240x320("/home/ahmet/Desktop/hands/five_4.jpg",  five_image_4);
 
-    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_5/fist.jpg",fist_image_5);
-    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_5/one.jpg",one_image_5);
-    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_5/two.jpg",two_image_5);
-    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_5/three.jpg",three_image_5);
-    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_5/four.jpg",four_image_5);
-    image_to_array_240x320("/home/ahmet/Desktop/my_hand/32x42_full_contrast_5/five.jpg",five_image_5);
+    image_to_array_240x320("/home/ahmet/Desktop/hands/fist_5.jpg",  fist_image_5);
+    image_to_array_240x320("/home/ahmet/Desktop/hands/one_5.jpg",   one_image_5);
+    image_to_array_240x320("/home/ahmet/Desktop/hands/two_5.jpg",   two_image_5);
+    image_to_array_240x320("/home/ahmet/Desktop/hands/three_5.jpg", three_image_5);
+    image_to_array_240x320("/home/ahmet/Desktop/hands/four_5.jpg",  four_image_5);
+    image_to_array_240x320("/home/ahmet/Desktop/hands/five_5.jpg",  five_image_5);
 }
 void MainWindow::image_to_array_240x320(QString location, u8 image_array[32][42]){
     QImage read_image;

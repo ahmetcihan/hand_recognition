@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -34,9 +34,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>330</y>
-        <width>401</width>
-        <height>31</height>
+        <y>310</y>
+        <width>500</width>
+        <height>20</height>
        </rect>
       </property>
       <property name="text">
@@ -87,8 +87,8 @@
        <rect>
         <x>0</x>
         <y>290</y>
-        <width>401</width>
-        <height>31</height>
+        <width>500</width>
+        <height>20</height>
        </rect>
       </property>
       <property name="text">
@@ -295,24 +295,11 @@
        <string>Random Initilize</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_hand_two">
-      <property name="geometry">
-       <rect>
-        <x>490</x>
-        <y>10</y>
-        <width>32</width>
-        <height>42</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="pushButton_76800_1024_1024_6_stop_train">
       <property name="geometry">
        <rect>
-        <x>440</x>
-        <y>60</y>
+        <x>460</x>
+        <y>70</y>
         <width>91</width>
         <height>31</height>
        </rect>
@@ -320,6 +307,48 @@
       <property name="text">
        <string>Stop Train</string>
       </property>
+     </widget>
+     <widget class="QLabel" name="label_76800_1024_1024_6_train_status_3">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>330</y>
+        <width>500</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>-----------------</string>
+      </property>
+     </widget>
+     <widget class="QFrame" name="frame">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>10</y>
+        <width>34</width>
+        <height>44</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QLabel" name="label_hand_two">
+       <property name="geometry">
+        <rect>
+         <x>1</x>
+         <y>1</y>
+         <width>32</width>
+         <height>42</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
@@ -368,7 +397,7 @@
      <widget class="QPushButton" name="pushButton_shot">
       <property name="geometry">
        <rect>
-        <x>90</x>
+        <x>210</x>
         <y>310</y>
         <width>91</width>
         <height>31</height>
@@ -376,6 +405,32 @@
       </property>
       <property name="text">
        <string>SHOT</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_start_stream">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>270</y>
+        <width>121</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>START STREAM</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_video_small_monochrome_2">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>310</y>
+        <width>32</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
       </property>
      </widget>
     </widget>
