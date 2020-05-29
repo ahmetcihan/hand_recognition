@@ -116,6 +116,8 @@ private slots:
     void get_five_4_picture();
     void get_five_5_picture();
 
+    void load_snapshot_pictures();
+
 };
 
 #endif // MAINWINDOW_H

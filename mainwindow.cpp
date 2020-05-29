@@ -39,6 +39,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButton_snapshot_five_4,SIGNAL(clicked(bool)),this,SLOT(get_five_4_picture()));
     connect(ui->pushButton_snapshot_five_5,SIGNAL(clicked(bool)),this,SLOT(get_five_5_picture()));
 
+    load_snapshot_pictures();
+
     _100_msec_timer = new QTimer(this);
     _100_msec_timer->setInterval(1000);
     _100_msec_timer->start();
