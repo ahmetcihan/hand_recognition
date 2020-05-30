@@ -46,10 +46,6 @@ MainWindow::MainWindow(QWidget *parent) :
     _100_msec_timer->start();
     connect(this->_100_msec_timer,SIGNAL(timeout()),this,SLOT(_100_msec_timer_handle()));
 
-    QPixmap my_pixmap;
-    my_pixmap.load("/home/ahmet/Desktop/my_hand/32x42_full_contrast/two.jpg");
-    ui->label_hand_two->setPixmap(my_pixmap);
-
     connect(ui->pushButton_76800_1024_1024_6_prepare_io,SIGNAL(clicked(bool)),this,SLOT(_76800_1024_1024_6_prepare_io_pairs_handler()));
     connect(ui->pushButton_76800_1024_1024_6_random_initilize,SIGNAL(clicked(bool)),this,SLOT(_76800_1024_1024_6_random_initilize_handler()));
     connect(ui->pushButton_76800_1024_1024_6_train,SIGNAL(clicked(bool)),this,SLOT(_76800_1024_1024_6_train_handler()));
@@ -97,8 +93,7 @@ void MainWindow::capture_video(void){
 
     for(u16 i = 0; i < rotated_image.width(); i++){
         for(u16 j = 0; j < rotated_image.height(); j++){
-            //qDebug() << QString("pixel-%1-%2").arg(i).arg(j) << QColor(show_small_image.pixel(i,j)).black();
-            if(QColor(rotated_image.pixel(i,j)).black() < 78){
+            if(QColor(rotated_image.pixel(i,j)).black() < 64){
                 rotated_image.setPixel(i,j,qRgb(255,255,255));
             }
             else{
@@ -110,7 +105,7 @@ void MainWindow::capture_video(void){
     ui->label_video_rotated->setPixmap(rotated_monochrome);
 
     QImage small_scale;
-    small_scale = rotated_image.scaled(QSize(32,43),Qt::KeepAspectRatio,Qt::SmoothTransformation);
+    small_scale = rotated_image.scaled(QSize(30,40),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     QPixmap small_picture = QPixmap::fromImage(small_scale);
     ui->label_video_small_monochrome->setPixmap(small_picture);
     ui->label_video_small_monochrome_2->setPixmap(small_picture);
@@ -119,33 +114,33 @@ void MainWindow::capture_video(void){
     original_frame.release();
     rotated_frame.release();
 
-//    u8 tester[32][42];
+    u8 tester[30][40];
 
-//    for(u8 i = 0; i < small_scale.width();i++){
-//        for(u8 j = 0; j < small_scale.height();j++){
-//            tester[i][j] = 0;
-//            if((small_scale.pixel(i,j) & 0xFF) == 0xFF){
-//                tester[i][j] = 1;
-//            }
-//        }
-//    }
+    for(u8 i = 0; i < small_scale.width();i++){
+        for(u8 j = 0; j < small_scale.height();j++){
+            tester[i][j] = 0;
+            if((small_scale.pixel(i,j) & 0xFF) == 0xFF){
+                tester[i][j] = 1;
+            }
+        }
+    }
 
 
-//    for(u32 j = 0; j < 42; j++){
-//        for(u32 i = 0; i < 32; i++){
-//            ann_class->net_76800_1024_1024_6.test_input[i + 32*j] = tester[i][j];
-//        }
-//    }
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.test_input[i + 30*j] = tester[i][j];
+        }
+    }
 
-//    ann_class->_76800_1024_1024_6_ann_test( ann_class->net_76800_1024_1024_6.test_input,
-//                                            ann_class->net_76800_1024_1024_6.hidden_neuron_bias_1,
-//                                            ann_class->net_76800_1024_1024_6.hidden_neuron_bias_2,
-//                                            ann_class->net_76800_1024_1024_6.hidden_neuron_bias_3,
-//                                            ann_class->net_76800_1024_1024_6.output_bias,
-//                                            ann_class->net_76800_1024_1024_6.w_input_to_hidden_1,
-//                                            ann_class->net_76800_1024_1024_6.w_hidden_1_to_hidden_2,
-//                                            ann_class->net_76800_1024_1024_6.w_hidden_2_to_hidden_3,
-//                                            ann_class->net_76800_1024_1024_6.w_hidden_3_to_output);
+    ann_class->_76800_1024_1024_6_ann_test( ann_class->net_76800_1024_1024_6.test_input,
+                                            ann_class->net_76800_1024_1024_6.hidden_neuron_bias_1,
+                                            ann_class->net_76800_1024_1024_6.hidden_neuron_bias_2,
+                                            ann_class->net_76800_1024_1024_6.hidden_neuron_bias_3,
+                                            ann_class->net_76800_1024_1024_6.output_bias,
+                                            ann_class->net_76800_1024_1024_6.w_input_to_hidden_1,
+                                            ann_class->net_76800_1024_1024_6.w_hidden_1_to_hidden_2,
+                                            ann_class->net_76800_1024_1024_6.w_hidden_2_to_hidden_3,
+                                            ann_class->net_76800_1024_1024_6.w_hidden_3_to_output);
 
 
     qDebug() << "elapsed time" << my_timer.elapsed();

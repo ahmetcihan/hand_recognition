@@ -1,14 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#define INPUT_COUNT     1344
-#define HIDDEN_COUNT_1  64
-#define HIDDEN_COUNT_2  64
-#define HIDDEN_COUNT_3  64
-#define OUTPUT_COUNT    6
-#define IO_ARRAY_LENGTH 6
-#define INPUT_SET       5
-
 double ann::_76800_1024_1024_6_ann_calculate_total_error(void){
     double total_error = 0;
     double aux;
@@ -22,15 +14,15 @@ double ann::_76800_1024_1024_6_ann_calculate_total_error(void){
     }
     return total_error;
 }
-void ann::_76800_1024_1024_6_ann_test(  double input[1344],
-                                        double hidden_neuron_bias_1[1024],
-                                        double hidden_neuron_bias_2[1024],
-                                        double hidden_neuron_bias_3[1024],
-                                        double output_bias[6],
-                                        double w_input_to_hidden_1[1344][1024],
-                                        double w_hidden_1_to_hidden_2[1024][1024],
-                                        double w_hidden_2_to_hidden_3[1024][1024],
-                                        double w_hidden_3_to_output[1024][6]){
+void ann::_76800_1024_1024_6_ann_test(double input[INPUT_COUNT],
+                                      double hidden_neuron_bias_1[HIDDEN_COUNT_1],
+                                      double hidden_neuron_bias_2[HIDDEN_COUNT_2],
+                                      double hidden_neuron_bias_3[HIDDEN_COUNT_3],
+                                      double output_bias[OUTPUT_COUNT],
+                                      double w_input_to_hidden_1[INPUT_COUNT][HIDDEN_COUNT_1],
+                                      double w_hidden_1_to_hidden_2[HIDDEN_COUNT_1][HIDDEN_COUNT_2],
+                                      double w_hidden_2_to_hidden_3[HIDDEN_COUNT_2][HIDDEN_COUNT_3],
+                                      double w_hidden_3_to_output[HIDDEN_COUNT_3][OUTPUT_COUNT]){
     double hidden_neuron_in_1[HIDDEN_COUNT_1];
     double hidden_neuron_out_1[HIDDEN_COUNT_1];
 
@@ -138,15 +130,16 @@ void ann::_76800_1024_1024_6_ann_test(  double input[1344],
 
 }
 
-void ann::_76800_1024_1024_6_ann_train( double input[1344][6*5], double desired_output[6][6], double calculated_output[6][6],
-                                        double hidden_neuron_bias_1[1024],
-                                        double hidden_neuron_bias_2[1024],
-                                        double hidden_neuron_bias_3[1024],
-                                        double output_bias[6],
-                                        double w_input_to_hidden_1[1344][1024],
-                                        double w_hidden_1_to_hidden_2[1024][1024],
-                                        double w_hidden_2_to_hidden_3[1024][1024],
-                                        double w_hidden_3_to_output[1024][6],
+void ann::_76800_1024_1024_6_ann_train( double input[INPUT_COUNT][IO_ARRAY_LENGTH*INPUT_SET],
+                                        double desired_output[OUTPUT_COUNT][IO_ARRAY_LENGTH], double calculated_output[OUTPUT_COUNT][IO_ARRAY_LENGTH],
+                                        double hidden_neuron_bias_1[HIDDEN_COUNT_1],
+                                        double hidden_neuron_bias_2[HIDDEN_COUNT_2],
+                                        double hidden_neuron_bias_3[HIDDEN_COUNT_3],
+                                        double output_bias[OUTPUT_COUNT],
+                                        double w_input_to_hidden_1[INPUT_COUNT][HIDDEN_COUNT_1],
+                                        double w_hidden_1_to_hidden_2[HIDDEN_COUNT_1][HIDDEN_COUNT_2],
+                                        double w_hidden_2_to_hidden_3[HIDDEN_COUNT_2][HIDDEN_COUNT_3],
+                                        double w_hidden_3_to_output[HIDDEN_COUNT_3][OUTPUT_COUNT],
                                         u32 epoch, double learning_rate){
 
     double hidden_neuron_in_1[HIDDEN_COUNT_1];
@@ -292,11 +285,10 @@ void ann::_76800_1024_1024_6_ann_train( double input[1344][6*5], double desired_
             }
             inset_error[inset] = _76800_1024_1024_6_ann_calculate_total_error();
         }
-        net_76800_1024_1024_6.total_err =   ( inset_error[0]*inset_error[0]
-                                            + inset_error[1]*inset_error[1]
-                                            + inset_error[2]*inset_error[2]
-                                            + inset_error[3]*inset_error[3]
-                                            + inset_error[4]*inset_error[4])/5;
+        net_76800_1024_1024_6.total_err = 0;
+        for(u8 i = 0; i < OUTPUT_COUNT; i++){
+            net_76800_1024_1024_6.total_err += inset_error[i]*inset_error[i];
+        }
         epoch_no = era;
         epoch_status = (era*100)/epoch;
         if(stop_the_training == 1) break;
@@ -306,162 +298,162 @@ void MainWindow::_76800_1024_1024_6_prepare_io_pairs_handler(void){
     _76800_1024_1024_6_picture_to_arrays();
 
     /********************************SET 1***********************************/
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.input[i + 32*j][0] = fist_image_1[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 30*j][0] = fist_image_1[i][j];
         }
     }
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.input[i + 32*j][1] = one_image_1[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 30*j][1] = one_image_1[i][j];
         }
     }
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.input[i + 32*j][2] = two_image_1[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 30*j][2] = two_image_1[i][j];
         }
     }
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.input[i + 32*j][3] = three_image_1[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 30*j][3] = three_image_1[i][j];
         }
     }
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.input[i + 32*j][4] = four_image_1[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 30*j][4] = four_image_1[i][j];
         }
     }
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.input[i + 32*j][5] = five_image_1[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 30*j][5] = five_image_1[i][j];
         }
     }
 
     /********************************SET 2***********************************/
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.input[i + 32*j][6] = fist_image_2[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 30*j][6] = fist_image_2[i][j];
         }
     }
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.input[i + 32*j][7] = one_image_2[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 30*j][7] = one_image_2[i][j];
         }
     }
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.input[i + 32*j][8] = two_image_2[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 30*j][8] = two_image_2[i][j];
         }
     }
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.input[i + 32*j][9] = three_image_2[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 30*j][9] = three_image_2[i][j];
         }
     }
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.input[i + 32*j][10] = four_image_2[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 30*j][10] = four_image_2[i][j];
         }
     }
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.input[i + 32*j][11] = five_image_2[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 30*j][11] = five_image_2[i][j];
         }
     }
 
     /********************************SET 3***********************************/
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.input[i + 32*j][12] = fist_image_3[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 30*j][12] = fist_image_3[i][j];
         }
     }
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.input[i + 32*j][13] = one_image_3[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 30*j][13] = one_image_3[i][j];
         }
     }
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.input[i + 32*j][14] = two_image_3[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 30*j][14] = two_image_3[i][j];
         }
     }
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.input[i + 32*j][15] = three_image_3[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 30*j][15] = three_image_3[i][j];
         }
     }
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.input[i + 32*j][16] = four_image_3[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 30*j][16] = four_image_3[i][j];
         }
     }
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.input[i + 32*j][17] = five_image_3[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 30*j][17] = five_image_3[i][j];
         }
     }
 
     /********************************SET 4***********************************/
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.input[i + 32*j][18] = fist_image_4[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 30*j][18] = fist_image_4[i][j];
         }
     }
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.input[i + 32*j][19] = one_image_4[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 30*j][19] = one_image_4[i][j];
         }
     }
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.input[i + 32*j][20] = two_image_4[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 30*j][20] = two_image_4[i][j];
         }
     }
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.input[i + 32*j][21] = three_image_4[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 30*j][21] = three_image_4[i][j];
         }
     }
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.input[i + 32*j][22] = four_image_4[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 30*j][22] = four_image_4[i][j];
         }
     }
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.input[i + 32*j][23] = five_image_4[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 30*j][23] = five_image_4[i][j];
         }
     }
 
     /********************************SET 5***********************************/
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.input[i + 32*j][24] = fist_image_5[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 30*j][24] = fist_image_5[i][j];
         }
     }
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.input[i + 32*j][25] = one_image_5[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 30*j][25] = one_image_5[i][j];
         }
     }
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.input[i + 32*j][26] = two_image_5[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 30*j][26] = two_image_5[i][j];
         }
     }
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.input[i + 32*j][27] = three_image_5[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 30*j][27] = three_image_5[i][j];
         }
     }
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.input[i + 32*j][28] = four_image_5[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 30*j][28] = four_image_5[i][j];
         }
     }
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.input[i + 32*j][29] = five_image_5[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.input[i + 30*j][29] = five_image_5[i][j];
         }
     }
 
@@ -481,43 +473,35 @@ void MainWindow::_76800_1024_1024_6_random_initilize_handler(void){
 
     for(u32 i = 0; i < HIDDEN_COUNT_1; i++){
         ann_class->net_76800_1024_1024_6.hidden_neuron_bias_1[i] = ((double) qrand()/RAND_MAX) * (-2) + 1;
-        //ann_class->net_76800_1024_1024_6.hidden_neuron_bias_1[i] = 0.01 + 0.001*i;
     }
     for(u32 i = 0; i < HIDDEN_COUNT_2; i++){
         ann_class->net_76800_1024_1024_6.hidden_neuron_bias_2[i] = ((double) qrand()/RAND_MAX) * (-2) + 1;
-        //ann_class->net_76800_1024_1024_6.hidden_neuron_bias_2[i] = 0.02 + 0.001*i;
     }
     for(u32 i = 0; i < HIDDEN_COUNT_3; i++){
         ann_class->net_76800_1024_1024_6.hidden_neuron_bias_3[i] = ((double) qrand()/RAND_MAX) * (-2) + 1;
-        //ann_class->net_76800_1024_1024_6.hidden_neuron_bias_2[i] = 0.02 + 0.001*i;
     }
     for(u32 i = 0; i < OUTPUT_COUNT; i++){
         ann_class->net_76800_1024_1024_6.output_bias[i] = ((double) qrand()/RAND_MAX) * (-2) + 1;
-        //ann_class->net_76800_1024_1024_6.output_bias[i] = 0.03 + 0.001*i;
     }
 
     for(u32 i = 0; i < INPUT_COUNT; i++){
         for(u32 j = 0; j < HIDDEN_COUNT_1; j++){
             ann_class->net_76800_1024_1024_6.w_input_to_hidden_1[i][j] = ((double) qrand()/RAND_MAX) * (-2) + 1;
-            //ann_class->net_76800_1024_1024_6.w_input_to_hidden[i][j] = -0.3 + 0.001*i;
         }
     }
     for(u32 i = 0; i < HIDDEN_COUNT_1; i++){
         for(u32 j = 0; j < HIDDEN_COUNT_2; j++){
             ann_class->net_76800_1024_1024_6.w_hidden_1_to_hidden_2[i][j] = ((double) qrand()/RAND_MAX) * (-2) + 1;
-            //ann_class->net_76800_1024_1024_6.w_hidden_to_hidden[i][j] = -0.2 + 0.001*i;
         }
     }
     for(u32 i = 0; i < HIDDEN_COUNT_2; i++){
         for(u32 j = 0; j < HIDDEN_COUNT_3; j++){
             ann_class->net_76800_1024_1024_6.w_hidden_2_to_hidden_3[i][j] = ((double) qrand()/RAND_MAX) * (-2) + 1;
-            //ann_class->net_76800_1024_1024_6.w_hidden_to_hidden[i][j] = -0.2 + 0.001*i;
         }
     }
     for(u32 i = 0; i < HIDDEN_COUNT_3; i++){
         for(u32 j = 0; j < OUTPUT_COUNT; j++){
             ann_class->net_76800_1024_1024_6.w_hidden_3_to_output[i][j] = ((double) qrand()/RAND_MAX) * (-2) + 1;
-            //ann_class->net_76800_1024_1024_6.w_hidden_to_output[i][j] = -0.1 + 0.001*i;
         }
     }
 
@@ -529,9 +513,9 @@ void MainWindow::_76800_1024_1024_6_train_handler(void){
 }
 void MainWindow::_76800_1024_1024_6_test_handler(void){
 
-    for(u32 j = 0; j < 42; j++){
-        for(u32 i = 0; i < 32; i++){
-            ann_class->net_76800_1024_1024_6.test_input[i + 32*j] = four_image_5[i][j];
+    for(u32 j = 0; j < 40; j++){
+        for(u32 i = 0; i < 30; i++){
+            ann_class->net_76800_1024_1024_6.test_input[i + 30*j] = fist_image_5[i][j];
         }
     }
 
@@ -632,7 +616,6 @@ void MainWindow::_76800_1024_1024_6_load_saved_weights_handler(void){
     for(u32 i = 0; i < HIDDEN_COUNT_1; i++){
         ann_class->net_76800_1024_1024_6.hidden_neuron_bias_1[i] = settings.value(QString("w/hb1-%1").arg(i)).toDouble();
     }
-    qDebug() << "value" << ann_class->net_76800_1024_1024_6.hidden_neuron_bias_1[0];
     for(u32 i = 0; i < HIDDEN_COUNT_2; i++){
         ann_class->net_76800_1024_1024_6.hidden_neuron_bias_2[i] = settings.value(QString("w/hb2-%1").arg(i)).toDouble();
     }
@@ -669,42 +652,42 @@ void MainWindow::_76800_1024_1024_6_stop_train_handler(void){
     ann_class->stop_the_training = 1;
 }
 void MainWindow::_76800_1024_1024_6_picture_to_arrays(void){
-    image_to_array_240x320("/home/ahmet/Desktop/hands/fist_1.jpg",  fist_image_1);
-    image_to_array_240x320("/home/ahmet/Desktop/hands/one_1.jpg",   one_image_1);
-    image_to_array_240x320("/home/ahmet/Desktop/hands/two_1.jpg",   two_image_1);
-    image_to_array_240x320("/home/ahmet/Desktop/hands/three_1.jpg", three_image_1);
-    image_to_array_240x320("/home/ahmet/Desktop/hands/four_1.jpg",  four_image_1);
-    image_to_array_240x320("/home/ahmet/Desktop/hands/five_1.jpg",  five_image_1);
+    image_to_array_30x40("/home/ahmet/Desktop/hands/fist_1.jpg",  fist_image_1);
+    image_to_array_30x40("/home/ahmet/Desktop/hands/one_1.jpg",   one_image_1);
+    image_to_array_30x40("/home/ahmet/Desktop/hands/two_1.jpg",   two_image_1);
+    image_to_array_30x40("/home/ahmet/Desktop/hands/three_1.jpg", three_image_1);
+    image_to_array_30x40("/home/ahmet/Desktop/hands/four_1.jpg",  four_image_1);
+    image_to_array_30x40("/home/ahmet/Desktop/hands/five_1.jpg",  five_image_1);
 
-    image_to_array_240x320("/home/ahmet/Desktop/hands/fist_2.jpg",  fist_image_2);
-    image_to_array_240x320("/home/ahmet/Desktop/hands/one_2.jpg",   one_image_2);
-    image_to_array_240x320("/home/ahmet/Desktop/hands/two_2.jpg",   two_image_2);
-    image_to_array_240x320("/home/ahmet/Desktop/hands/three_2.jpg", three_image_2);
-    image_to_array_240x320("/home/ahmet/Desktop/hands/four_2.jpg",  four_image_2);
-    image_to_array_240x320("/home/ahmet/Desktop/hands/five_2.jpg",  five_image_2);
+    image_to_array_30x40("/home/ahmet/Desktop/hands/fist_2.jpg",  fist_image_2);
+    image_to_array_30x40("/home/ahmet/Desktop/hands/one_2.jpg",   one_image_2);
+    image_to_array_30x40("/home/ahmet/Desktop/hands/two_2.jpg",   two_image_2);
+    image_to_array_30x40("/home/ahmet/Desktop/hands/three_2.jpg", three_image_2);
+    image_to_array_30x40("/home/ahmet/Desktop/hands/four_2.jpg",  four_image_2);
+    image_to_array_30x40("/home/ahmet/Desktop/hands/five_2.jpg",  five_image_2);
 
-    image_to_array_240x320("/home/ahmet/Desktop/hands/fist_3.jpg",  fist_image_3);
-    image_to_array_240x320("/home/ahmet/Desktop/hands/one_3.jpg",   one_image_3);
-    image_to_array_240x320("/home/ahmet/Desktop/hands/two_3.jpg",   two_image_3);
-    image_to_array_240x320("/home/ahmet/Desktop/hands/three_3.jpg", three_image_3);
-    image_to_array_240x320("/home/ahmet/Desktop/hands/four_3.jpg",  four_image_3);
-    image_to_array_240x320("/home/ahmet/Desktop/hands/five_3.jpg",  five_image_3);
+    image_to_array_30x40("/home/ahmet/Desktop/hands/fist_3.jpg",  fist_image_3);
+    image_to_array_30x40("/home/ahmet/Desktop/hands/one_3.jpg",   one_image_3);
+    image_to_array_30x40("/home/ahmet/Desktop/hands/two_3.jpg",   two_image_3);
+    image_to_array_30x40("/home/ahmet/Desktop/hands/three_3.jpg", three_image_3);
+    image_to_array_30x40("/home/ahmet/Desktop/hands/four_3.jpg",  four_image_3);
+    image_to_array_30x40("/home/ahmet/Desktop/hands/five_3.jpg",  five_image_3);
 
-    image_to_array_240x320("/home/ahmet/Desktop/hands/fist_4.jpg",  fist_image_4);
-    image_to_array_240x320("/home/ahmet/Desktop/hands/one_4.jpg",   one_image_4);
-    image_to_array_240x320("/home/ahmet/Desktop/hands/two_4.jpg",   two_image_4);
-    image_to_array_240x320("/home/ahmet/Desktop/hands/three_4.jpg", three_image_4);
-    image_to_array_240x320("/home/ahmet/Desktop/hands/four_4.jpg",  four_image_4);
-    image_to_array_240x320("/home/ahmet/Desktop/hands/five_4.jpg",  five_image_4);
+    image_to_array_30x40("/home/ahmet/Desktop/hands/fist_4.jpg",  fist_image_4);
+    image_to_array_30x40("/home/ahmet/Desktop/hands/one_4.jpg",   one_image_4);
+    image_to_array_30x40("/home/ahmet/Desktop/hands/two_4.jpg",   two_image_4);
+    image_to_array_30x40("/home/ahmet/Desktop/hands/three_4.jpg", three_image_4);
+    image_to_array_30x40("/home/ahmet/Desktop/hands/four_4.jpg",  four_image_4);
+    image_to_array_30x40("/home/ahmet/Desktop/hands/five_4.jpg",  five_image_4);
 
-    image_to_array_240x320("/home/ahmet/Desktop/hands/fist_5.jpg",  fist_image_5);
-    image_to_array_240x320("/home/ahmet/Desktop/hands/one_5.jpg",   one_image_5);
-    image_to_array_240x320("/home/ahmet/Desktop/hands/two_5.jpg",   two_image_5);
-    image_to_array_240x320("/home/ahmet/Desktop/hands/three_5.jpg", three_image_5);
-    image_to_array_240x320("/home/ahmet/Desktop/hands/four_5.jpg",  four_image_5);
-    image_to_array_240x320("/home/ahmet/Desktop/hands/five_5.jpg",  five_image_5);
+    image_to_array_30x40("/home/ahmet/Desktop/hands/fist_5.jpg",  fist_image_5);
+    image_to_array_30x40("/home/ahmet/Desktop/hands/one_5.jpg",   one_image_5);
+    image_to_array_30x40("/home/ahmet/Desktop/hands/two_5.jpg",   two_image_5);
+    image_to_array_30x40("/home/ahmet/Desktop/hands/three_5.jpg", three_image_5);
+    image_to_array_30x40("/home/ahmet/Desktop/hands/four_5.jpg",  four_image_5);
+    image_to_array_30x40("/home/ahmet/Desktop/hands/five_5.jpg",  five_image_5);
 }
-void MainWindow::image_to_array_240x320(QString location, u8 image_array[32][42]){
+void MainWindow::image_to_array_30x40(QString location, u8 image_array[30][40]){
     QImage read_image;
 
     read_image.load(location);
@@ -715,7 +698,6 @@ void MainWindow::image_to_array_240x320(QString location, u8 image_array[32][42]
             if((read_image.pixel(i,j) & 0xFF) == 0xFF){
                 image_array[i][j] = 1;
             }
-            //qDebug() << QString("array[%1][%2] :").arg(i).arg(j) << QString("%1").arg(image_array[i][j],0,16);
         }
     }
 }

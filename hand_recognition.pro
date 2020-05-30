@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     snapshot_images.cpp
 
 HEADERS  += mainwindow.h \
-    ann.h
+    ann.h \
+    my_macros.h
 
 FORMS    += mainwindow.ui \
     ann.ui

@@ -14,6 +14,7 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/opencv.hpp>
+#include "my_macros.h"
 
 namespace Ui {
 class MainWindow;
@@ -28,42 +29,42 @@ public:
     ~MainWindow();
     Ui::MainWindow *ui;
 
-    u8 fist_image_1[32][42];
-    u8 one_image_1[32][42];
-    u8 two_image_1[32][42];
-    u8 three_image_1[32][42];
-    u8 four_image_1[32][42];
-    u8 five_image_1[32][42];
+    u8 fist_image_1[30][40];
+    u8 one_image_1[30][40];
+    u8 two_image_1[30][40];
+    u8 three_image_1[30][40];
+    u8 four_image_1[30][40];
+    u8 five_image_1[30][40];
 
-    u8 fist_image_2[32][42];
-    u8 one_image_2[32][42];
-    u8 two_image_2[32][42];
-    u8 three_image_2[32][42];
-    u8 four_image_2[32][42];
-    u8 five_image_2[32][42];
+    u8 fist_image_2[30][40];
+    u8 one_image_2[30][40];
+    u8 two_image_2[30][40];
+    u8 three_image_2[30][40];
+    u8 four_image_2[30][40];
+    u8 five_image_2[30][40];
 
-    u8 fist_image_3[32][42];
-    u8 one_image_3[32][42];
-    u8 two_image_3[32][42];
-    u8 three_image_3[32][42];
-    u8 four_image_3[32][42];
-    u8 five_image_3[32][42];
+    u8 fist_image_3[30][40];
+    u8 one_image_3[30][40];
+    u8 two_image_3[30][40];
+    u8 three_image_3[30][40];
+    u8 four_image_3[30][40];
+    u8 five_image_3[30][40];
 
-    u8 fist_image_4[32][42];
-    u8 one_image_4[32][42];
-    u8 two_image_4[32][42];
-    u8 three_image_4[32][42];
-    u8 four_image_4[32][42];
-    u8 five_image_4[32][42];
+    u8 fist_image_4[30][40];
+    u8 one_image_4[30][40];
+    u8 two_image_4[30][40];
+    u8 three_image_4[30][40];
+    u8 four_image_4[30][40];
+    u8 five_image_4[30][40];
 
-    u8 fist_image_5[32][42];
-    u8 one_image_5[32][42];
-    u8 two_image_5[32][42];
-    u8 three_image_5[32][42];
-    u8 four_image_5[32][42];
-    u8 five_image_5[32][42];
+    u8 fist_image_5[30][40];
+    u8 one_image_5[30][40];
+    u8 two_image_5[30][40];
+    u8 three_image_5[30][40];
+    u8 four_image_5[30][40];
+    u8 five_image_5[30][40];
 
-    void image_to_array_240x320(QString location, u8 image_array[32][42]);
+    void image_to_array_30x40(QString location, u8 image_array[30][40]);
 
 private:
     ann *ann_class;

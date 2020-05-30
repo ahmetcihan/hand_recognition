@@ -36,8 +36,8 @@ void ann::thread_handler(void){
                                         net_76800_1024_1024_6.w_hidden_3_to_output,
                                         100000, 0.001);
 
-        for(u8 i = 0; i < 6; i++){
-            for(u8 j = 0; j < 6; j++){
+        for(u8 i = 0; i < OUTPUT_COUNT; i++){
+            for(u8 j = 0; j < IO_ARRAY_LENGTH; j++){
                 qDebug() << QString("desired output[%1][%2] : ").arg(i).arg(j) << net_76800_1024_1024_6.desired_output[i][j] <<
                             QString("calculated output[%1][%2] : ").arg(i).arg(j) << net_76800_1024_1024_6.calculated_output[i][j];
             }
@@ -46,8 +46,8 @@ void ann::thread_handler(void){
         double total_error = 0;
         double aux;
 
-        for(u8 i = 0; i < 6; i++){
-            for(u8 j = 0; j < 6; j++){
+        for(u8 i = 0; i < OUTPUT_COUNT; i++){
+            for(u8 j = 0; j < IO_ARRAY_LENGTH; j++){
                 aux = net_76800_1024_1024_6.desired_output[i][j] - net_76800_1024_1024_6.calculated_output[i][j];
                 aux = aux * aux;
                 total_error += aux;
