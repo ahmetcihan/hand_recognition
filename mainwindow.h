@@ -72,6 +72,19 @@ private slots:
     void get_fist_10_picture();
     void get_fist_11_picture();
     void get_fist_12_picture();
+    void get_fist_13_picture();
+    void get_fist_14_picture();
+    void get_fist_15_picture();
+    void get_fist_16_picture();
+    void get_fist_17_picture();
+    void get_fist_18_picture();
+    void get_fist_19_picture();
+    void get_fist_20_picture();
+    void get_fist_21_picture();
+    void get_fist_22_picture();
+    void get_fist_23_picture();
+    void get_fist_24_picture();
+
     void get_one_1_picture();
     void get_one_2_picture();
     void get_one_3_picture();
@@ -84,6 +97,19 @@ private slots:
     void get_one_10_picture();
     void get_one_11_picture();
     void get_one_12_picture();
+    void get_one_13_picture();
+    void get_one_14_picture();
+    void get_one_15_picture();
+    void get_one_16_picture();
+    void get_one_17_picture();
+    void get_one_18_picture();
+    void get_one_19_picture();
+    void get_one_20_picture();
+    void get_one_21_picture();
+    void get_one_22_picture();
+    void get_one_23_picture();
+    void get_one_24_picture();
+
     void get_two_1_picture();
     void get_two_2_picture();
     void get_two_3_picture();
@@ -96,6 +122,19 @@ private slots:
     void get_two_10_picture();
     void get_two_11_picture();
     void get_two_12_picture();
+    void get_two_13_picture();
+    void get_two_14_picture();
+    void get_two_15_picture();
+    void get_two_16_picture();
+    void get_two_17_picture();
+    void get_two_18_picture();
+    void get_two_19_picture();
+    void get_two_20_picture();
+    void get_two_21_picture();
+    void get_two_22_picture();
+    void get_two_23_picture();
+    void get_two_24_picture();
+
     void get_three_1_picture();
     void get_three_2_picture();
     void get_three_3_picture();
@@ -108,6 +147,19 @@ private slots:
     void get_three_10_picture();
     void get_three_11_picture();
     void get_three_12_picture();
+    void get_three_13_picture();
+    void get_three_14_picture();
+    void get_three_15_picture();
+    void get_three_16_picture();
+    void get_three_17_picture();
+    void get_three_18_picture();
+    void get_three_19_picture();
+    void get_three_20_picture();
+    void get_three_21_picture();
+    void get_three_22_picture();
+    void get_three_23_picture();
+    void get_three_24_picture();
+
     void get_four_1_picture();
     void get_four_2_picture();
     void get_four_3_picture();
@@ -120,6 +172,19 @@ private slots:
     void get_four_10_picture();
     void get_four_11_picture();
     void get_four_12_picture();
+    void get_four_13_picture();
+    void get_four_14_picture();
+    void get_four_15_picture();
+    void get_four_16_picture();
+    void get_four_17_picture();
+    void get_four_18_picture();
+    void get_four_19_picture();
+    void get_four_20_picture();
+    void get_four_21_picture();
+    void get_four_22_picture();
+    void get_four_23_picture();
+    void get_four_24_picture();
+
     void get_five_1_picture();
     void get_five_2_picture();
     void get_five_3_picture();
@@ -132,6 +197,18 @@ private slots:
     void get_five_10_picture();
     void get_five_11_picture();
     void get_five_12_picture();
+    void get_five_13_picture();
+    void get_five_14_picture();
+    void get_five_15_picture();
+    void get_five_16_picture();
+    void get_five_17_picture();
+    void get_five_18_picture();
+    void get_five_19_picture();
+    void get_five_20_picture();
+    void get_five_21_picture();
+    void get_five_22_picture();
+    void get_five_23_picture();
+    void get_five_24_picture();
 
     void load_snapshot_pictures();
 
