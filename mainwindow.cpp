@@ -13,31 +13,73 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButton_snapshot_fist_3,SIGNAL(clicked(bool)),this,SLOT(get_fist_3_picture()));
     connect(ui->pushButton_snapshot_fist_4,SIGNAL(clicked(bool)),this,SLOT(get_fist_4_picture()));
     connect(ui->pushButton_snapshot_fist_5,SIGNAL(clicked(bool)),this,SLOT(get_fist_5_picture()));
+    connect(ui->pushButton_snapshot_fist_6,SIGNAL(clicked(bool)),this,SLOT(get_fist_6_picture()));
+    connect(ui->pushButton_snapshot_fist_7,SIGNAL(clicked(bool)),this,SLOT(get_fist_7_picture()));
+    connect(ui->pushButton_snapshot_fist_8,SIGNAL(clicked(bool)),this,SLOT(get_fist_8_picture()));
+    connect(ui->pushButton_snapshot_fist_9,SIGNAL(clicked(bool)),this,SLOT(get_fist_9_picture()));
+    connect(ui->pushButton_snapshot_fist_10,SIGNAL(clicked(bool)),this,SLOT(get_fist_10_picture()));
+    connect(ui->pushButton_snapshot_fist_11,SIGNAL(clicked(bool)),this,SLOT(get_fist_11_picture()));
+    connect(ui->pushButton_snapshot_fist_12,SIGNAL(clicked(bool)),this,SLOT(get_fist_12_picture()));
     connect(ui->pushButton_snapshot_one_1,SIGNAL(clicked(bool)),this,SLOT(get_one_1_picture()));
     connect(ui->pushButton_snapshot_one_2,SIGNAL(clicked(bool)),this,SLOT(get_one_2_picture()));
     connect(ui->pushButton_snapshot_one_3,SIGNAL(clicked(bool)),this,SLOT(get_one_3_picture()));
     connect(ui->pushButton_snapshot_one_4,SIGNAL(clicked(bool)),this,SLOT(get_one_4_picture()));
     connect(ui->pushButton_snapshot_one_5,SIGNAL(clicked(bool)),this,SLOT(get_one_5_picture()));
+    connect(ui->pushButton_snapshot_one_6,SIGNAL(clicked(bool)),this,SLOT(get_one_6_picture()));
+    connect(ui->pushButton_snapshot_one_7,SIGNAL(clicked(bool)),this,SLOT(get_one_7_picture()));
+    connect(ui->pushButton_snapshot_one_8,SIGNAL(clicked(bool)),this,SLOT(get_one_8_picture()));
+    connect(ui->pushButton_snapshot_one_9,SIGNAL(clicked(bool)),this,SLOT(get_one_9_picture()));
+    connect(ui->pushButton_snapshot_one_10,SIGNAL(clicked(bool)),this,SLOT(get_one_10_picture()));
+    connect(ui->pushButton_snapshot_one_11,SIGNAL(clicked(bool)),this,SLOT(get_one_11_picture()));
+    connect(ui->pushButton_snapshot_one_12,SIGNAL(clicked(bool)),this,SLOT(get_one_12_picture()));
     connect(ui->pushButton_snapshot_two_1,SIGNAL(clicked(bool)),this,SLOT(get_two_1_picture()));
     connect(ui->pushButton_snapshot_two_2,SIGNAL(clicked(bool)),this,SLOT(get_two_2_picture()));
     connect(ui->pushButton_snapshot_two_3,SIGNAL(clicked(bool)),this,SLOT(get_two_3_picture()));
     connect(ui->pushButton_snapshot_two_4,SIGNAL(clicked(bool)),this,SLOT(get_two_4_picture()));
     connect(ui->pushButton_snapshot_two_5,SIGNAL(clicked(bool)),this,SLOT(get_two_5_picture()));
+    connect(ui->pushButton_snapshot_two_6,SIGNAL(clicked(bool)),this,SLOT(get_two_6_picture()));
+    connect(ui->pushButton_snapshot_two_7,SIGNAL(clicked(bool)),this,SLOT(get_two_7_picture()));
+    connect(ui->pushButton_snapshot_two_8,SIGNAL(clicked(bool)),this,SLOT(get_two_8_picture()));
+    connect(ui->pushButton_snapshot_two_9,SIGNAL(clicked(bool)),this,SLOT(get_two_9_picture()));
+    connect(ui->pushButton_snapshot_two_10,SIGNAL(clicked(bool)),this,SLOT(get_two_10_picture()));
+    connect(ui->pushButton_snapshot_two_11,SIGNAL(clicked(bool)),this,SLOT(get_two_11_picture()));
+    connect(ui->pushButton_snapshot_two_12,SIGNAL(clicked(bool)),this,SLOT(get_two_12_picture()));
     connect(ui->pushButton_snapshot_three_1,SIGNAL(clicked(bool)),this,SLOT(get_three_1_picture()));
     connect(ui->pushButton_snapshot_three_2,SIGNAL(clicked(bool)),this,SLOT(get_three_2_picture()));
     connect(ui->pushButton_snapshot_three_3,SIGNAL(clicked(bool)),this,SLOT(get_three_3_picture()));
     connect(ui->pushButton_snapshot_three_4,SIGNAL(clicked(bool)),this,SLOT(get_three_4_picture()));
     connect(ui->pushButton_snapshot_three_5,SIGNAL(clicked(bool)),this,SLOT(get_three_5_picture()));
+    connect(ui->pushButton_snapshot_three_6,SIGNAL(clicked(bool)),this,SLOT(get_three_6_picture()));
+    connect(ui->pushButton_snapshot_three_7,SIGNAL(clicked(bool)),this,SLOT(get_three_7_picture()));
+    connect(ui->pushButton_snapshot_three_8,SIGNAL(clicked(bool)),this,SLOT(get_three_8_picture()));
+    connect(ui->pushButton_snapshot_three_9,SIGNAL(clicked(bool)),this,SLOT(get_three_9_picture()));
+    connect(ui->pushButton_snapshot_three_10,SIGNAL(clicked(bool)),this,SLOT(get_three_10_picture()));
+    connect(ui->pushButton_snapshot_three_11,SIGNAL(clicked(bool)),this,SLOT(get_three_11_picture()));
+    connect(ui->pushButton_snapshot_three_12,SIGNAL(clicked(bool)),this,SLOT(get_three_12_picture()));
     connect(ui->pushButton_snapshot_four_1,SIGNAL(clicked(bool)),this,SLOT(get_four_1_picture()));
     connect(ui->pushButton_snapshot_four_2,SIGNAL(clicked(bool)),this,SLOT(get_four_2_picture()));
     connect(ui->pushButton_snapshot_four_3,SIGNAL(clicked(bool)),this,SLOT(get_four_3_picture()));
     connect(ui->pushButton_snapshot_four_4,SIGNAL(clicked(bool)),this,SLOT(get_four_4_picture()));
     connect(ui->pushButton_snapshot_four_5,SIGNAL(clicked(bool)),this,SLOT(get_four_5_picture()));
+    connect(ui->pushButton_snapshot_four_6,SIGNAL(clicked(bool)),this,SLOT(get_four_6_picture()));
+    connect(ui->pushButton_snapshot_four_7,SIGNAL(clicked(bool)),this,SLOT(get_four_7_picture()));
+    connect(ui->pushButton_snapshot_four_8,SIGNAL(clicked(bool)),this,SLOT(get_four_8_picture()));
+    connect(ui->pushButton_snapshot_four_9,SIGNAL(clicked(bool)),this,SLOT(get_four_9_picture()));
+    connect(ui->pushButton_snapshot_four_10,SIGNAL(clicked(bool)),this,SLOT(get_four_10_picture()));
+    connect(ui->pushButton_snapshot_four_11,SIGNAL(clicked(bool)),this,SLOT(get_four_11_picture()));
+    connect(ui->pushButton_snapshot_four_12,SIGNAL(clicked(bool)),this,SLOT(get_four_12_picture()));
     connect(ui->pushButton_snapshot_five_1,SIGNAL(clicked(bool)),this,SLOT(get_five_1_picture()));
     connect(ui->pushButton_snapshot_five_2,SIGNAL(clicked(bool)),this,SLOT(get_five_2_picture()));
     connect(ui->pushButton_snapshot_five_3,SIGNAL(clicked(bool)),this,SLOT(get_five_3_picture()));
     connect(ui->pushButton_snapshot_five_4,SIGNAL(clicked(bool)),this,SLOT(get_five_4_picture()));
     connect(ui->pushButton_snapshot_five_5,SIGNAL(clicked(bool)),this,SLOT(get_five_5_picture()));
+    connect(ui->pushButton_snapshot_five_6,SIGNAL(clicked(bool)),this,SLOT(get_five_6_picture()));
+    connect(ui->pushButton_snapshot_five_7,SIGNAL(clicked(bool)),this,SLOT(get_five_7_picture()));
+    connect(ui->pushButton_snapshot_five_8,SIGNAL(clicked(bool)),this,SLOT(get_five_8_picture()));
+    connect(ui->pushButton_snapshot_five_9,SIGNAL(clicked(bool)),this,SLOT(get_five_9_picture()));
+    connect(ui->pushButton_snapshot_five_10,SIGNAL(clicked(bool)),this,SLOT(get_five_10_picture()));
+    connect(ui->pushButton_snapshot_five_11,SIGNAL(clicked(bool)),this,SLOT(get_five_11_picture()));
+    connect(ui->pushButton_snapshot_five_12,SIGNAL(clicked(bool)),this,SLOT(get_five_12_picture()));
 
     load_snapshot_pictures();
 
@@ -114,33 +156,35 @@ void MainWindow::capture_video(void){
     original_frame.release();
     rotated_frame.release();
 
-    u8 tester[30][40];
+    if(1){
+        u8 tester[30][40];
 
-    for(u8 i = 0; i < small_scale.width();i++){
-        for(u8 j = 0; j < small_scale.height();j++){
-            tester[i][j] = 0;
-            if((small_scale.pixel(i,j) & 0xFF) == 0xFF){
-                tester[i][j] = 1;
+        for(u8 i = 0; i < small_scale.width();i++){
+            for(u8 j = 0; j < small_scale.height();j++){
+                tester[i][j] = 0;
+                if((small_scale.pixel(i,j) & 0xFF) == 0xFF){
+                    tester[i][j] = 1;
+                }
             }
         }
-    }
 
 
-    for(u32 j = 0; j < 40; j++){
-        for(u32 i = 0; i < 30; i++){
-            ann_class->net_76800_1024_1024_6.test_input[i + 30*j] = tester[i][j];
+        for(u32 j = 0; j < 40; j++){
+            for(u32 i = 0; i < 30; i++){
+                ann_class->net_76800_1024_1024_6.test_input[i + 30*j] = tester[i][j];
+            }
         }
-    }
 
-    ann_class->_76800_1024_1024_6_ann_test( ann_class->net_76800_1024_1024_6.test_input,
-                                            ann_class->net_76800_1024_1024_6.hidden_neuron_bias_1,
-                                            ann_class->net_76800_1024_1024_6.hidden_neuron_bias_2,
-                                            ann_class->net_76800_1024_1024_6.hidden_neuron_bias_3,
-                                            ann_class->net_76800_1024_1024_6.output_bias,
-                                            ann_class->net_76800_1024_1024_6.w_input_to_hidden_1,
-                                            ann_class->net_76800_1024_1024_6.w_hidden_1_to_hidden_2,
-                                            ann_class->net_76800_1024_1024_6.w_hidden_2_to_hidden_3,
-                                            ann_class->net_76800_1024_1024_6.w_hidden_3_to_output);
+        ann_class->_76800_1024_1024_6_ann_test( ann_class->net_76800_1024_1024_6.test_input,
+                                                ann_class->net_76800_1024_1024_6.hidden_neuron_bias_1,
+                                                ann_class->net_76800_1024_1024_6.hidden_neuron_bias_2,
+                                                ann_class->net_76800_1024_1024_6.hidden_neuron_bias_3,
+                                                ann_class->net_76800_1024_1024_6.output_bias,
+                                                ann_class->net_76800_1024_1024_6.w_input_to_hidden_1,
+                                                ann_class->net_76800_1024_1024_6.w_hidden_1_to_hidden_2,
+                                                ann_class->net_76800_1024_1024_6.w_hidden_2_to_hidden_3,
+                                                ann_class->net_76800_1024_1024_6.w_hidden_3_to_output);
+    }
 
 
     qDebug() << "elapsed time" << my_timer.elapsed();
