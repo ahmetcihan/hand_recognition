@@ -77,6 +77,7 @@ private slots:
 
     void _100_msec_timer_handle(void);
 
+    void _76800_1024_1024_6_prepare_io_pairs_handler(void);
     void _76800_1024_1024_6_random_initilize_handler(void);
     void _76800_1024_1024_6_load_saved_weights_handler(void);
     void _76800_1024_1024_6_train_handler(void);

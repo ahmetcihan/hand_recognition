@@ -2,9 +2,9 @@
 #include "ui_mainwindow.h"
 
 #define INPUT_COUNT     1344
-#define HIDDEN_COUNT_1  256
-#define HIDDEN_COUNT_2  256
-#define HIDDEN_COUNT_3  256
+#define HIDDEN_COUNT_1  64
+#define HIDDEN_COUNT_2  64
+#define HIDDEN_COUNT_3  64
 #define OUTPUT_COUNT    6
 #define IO_ARRAY_LENGTH 6
 #define INPUT_SET       5
@@ -302,7 +302,7 @@ void ann::_76800_1024_1024_6_ann_train( double input[1344][6*5], double desired_
         if(stop_the_training == 1) break;
     }
 }
-void MainWindow::_76800_1024_1024_6_random_initilize_handler(void){
+void MainWindow::_76800_1024_1024_6_prepare_io_pairs_handler(void){
     _76800_1024_1024_6_picture_to_arrays();
 
     /********************************SET 1***********************************/
@@ -473,7 +473,10 @@ void MainWindow::_76800_1024_1024_6_random_initilize_handler(void){
             }
         }
     }
+    ui->label_76800_1024_1024_6_prepare_io->setText("Prepared..");
 
+}
+void MainWindow::_76800_1024_1024_6_random_initilize_handler(void){
     qsrand(QDateTime::currentMSecsSinceEpoch());
 
     for(u32 i = 0; i < HIDDEN_COUNT_1; i++){
