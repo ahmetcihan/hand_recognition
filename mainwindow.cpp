@@ -156,7 +156,7 @@ void MainWindow::capture_video(void){
     original_frame.release();
     rotated_frame.release();
 
-    if(1){
+    if(0){
         u8 tester[30][40];
 
         for(u8 i = 0; i < small_scale.width();i++){
