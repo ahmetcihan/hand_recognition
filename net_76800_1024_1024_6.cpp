@@ -35,9 +35,9 @@ void ann::_76800_1024_1024_6_ann_test(double input[INPUT_COUNT],
     double output_in[OUTPUT_COUNT];
     double calculated_output[OUTPUT_COUNT];
 
-    for(u32 i = 0; i < INPUT_COUNT; i++){
-        qDebug() << QString("input[%1] :").arg(i) << input[i];
-    }
+//    for(u32 i = 0; i < INPUT_COUNT; i++){
+//        qDebug() << QString("input[%1] :").arg(i) << input[i];
+//    }
 
     /*****************FORWARD PROPAGATION********************/
     /*******************INPUT TO HIDDEN1*********************/
@@ -94,11 +94,8 @@ void ann::_76800_1024_1024_6_ann_test(double input[INPUT_COUNT],
     }
 
     qDebug() << "% " << 100*calculated_output[0] << "\t" << "ihtimal fist";
-    qDebug() << "% " << 100*calculated_output[1] << "\t" << "ihtimal one";
-    qDebug() << "% " << 100*calculated_output[2] << "\t" << "ihtimal two";
-    qDebug() << "% " << 100*calculated_output[3] << "\t" << "ihtimal three";
-    qDebug() << "% " << 100*calculated_output[4] << "\t" << "ihtimal four";
-    qDebug() << "% " << 100*calculated_output[5] << "\t" << "ihtimal five";
+    qDebug() << "% " << 100*calculated_output[1] << "\t" << "ihtimal two";
+    qDebug() << "% " << 100*calculated_output[2] << "\t" << "ihtimal five";
 
     u32 max_value_index = 0;
     double max_value = 0;
@@ -120,11 +117,8 @@ void ann::_76800_1024_1024_6_ann_test(double input[INPUT_COUNT],
     }
 
     if(max_value_index == 0)    str = QString("% %1 ihtimal fist").arg((u32)(100*calculated_output[0]));
-    if(max_value_index == 1)    str = QString("% %1 ihtimal one").arg((u32)(100*calculated_output[1]));
-    if(max_value_index == 2)    str = QString("% %1 ihtimal two").arg((u32)(100*calculated_output[2]));
-    if(max_value_index == 3)    str = QString("% %1 ihtimal three").arg((u32)(100*calculated_output[3]));
-    if(max_value_index == 4)    str = QString("% %1 ihtimal four").arg((u32)(100*calculated_output[4]));
-    if(max_value_index == 5)    str = QString("% %1 ihtimal five").arg((u32)(100*calculated_output[5]));
+    if(max_value_index == 1)    str = QString("% %1 ihtimal two").arg((u32)(100*calculated_output[1]));
+    if(max_value_index == 2)    str = QString("% %1 ihtimal five").arg((u32)(100*calculated_output[2]));
 
     mainwindow->ui->label_76800_1024_1024_6_test->setText(str);
 
@@ -494,10 +488,7 @@ void MainWindow::image_to_array_30x40(QString location, u8 image_array[30][40]){
 void MainWindow::_76800_1024_1024_6_picture_to_arrays(void){
     for (u32 i = 0; i < INPUT_SET; i++){
         image_to_array_30x40(QString("/home/ahmet/Desktop/hands/fist_%1.jpg").arg(i+1),  fist_image[i]);
-        image_to_array_30x40(QString("/home/ahmet/Desktop/hands/one_%1.jpg").arg(i+1),   one_image[i]);
         image_to_array_30x40(QString("/home/ahmet/Desktop/hands/two_%1.jpg").arg(i+1),   two_image[i]);
-        image_to_array_30x40(QString("/home/ahmet/Desktop/hands/three_%1.jpg").arg(i+1), three_image[i]);
-        image_to_array_30x40(QString("/home/ahmet/Desktop/hands/four_%1.jpg").arg(i+1),  four_image[i]);
         image_to_array_30x40(QString("/home/ahmet/Desktop/hands/five_%1.jpg").arg(i+1),  five_image[i]);
     }
 }
@@ -512,27 +503,12 @@ void MainWindow::_76800_1024_1024_6_prepare_io_pairs_handler(void){
         }
         for(u32 j = 0; j < 40; j++){
             for(u32 i = 0; i < 30; i++){
-                ann_class->net_76800_1024_1024_6.input[i + 30*j][1 + k*IO_ARRAY_LENGTH] = one_image[k][i][j];
+                ann_class->net_76800_1024_1024_6.input[i + 30*j][1 + k*IO_ARRAY_LENGTH] = two_image[k][i][j];
             }
         }
         for(u32 j = 0; j < 40; j++){
             for(u32 i = 0; i < 30; i++){
-                ann_class->net_76800_1024_1024_6.input[i + 30*j][2 + k*IO_ARRAY_LENGTH] = two_image[k][i][j];
-            }
-        }
-        for(u32 j = 0; j < 40; j++){
-            for(u32 i = 0; i < 30; i++){
-                ann_class->net_76800_1024_1024_6.input[i + 30*j][3 + k*IO_ARRAY_LENGTH] = three_image[k][i][j];
-            }
-        }
-        for(u32 j = 0; j < 40; j++){
-            for(u32 i = 0; i < 30; i++){
-                ann_class->net_76800_1024_1024_6.input[i + 30*j][4 + k*IO_ARRAY_LENGTH] = four_image[k][i][j];
-            }
-        }
-        for(u32 j = 0; j < 40; j++){
-            for(u32 i = 0; i < 30; i++){
-                ann_class->net_76800_1024_1024_6.input[i + 30*j][5 + k*IO_ARRAY_LENGTH] = five_image[k][i][j];
+                ann_class->net_76800_1024_1024_6.input[i + 30*j][2 + k*IO_ARRAY_LENGTH] = five_image[k][i][j];
             }
         }
     }

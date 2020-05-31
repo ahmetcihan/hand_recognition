@@ -8,25 +8,10 @@ void MainWindow::get_fist_picture(){
     ui->label_snapshot_fist->setPixmap(QPixmap::fromImage(img));
     img.save(QString("/home/ahmet/Desktop/hands/fist_%1.jpg").arg(ui->spinBox_snapshot_no->value()));
 }
-void MainWindow::get_one_picture(){
-    QImage img = ui->label_video_small_monochrome->pixmap()->toImage();
-    ui->label_snapshot_one->setPixmap(QPixmap::fromImage(img));
-    img.save(QString("/home/ahmet/Desktop/hands/one_%1.jpg").arg(ui->spinBox_snapshot_no->value()));
-}
 void MainWindow::get_two_picture(){
     QImage img = ui->label_video_small_monochrome->pixmap()->toImage();
     ui->label_snapshot_two->setPixmap(QPixmap::fromImage(img));
     img.save(QString("/home/ahmet/Desktop/hands/two_%1.jpg").arg(ui->spinBox_snapshot_no->value()));
-}
-void MainWindow::get_three_picture(){
-    QImage img = ui->label_video_small_monochrome->pixmap()->toImage();
-    ui->label_snapshot_three->setPixmap(QPixmap::fromImage(img));
-    img.save(QString("/home/ahmet/Desktop/hands/three_%1.jpg").arg(ui->spinBox_snapshot_no->value()));
-}
-void MainWindow::get_four_picture(){
-    QImage img = ui->label_video_small_monochrome->pixmap()->toImage();
-    ui->label_snapshot_four->setPixmap(QPixmap::fromImage(img));
-    img.save(QString("/home/ahmet/Desktop/hands/four_%1.jpg").arg(ui->spinBox_snapshot_no->value()));
 }
 void MainWindow::get_five_picture(){
     QImage img = ui->label_video_small_monochrome->pixmap()->toImage();

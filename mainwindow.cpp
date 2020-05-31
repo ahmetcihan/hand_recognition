@@ -9,10 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ann_class = new ann(this);
 
     connect(ui->pushButton_snapshot_fist,SIGNAL(clicked(bool)),this,SLOT(get_fist_picture()));
-    connect(ui->pushButton_snapshot_one,SIGNAL(clicked(bool)),this,SLOT(get_one_picture()));
     connect(ui->pushButton_snapshot_two,SIGNAL(clicked(bool)),this,SLOT(get_two_picture()));
-    connect(ui->pushButton_snapshot_three,SIGNAL(clicked(bool)),this,SLOT(get_three_picture()));
-    connect(ui->pushButton_snapshot_four,SIGNAL(clicked(bool)),this,SLOT(get_four_picture()));
     connect(ui->pushButton_snapshot_five,SIGNAL(clicked(bool)),this,SLOT(get_five_picture()));
 
     _100_msec_timer = new QTimer(this);
