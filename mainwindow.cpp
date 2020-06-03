@@ -51,6 +51,8 @@ void MainWindow::capture_video(void){
 
     my_vid >> original_frame;
 
+    cv::cvtColor(original_frame,original_frame,CV_BGR2RGB);
+
     qDebug() << "fps" << my_vid.get(CV_CAP_PROP_FPS) << "width" << my_vid.get(CV_CAP_PROP_FRAME_WIDTH) << "height" << my_vid.get(CV_CAP_PROP_FRAME_HEIGHT);
 
     cv::resize(original_frame,original_frame, cv::Size(320,240),0,0,CV_INTER_LINEAR);
@@ -88,7 +90,7 @@ void MainWindow::capture_video(void){
     original_frame.release();
     rotated_frame.release();
 
-    if(1){
+    if(0){
         u8 tester[30][40];
 
         for(u8 i = 0; i < small_scale.width();i++){
