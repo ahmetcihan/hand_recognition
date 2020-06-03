@@ -122,6 +122,10 @@ void ann::_76800_1024_1024_6_ann_test(double input[INPUT_COUNT],
 
     mainwindow->ui->label_76800_1024_1024_6_test->setText(str);
 
+    if(max_value_index == 0)        mainwindow->ui->label_result->setText("YUMRUK");
+    else if (max_value_index == 1)  mainwindow->ui->label_result->setText("ZAFER YAKINDA!");
+    else if (max_value_index == 2)  mainwindow->ui->label_result->setText(QString::fromUtf8("BEŞ"));
+
 }
 
 void ann::_76800_1024_1024_6_ann_train( double input[INPUT_COUNT][IO_ARRAY_LENGTH*INPUT_SET],

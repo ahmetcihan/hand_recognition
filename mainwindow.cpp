@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButton_76800_1024_1024_6_stop_train,SIGNAL(clicked(bool)),this,SLOT(_76800_1024_1024_6_stop_train_handler()));
 
     periodic_timer = new QTimer(this);
-    periodic_timer->setInterval(500);
+    periodic_timer->setInterval(50);
     connect(periodic_timer,SIGNAL(timeout()),this,SLOT(capture_video()));
     //periodic_timer->start();
     connect(ui->pushButton_start_stream,SIGNAL(clicked(bool)),this,SLOT(start_stream()));
@@ -61,6 +61,9 @@ void MainWindow::capture_video(void){
 
 
     QImage rotated_image((uchar*)rotated_frame.data, rotated_frame.cols, rotated_frame.rows, rotated_frame.step, QImage::Format_RGB888);
+
+    QPixmap rotated_original = QPixmap::fromImage(rotated_image);
+    ui->label_video_original_rotated->setPixmap(rotated_original);
 
     for(u16 i = 0; i < rotated_image.width(); i++){
         for(u16 j = 0; j < rotated_image.height(); j++){
