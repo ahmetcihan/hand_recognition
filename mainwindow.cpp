@@ -8,6 +8,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ann_class = new ann(this);
 
+    load_filter_parameters();
+
     connect(ui->pushButton_snapshot_fist,SIGNAL(clicked(bool)),this,SLOT(get_fist_picture()));
     connect(ui->pushButton_snapshot_two,SIGNAL(clicked(bool)),this,SLOT(get_two_picture()));
     connect(ui->pushButton_snapshot_five,SIGNAL(clicked(bool)),this,SLOT(get_five_picture()));
@@ -27,12 +29,12 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButton_76800_1024_1024_6_stop_train,SIGNAL(clicked(bool)),this,SLOT(_76800_1024_1024_6_stop_train_handler()));
 
     periodic_timer = new QTimer(this);
-    periodic_timer->setInterval(50);
+    periodic_timer->setInterval(1000);
     connect(periodic_timer,SIGNAL(timeout()),this,SLOT(capture_video()));
     //periodic_timer->start();
     connect(ui->pushButton_start_stream,SIGNAL(clicked(bool)),this,SLOT(start_stream()));
 
-    //connect(ui->pushButton_shot,SIGNAL(clicked(bool)),this,SLOT(capture_video()));
+    connect(ui->pushButton_shot,SIGNAL(clicked(bool)),this,SLOT(capture_video()));
 
     //my_vid.open("/dev/video0");
     my_vid.open(0);
@@ -67,16 +69,22 @@ void MainWindow::capture_video(void){
     QPixmap rotated_original = QPixmap::fromImage(rotated_image);
     ui->label_video_original_rotated->setPixmap(rotated_original);
 
+    qDebug() << "color" << QColor(rotated_image.pixel(160,120)).red() << QColor(rotated_image.pixel(160,120)).green() << QColor(rotated_image.pixel(160,120)).blue();
+
     for(u16 i = 0; i < rotated_image.width(); i++){
         for(u16 j = 0; j < rotated_image.height(); j++){
-            if(QColor(rotated_image.pixel(i,j)).black() < 64){
-                rotated_image.setPixel(i,j,qRgb(255,255,255));
+            //qDebug() << QString("val-%1-%2 :").arg(i).arg(j) << QColor(rotated_image.pixel(i,j)).green();
+            if((QColor(rotated_image.pixel(i,j)).red() >= ui->spinBox_red_min->value()) && (QColor(rotated_image.pixel(i,j)).red() <= ui->spinBox_red_max->value()) &&
+               (QColor(rotated_image.pixel(i,j)).green() >= ui->spinBox_green_min->value()) && (QColor(rotated_image.pixel(i,j)).green() <= ui->spinBox_green_max->value()) &&
+               (QColor(rotated_image.pixel(i,j)).blue() >= ui->spinBox_blue_min->value()) && (QColor(rotated_image.pixel(i,j)).blue() <= ui->spinBox_blue_max->value())){
+                rotated_image.setPixel(i,j,qRgb(0,0,0));
             }
             else{
-                rotated_image.setPixel(i,j,qRgb(0,0,0));
+                rotated_image.setPixel(i,j,qRgb(255,255,255));
             }
         }
     }
+
     QPixmap rotated_monochrome = QPixmap::fromImage(rotated_image);
     ui->label_video_rotated->setPixmap(rotated_monochrome);
 
@@ -142,8 +150,34 @@ void MainWindow::_100_msec_timer_handle(void){
                                                             arg(ann_class->net_76800_1024_1024_6.w_hidden_3_to_output[0][0]));
     }
 }
+void MainWindow::save_filter_parameters(void){
+    QSettings settings("filter_parameters.ini",QSettings::IniFormat);
 
+    settings.beginGroup("f");
+
+    settings.setValue("red_min",ui->spinBox_red_min->value());
+    settings.setValue("red_max",ui->spinBox_red_max->value());
+    settings.setValue("green_min",ui->spinBox_green_min->value());
+    settings.setValue("green_max",ui->spinBox_green_max->value());
+    settings.setValue("blue_min",ui->spinBox_blue_min->value());
+    settings.setValue("blue_max",ui->spinBox_blue_max->value());
+    settings.endGroup();
+    settings.sync();
+
+}
+void MainWindow::load_filter_parameters(void){
+    QSettings settings("filter_parameters.ini",QSettings::IniFormat);
+
+    ui->spinBox_red_min->setValue(settings.value("f/red_min").toInt());
+    ui->spinBox_red_max->setValue(settings.value("f/red_max").toInt());
+    ui->spinBox_green_min->setValue(settings.value("f/green_min").toInt());
+    ui->spinBox_green_max->setValue(settings.value("f/green_max").toInt());
+    ui->spinBox_blue_min->setValue(settings.value("f/blue_min").toInt());
+    ui->spinBox_blue_max->setValue(settings.value("f/blue_max").toInt());
+
+}
 MainWindow::~MainWindow()
 {
+    save_filter_parameters();
     delete ui;
 }

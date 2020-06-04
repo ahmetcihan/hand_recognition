@@ -63,6 +63,8 @@ private slots:
 
     void start_stream(void);
 
+    void save_filter_parameters(void);
+    void load_filter_parameters(void);
 };
 
 #endif // MAINWINDOW_H
