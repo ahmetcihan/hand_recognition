@@ -29,11 +29,11 @@ public:
     ~MainWindow();
     Ui::MainWindow *ui;
 
-    u8 fist_image[INPUT_SET][30][40];
-    u8 two_image[INPUT_SET][30][40];
-    u8 five_image[INPUT_SET][30][40];
+    u8 fist_image[INPUT_SET][40][30];
+    u8 two_image[INPUT_SET][40][30];
+    u8 five_image[INPUT_SET][40][30];
 
-    void image_to_array_30x40(QString location, u8 image_array[30][40]);
+    void image_to_array_40x30(QString location, u8 image_array[40][30]);
 
 private:
     ann *ann_class;

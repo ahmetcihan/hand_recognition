@@ -85,7 +85,7 @@ void MainWindow::capture_video(void){
     ui->label_video_rotated->setPixmap(rotated_monochrome);
 
     QImage small_scale;
-    small_scale = momochrome.scaled(QSize(30,40),Qt::KeepAspectRatio,Qt::SmoothTransformation);
+    small_scale = momochrome.scaled(QSize(40,30),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     QPixmap small_picture = QPixmap::fromImage(small_scale);
     ui->label_video_small_monochrome->setPixmap(small_picture);
     ui->label_video_small_monochrome_2->setPixmap(small_picture);
@@ -94,7 +94,7 @@ void MainWindow::capture_video(void){
     original_frame.release();
 
     if(0){
-        u8 tester[30][40];
+        u8 tester[40][30];
 
         for(u8 i = 0; i < small_scale.width();i++){
             for(u8 j = 0; j < small_scale.height();j++){
@@ -106,9 +106,9 @@ void MainWindow::capture_video(void){
         }
 
 
-        for(u32 j = 0; j < 40; j++){
-            for(u32 i = 0; i < 30; i++){
-                ann_class->net_76800_1024_1024_6.test_input[i + 30*j] = tester[i][j];
+        for(u32 j = 0; j < 30; j++){
+            for(u32 i = 0; i < 40; i++){
+                ann_class->net_76800_1024_1024_6.test_input[i + 40*j] = tester[i][j];
             }
         }
 

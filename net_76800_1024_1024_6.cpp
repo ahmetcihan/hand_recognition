@@ -337,9 +337,9 @@ void MainWindow::_76800_1024_1024_6_train_handler(void){
 }
 void MainWindow::_76800_1024_1024_6_test_handler(void){
 
-    for(u32 j = 0; j < 40; j++){
-        for(u32 i = 0; i < 30; i++){
-            ann_class->net_76800_1024_1024_6.test_input[i + 30*j] = fist_image[0][i][j];
+    for(u32 j = 0; j < 30; j++){
+        for(u32 i = 0; i < 40; i++){
+            ann_class->net_76800_1024_1024_6.test_input[i + 40*j] = fist_image[0][i][j];
         }
     }
 
@@ -475,7 +475,7 @@ void MainWindow::_76800_1024_1024_6_load_saved_weights_handler(void){
 void MainWindow::_76800_1024_1024_6_stop_train_handler(void){
     ann_class->stop_the_training = 1;
 }
-void MainWindow::image_to_array_30x40(QString location, u8 image_array[30][40]){
+void MainWindow::image_to_array_40x30(QString location, u8 image_array[40][30]){
     QImage read_image;
 
     read_image.load(location);
@@ -491,28 +491,28 @@ void MainWindow::image_to_array_30x40(QString location, u8 image_array[30][40]){
 }
 void MainWindow::_76800_1024_1024_6_picture_to_arrays(void){
     for (u32 i = 0; i < INPUT_SET; i++){
-        image_to_array_30x40(QString("/home/ahmet/Desktop/hands/fist_%1.jpg").arg(i+1),  fist_image[i]);
-        image_to_array_30x40(QString("/home/ahmet/Desktop/hands/two_%1.jpg").arg(i+1),   two_image[i]);
-        image_to_array_30x40(QString("/home/ahmet/Desktop/hands/five_%1.jpg").arg(i+1),  five_image[i]);
+        image_to_array_40x30(QString("/home/ahmet/Desktop/hands/fist_%1.jpg").arg(i+1),  fist_image[i]);
+        image_to_array_40x30(QString("/home/ahmet/Desktop/hands/two_%1.jpg").arg(i+1),   two_image[i]);
+        image_to_array_40x30(QString("/home/ahmet/Desktop/hands/five_%1.jpg").arg(i+1),  five_image[i]);
     }
 }
 void MainWindow::_76800_1024_1024_6_prepare_io_pairs_handler(void){
     _76800_1024_1024_6_picture_to_arrays();
 
     for(u32 k = 0; k < INPUT_SET; k++){
-        for(u32 j = 0; j < 40; j++){
-            for(u32 i = 0; i < 30; i++){
-                ann_class->net_76800_1024_1024_6.input[i + 30*j][0 + k*IO_ARRAY_LENGTH] = fist_image[k][i][j];
+        for(u32 j = 0; j < 30; j++){
+            for(u32 i = 0; i < 40; i++){
+                ann_class->net_76800_1024_1024_6.input[i + 40*j][0 + k*IO_ARRAY_LENGTH] = fist_image[k][i][j];
             }
         }
-        for(u32 j = 0; j < 40; j++){
-            for(u32 i = 0; i < 30; i++){
-                ann_class->net_76800_1024_1024_6.input[i + 30*j][1 + k*IO_ARRAY_LENGTH] = two_image[k][i][j];
+        for(u32 j = 0; j < 30; j++){
+            for(u32 i = 0; i < 40; i++){
+                ann_class->net_76800_1024_1024_6.input[i + 40*j][1 + k*IO_ARRAY_LENGTH] = two_image[k][i][j];
             }
         }
-        for(u32 j = 0; j < 40; j++){
-            for(u32 i = 0; i < 30; i++){
-                ann_class->net_76800_1024_1024_6.input[i + 30*j][2 + k*IO_ARRAY_LENGTH] = five_image[k][i][j];
+        for(u32 j = 0; j < 30; j++){
+            for(u32 i = 0; i < 40; i++){
+                ann_class->net_76800_1024_1024_6.input[i + 40*j][2 + k*IO_ARRAY_LENGTH] = five_image[k][i][j];
             }
         }
     }
