@@ -29,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButton_76800_1024_1024_6_stop_train,SIGNAL(clicked(bool)),this,SLOT(_76800_1024_1024_6_stop_train_handler()));
 
     periodic_timer = new QTimer(this);
-    periodic_timer->setInterval(1000);
+    periodic_timer->setInterval(100);
     connect(periodic_timer,SIGNAL(timeout()),this,SLOT(capture_video()));
     //periodic_timer->start();
     connect(ui->pushButton_start_stream,SIGNAL(clicked(bool)),this,SLOT(start_stream()));
@@ -49,7 +49,6 @@ void MainWindow::capture_video(void){
     my_timer.restart();
 
     cv::Mat original_frame;
-    cv::Mat rotated_frame;
 
     my_vid >> original_frame;
 
@@ -58,45 +57,41 @@ void MainWindow::capture_video(void){
     qDebug() << "fps" << my_vid.get(CV_CAP_PROP_FPS) << "width" << my_vid.get(CV_CAP_PROP_FRAME_WIDTH) << "height" << my_vid.get(CV_CAP_PROP_FRAME_HEIGHT);
 
     cv::resize(original_frame,original_frame, cv::Size(320,240),0,0,CV_INTER_LINEAR);
-    cv::rotate(original_frame,rotated_frame,cv::ROTATE_90_COUNTERCLOCKWISE);
 
-    QImage show_my_image((uchar*)original_frame.data, original_frame.cols, original_frame.rows, original_frame.step, QImage::Format_RGB888);
-    ui->label_video->setPixmap(QPixmap::fromImage(show_my_image));
+    QImage my_image((uchar*)original_frame.data, original_frame.cols, original_frame.rows, original_frame.step, QImage::Format_RGB888);
+    QImage momochrome((uchar*)original_frame.data, original_frame.cols, original_frame.rows, original_frame.step, QImage::Format_RGB888);
+    QPixmap original_pix = QPixmap::fromImage(my_image);
 
+    ui->label_video->setPixmap(original_pix);
+    ui->label_video_original_2->setPixmap(original_pix);
 
-    QImage rotated_image((uchar*)rotated_frame.data, rotated_frame.cols, rotated_frame.rows, rotated_frame.step, QImage::Format_RGB888);
+    qDebug() << "color" << QColor(my_image.pixel(160,120)).red() << QColor(my_image.pixel(160,120)).green() << QColor(my_image.pixel(160,120)).blue();
 
-    QPixmap rotated_original = QPixmap::fromImage(rotated_image);
-    ui->label_video_original_rotated->setPixmap(rotated_original);
-
-    qDebug() << "color" << QColor(rotated_image.pixel(160,120)).red() << QColor(rotated_image.pixel(160,120)).green() << QColor(rotated_image.pixel(160,120)).blue();
-
-    for(u16 i = 0; i < rotated_image.width(); i++){
-        for(u16 j = 0; j < rotated_image.height(); j++){
+    for(u16 i = 0; i < my_image.width(); i++){
+        for(u16 j = 0; j < my_image.height(); j++){
             //qDebug() << QString("val-%1-%2 :").arg(i).arg(j) << QColor(rotated_image.pixel(i,j)).green();
-            if((QColor(rotated_image.pixel(i,j)).red() >= ui->spinBox_red_min->value()) && (QColor(rotated_image.pixel(i,j)).red() <= ui->spinBox_red_max->value()) &&
-               (QColor(rotated_image.pixel(i,j)).green() >= ui->spinBox_green_min->value()) && (QColor(rotated_image.pixel(i,j)).green() <= ui->spinBox_green_max->value()) &&
-               (QColor(rotated_image.pixel(i,j)).blue() >= ui->spinBox_blue_min->value()) && (QColor(rotated_image.pixel(i,j)).blue() <= ui->spinBox_blue_max->value())){
-                rotated_image.setPixel(i,j,qRgb(0,0,0));
+            if((QColor(my_image.pixel(i,j)).red() >= ui->spinBox_red_min->value()) && (QColor(my_image.pixel(i,j)).red() <= ui->spinBox_red_max->value()) &&
+               (QColor(my_image.pixel(i,j)).green() >= ui->spinBox_green_min->value()) && (QColor(my_image.pixel(i,j)).green() <= ui->spinBox_green_max->value()) &&
+               (QColor(my_image.pixel(i,j)).blue() >= ui->spinBox_blue_min->value()) && (QColor(my_image.pixel(i,j)).blue() <= ui->spinBox_blue_max->value())){
+                momochrome.setPixel(i,j,qRgb(0,0,0));
             }
             else{
-                rotated_image.setPixel(i,j,qRgb(255,255,255));
+                momochrome.setPixel(i,j,qRgb(255,255,255));
             }
         }
     }
 
-    QPixmap rotated_monochrome = QPixmap::fromImage(rotated_image);
+    QPixmap rotated_monochrome = QPixmap::fromImage(momochrome);
     ui->label_video_rotated->setPixmap(rotated_monochrome);
 
     QImage small_scale;
-    small_scale = rotated_image.scaled(QSize(30,40),Qt::KeepAspectRatio,Qt::SmoothTransformation);
+    small_scale = momochrome.scaled(QSize(30,40),Qt::KeepAspectRatio,Qt::SmoothTransformation);
     QPixmap small_picture = QPixmap::fromImage(small_scale);
     ui->label_video_small_monochrome->setPixmap(small_picture);
     ui->label_video_small_monochrome_2->setPixmap(small_picture);
     ui->label_hand_two->setPixmap(small_picture);
 
     original_frame.release();
-    rotated_frame.release();
 
     if(0){
         u8 tester[30][40];
