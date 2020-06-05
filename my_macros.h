@@ -5,9 +5,10 @@
 #define HIDDEN_COUNT_1  128
 #define HIDDEN_COUNT_2  128
 #define HIDDEN_COUNT_3  128
+#define HIDDEN_COUNT_4  64
 #define OUTPUT_COUNT    6
 #define IO_ARRAY_LENGTH 6
-#define INPUT_SET       1
+#define INPUT_SET       10
 
 #endif // MY_MACROS
 

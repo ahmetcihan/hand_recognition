@@ -26,13 +26,12 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButton_76800_1024_1024_6_random_initilize,SIGNAL(clicked(bool)),this,SLOT(_76800_1024_1024_6_random_initilize_handler()));
     connect(ui->pushButton_76800_1024_1024_6_train,SIGNAL(clicked(bool)),this,SLOT(_76800_1024_1024_6_train_handler()));
     connect(ui->pushButton_76800_1024_1024_6_test,SIGNAL(clicked(bool)),this,SLOT(_76800_1024_1024_6_test_handler()));
-    connect(ui->pushButton_76800_1024_1024_6_show_weights,SIGNAL(clicked(bool)),this,SLOT(_76800_1024_1024_6_show_weights_handler()));
     connect(ui->pushButton_76800_1024_1024_6_save_weights,SIGNAL(clicked(bool)),this,SLOT(_76800_1024_1024_6_save_weights_handler()));
     connect(ui->pushButton_76800_1024_1024_6_load_saved_weights,SIGNAL(clicked(bool)),this,SLOT(_76800_1024_1024_6_load_saved_weights_handler()));
     connect(ui->pushButton_76800_1024_1024_6_stop_train,SIGNAL(clicked(bool)),this,SLOT(_76800_1024_1024_6_stop_train_handler()));
 
     periodic_timer = new QTimer(this);
-    periodic_timer->setInterval(100);
+    periodic_timer->setInterval(200);
     connect(periodic_timer,SIGNAL(timeout()),this,SLOT(capture_video()));
     //periodic_timer->start();
     connect(ui->pushButton_start_stream,SIGNAL(clicked(bool)),this,SLOT(start_stream()));
@@ -102,7 +101,7 @@ void MainWindow::capture_video(void){
 
     original_frame.release();
 
-    if(0){
+    if(1){
         u8 tester[40][30];
 
         for(u8 i = 0; i < small_scale.width();i++){
@@ -125,11 +124,13 @@ void MainWindow::capture_video(void){
                                                 ann_class->net_76800_1024_1024_6.hidden_neuron_bias_1,
                                                 ann_class->net_76800_1024_1024_6.hidden_neuron_bias_2,
                                                 ann_class->net_76800_1024_1024_6.hidden_neuron_bias_3,
+                                                ann_class->net_76800_1024_1024_6.hidden_neuron_bias_4,
                                                 ann_class->net_76800_1024_1024_6.output_bias,
                                                 ann_class->net_76800_1024_1024_6.w_input_to_hidden_1,
                                                 ann_class->net_76800_1024_1024_6.w_hidden_1_to_hidden_2,
                                                 ann_class->net_76800_1024_1024_6.w_hidden_2_to_hidden_3,
-                                                ann_class->net_76800_1024_1024_6.w_hidden_3_to_output);
+                                                ann_class->net_76800_1024_1024_6.w_hidden_3_to_hidden_4,
+                                                ann_class->net_76800_1024_1024_6.w_hidden_4_to_output);
     }
 
 
@@ -151,7 +152,10 @@ void MainWindow::_100_msec_timer_handle(void){
         ui->label_76800_1024_1024_6_train_status_3->setText(QString("wh122-0 : %1 , wh223-0 : %2 , wh32o-0 : %3").
                                                             arg(ann_class->net_76800_1024_1024_6.w_hidden_1_to_hidden_2[0][0]).
                                                             arg(ann_class->net_76800_1024_1024_6.w_hidden_2_to_hidden_3[0][0]).
-                                                            arg(ann_class->net_76800_1024_1024_6.w_hidden_3_to_output[0][0]));
+                                                            arg(ann_class->net_76800_1024_1024_6.w_hidden_4_to_output[0][0]));
+        ui->label_76800_1024_1024_6_train_status_4->setText(QString("max_err : %1 , inset : %2").
+                                                            arg(ann_class->net_76800_1024_1024_6.max_error).
+                                                            arg(ann_class->net_76800_1024_1024_6.max_error_inset_no));
     }
 }
 void MainWindow::save_filter_parameters(void){

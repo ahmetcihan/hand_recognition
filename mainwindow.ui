@@ -121,32 +121,6 @@
        <string>-----------------</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_76800_1024_1024_6_show_weights">
-      <property name="geometry">
-       <rect>
-        <x>230</x>
-        <y>160</y>
-        <width>200</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>-----------------</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_76800_1024_1024_6_show_weights">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>160</y>
-        <width>211</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Show Weights</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_hand_two_2">
       <property name="geometry">
        <rect>
@@ -387,6 +361,19 @@
       </property>
       <property name="text">
        <string>Select Tester</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_76800_1024_1024_6_train_status_4">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>330</y>
+        <width>500</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>-----------------</string>
       </property>
      </widget>
     </widget>

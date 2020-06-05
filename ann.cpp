@@ -29,11 +29,13 @@ void ann::thread_handler(void){
                                         net_76800_1024_1024_6.hidden_neuron_bias_1,
                                         net_76800_1024_1024_6.hidden_neuron_bias_2,
                                         net_76800_1024_1024_6.hidden_neuron_bias_3,
+                                        net_76800_1024_1024_6.hidden_neuron_bias_4,
                                         net_76800_1024_1024_6.output_bias,
                                         net_76800_1024_1024_6.w_input_to_hidden_1,
                                         net_76800_1024_1024_6.w_hidden_1_to_hidden_2,
                                         net_76800_1024_1024_6.w_hidden_2_to_hidden_3,
-                                        net_76800_1024_1024_6.w_hidden_3_to_output,
+                                        net_76800_1024_1024_6.w_hidden_3_to_hidden_4,
+                                        net_76800_1024_1024_6.w_hidden_4_to_output,
                                         100000, 0.001);
 
         for(u8 i = 0; i < OUTPUT_COUNT; i++){

@@ -58,7 +58,6 @@ private slots:
     void _76800_1024_1024_6_load_saved_weights_handler(void);
     void _76800_1024_1024_6_train_handler(void);
     void _76800_1024_1024_6_test_handler(void);
-    void _76800_1024_1024_6_show_weights_handler(void);
     void _76800_1024_1024_6_save_weights_handler(void);
     void _76800_1024_1024_6_stop_train_handler(void);
     void _76800_1024_1024_6_picture_to_arrays(void);
