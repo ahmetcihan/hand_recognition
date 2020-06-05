@@ -6,7 +6,7 @@ double ann::_76800_1024_1024_6_ann_calculate_total_error(void){
     double aux;
 
     for(u8 i = 0; i < OUTPUT_COUNT; i++){
-        for(u8 j = 0; j < OUTPUT_COUNT; j++){
+        for(u8 j = 0; j < IO_ARRAY_LENGTH; j++){
             aux = net_76800_1024_1024_6.desired_output[i][j] - net_76800_1024_1024_6.calculated_output[i][j];
             aux = aux * aux;
             total_error += aux;
@@ -94,8 +94,11 @@ void ann::_76800_1024_1024_6_ann_test(double input[INPUT_COUNT],
     }
 
     qDebug() << "% " << 100*calculated_output[0] << "\t" << "ihtimal fist";
-    qDebug() << "% " << 100*calculated_output[1] << "\t" << "ihtimal two";
-    qDebug() << "% " << 100*calculated_output[2] << "\t" << "ihtimal five";
+    qDebug() << "% " << 100*calculated_output[1] << "\t" << "ihtimal stop";
+    qDebug() << "% " << 100*calculated_output[2] << "\t" << "ihtimal up";
+    qDebug() << "% " << 100*calculated_output[3] << "\t" << "ihtimal left";
+    qDebug() << "% " << 100*calculated_output[4] << "\t" << "ihtimal right";
+    qDebug() << "% " << 100*calculated_output[5] << "\t" << "ihtimal five";
 
     u32 max_value_index = 0;
     double max_value = 0;
@@ -117,14 +120,20 @@ void ann::_76800_1024_1024_6_ann_test(double input[INPUT_COUNT],
     }
 
     if(max_value_index == 0)    str = QString("% %1 ihtimal fist").arg((u32)(100*calculated_output[0]));
-    if(max_value_index == 1)    str = QString("% %1 ihtimal two").arg((u32)(100*calculated_output[1]));
-    if(max_value_index == 2)    str = QString("% %1 ihtimal five").arg((u32)(100*calculated_output[2]));
+    if(max_value_index == 1)    str = QString("% %1 ihtimal stop").arg((u32)(100*calculated_output[1]));
+    if(max_value_index == 2)    str = QString("% %1 ihtimal up").arg((u32)(100*calculated_output[2]));
+    if(max_value_index == 3)    str = QString("% %1 ihtimal left").arg((u32)(100*calculated_output[3]));
+    if(max_value_index == 4)    str = QString("% %1 ihtimal right").arg((u32)(100*calculated_output[4]));
+    if(max_value_index == 5)    str = QString("% %1 ihtimal five").arg((u32)(100*calculated_output[5]));
 
     mainwindow->ui->label_76800_1024_1024_6_test->setText(str);
 
-    if(max_value_index == 0)        mainwindow->ui->label_result->setText("YUMRUK");
-    else if (max_value_index == 1)  mainwindow->ui->label_result->setText("ZAFER YAKINDA!");
-    else if (max_value_index == 2)  mainwindow->ui->label_result->setText(QString::fromUtf8("BEŞ"));
+    if(max_value_index == 0)        mainwindow->ui->label_result->setText(QString::fromUtf8("YUMRUK"));
+    else if (max_value_index == 1)  mainwindow->ui->label_result->setText(QString::fromUtf8("DUR"));
+    else if (max_value_index == 2)  mainwindow->ui->label_result->setText(QString::fromUtf8("YUKAR"));
+    else if (max_value_index == 3)  mainwindow->ui->label_result->setText(QString::fromUtf8("SOL"));
+    else if (max_value_index == 4)  mainwindow->ui->label_result->setText(QString::fromUtf8("SAĞ"));
+    else if (max_value_index == 5)  mainwindow->ui->label_result->setText(QString::fromUtf8("BEŞ"));
 
 }
 
@@ -285,7 +294,7 @@ void ann::_76800_1024_1024_6_ann_train( double input[INPUT_COUNT][IO_ARRAY_LENGT
         }
         net_76800_1024_1024_6.total_err = 0;
         for(u8 i = 0; i < INPUT_SET; i++){
-            net_76800_1024_1024_6.total_err += inset_error[i]*inset_error[i];
+            net_76800_1024_1024_6.total_err += inset_error[i];
         }
         epoch_no = era;
         epoch_status = (era*100)/epoch;
@@ -339,7 +348,7 @@ void MainWindow::_76800_1024_1024_6_test_handler(void){
 
     for(u32 j = 0; j < 30; j++){
         for(u32 i = 0; i < 40; i++){
-            ann_class->net_76800_1024_1024_6.test_input[i + 40*j] = fist_image[0][i][j];
+            ann_class->net_76800_1024_1024_6.test_input[i + 40*j] = five_image[2][i][j];
         }
     }
 
@@ -491,9 +500,12 @@ void MainWindow::image_to_array_40x30(QString location, u8 image_array[40][30]){
 }
 void MainWindow::_76800_1024_1024_6_picture_to_arrays(void){
     for (u32 i = 0; i < INPUT_SET; i++){
-        image_to_array_40x30(QString("/home/ahmet/Desktop/hands/fist_%1.jpg").arg(i+1),  fist_image[i]);
-        image_to_array_40x30(QString("/home/ahmet/Desktop/hands/two_%1.jpg").arg(i+1),   two_image[i]);
-        image_to_array_40x30(QString("/home/ahmet/Desktop/hands/five_%1.jpg").arg(i+1),  five_image[i]);
+        image_to_array_40x30(QString("/home/ahmet/Desktop/gloves/fist_%1.jpg").arg(i+1),    fist_image[i]);
+        image_to_array_40x30(QString("/home/ahmet/Desktop/gloves/stop_%1.jpg").arg(i+1),    stop_image[i]);
+        image_to_array_40x30(QString("/home/ahmet/Desktop/gloves/up_%1.jpg").arg(i+1),      up_image[i]);
+        image_to_array_40x30(QString("/home/ahmet/Desktop/gloves/left_%1.jpg").arg(i+1),    left_image[i]);
+        image_to_array_40x30(QString("/home/ahmet/Desktop/gloves/right_%1.jpg").arg(i+1),   right_image[i]);
+        image_to_array_40x30(QString("/home/ahmet/Desktop/gloves/five_%1.jpg").arg(i+1),    five_image[i]);
     }
 }
 void MainWindow::_76800_1024_1024_6_prepare_io_pairs_handler(void){
@@ -507,12 +519,27 @@ void MainWindow::_76800_1024_1024_6_prepare_io_pairs_handler(void){
         }
         for(u32 j = 0; j < 30; j++){
             for(u32 i = 0; i < 40; i++){
-                ann_class->net_76800_1024_1024_6.input[i + 40*j][1 + k*IO_ARRAY_LENGTH] = two_image[k][i][j];
+                ann_class->net_76800_1024_1024_6.input[i + 40*j][1 + k*IO_ARRAY_LENGTH] = stop_image[k][i][j];
             }
         }
         for(u32 j = 0; j < 30; j++){
             for(u32 i = 0; i < 40; i++){
-                ann_class->net_76800_1024_1024_6.input[i + 40*j][2 + k*IO_ARRAY_LENGTH] = five_image[k][i][j];
+                ann_class->net_76800_1024_1024_6.input[i + 40*j][2 + k*IO_ARRAY_LENGTH] = up_image[k][i][j];
+            }
+        }
+        for(u32 j = 0; j < 30; j++){
+            for(u32 i = 0; i < 40; i++){
+                ann_class->net_76800_1024_1024_6.input[i + 40*j][3 + k*IO_ARRAY_LENGTH] = left_image[k][i][j];
+            }
+        }
+        for(u32 j = 0; j < 30; j++){
+            for(u32 i = 0; i < 40; i++){
+                ann_class->net_76800_1024_1024_6.input[i + 40*j][4 + k*IO_ARRAY_LENGTH] = right_image[k][i][j];
+            }
+        }
+        for(u32 j = 0; j < 30; j++){
+            for(u32 i = 0; i < 40; i++){
+                ann_class->net_76800_1024_1024_6.input[i + 40*j][5 + k*IO_ARRAY_LENGTH] = five_image[k][i][j];
             }
         }
     }

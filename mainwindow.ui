@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -597,7 +597,7 @@
      <attribute name="title">
       <string>SNAPSHOTS</string>
      </attribute>
-     <widget class="QPushButton" name="pushButton_snapshot_three">
+     <widget class="QPushButton" name="pushButton_snapshot_left">
       <property name="geometry">
        <rect>
         <x>40</x>
@@ -607,7 +607,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>THREE 1</string>
+       <string>LEFT</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_snapshot_five">
@@ -623,7 +623,7 @@
        <string>TextLabel</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_snapshot_one">
+     <widget class="QLabel" name="label_snapshot_stop">
       <property name="geometry">
        <rect>
         <x>110</x>
@@ -636,7 +636,7 @@
        <string>TextLabel</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_snapshot_two">
+     <widget class="QPushButton" name="pushButton_snapshot_up">
       <property name="geometry">
        <rect>
         <x>40</x>
@@ -646,7 +646,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>TWO 1</string>
+       <string>UP</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_snapshot_fist">
@@ -659,10 +659,10 @@
        </rect>
       </property>
       <property name="text">
-       <string>FIST 1</string>
+       <string>FIST</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_snapshot_two">
+     <widget class="QLabel" name="label_snapshot_up">
       <property name="geometry">
        <rect>
         <x>110</x>
@@ -675,7 +675,7 @@
        <string>TextLabel</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_snapshot_four">
+     <widget class="QPushButton" name="pushButton_snapshot_right">
       <property name="geometry">
        <rect>
         <x>40</x>
@@ -685,7 +685,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>FOUR 1</string>
+       <string>RIGHT</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_snapshot_five">
@@ -698,10 +698,10 @@
        </rect>
       </property>
       <property name="text">
-       <string>FIVE 1</string>
+       <string>FIVE</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_snapshot_three">
+     <widget class="QLabel" name="label_snapshot_left">
       <property name="geometry">
        <rect>
         <x>110</x>
@@ -714,7 +714,7 @@
        <string>TextLabel</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_snapshot_four">
+     <widget class="QLabel" name="label_snapshot_right">
       <property name="geometry">
        <rect>
         <x>110</x>
@@ -740,7 +740,7 @@
        <string>TextLabel</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_snapshot_one">
+     <widget class="QPushButton" name="pushButton_snapshot_stop">
       <property name="geometry">
        <rect>
         <x>40</x>
@@ -750,7 +750,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>ONE 1</string>
+       <string>STOP</string>
       </property>
      </widget>
      <widget class="QLabel" name="label">

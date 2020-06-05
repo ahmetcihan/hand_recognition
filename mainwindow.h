@@ -30,7 +30,10 @@ public:
     Ui::MainWindow *ui;
 
     u8 fist_image[INPUT_SET][40][30];
-    u8 two_image[INPUT_SET][40][30];
+    u8 stop_image[INPUT_SET][40][30];
+    u8 up_image[INPUT_SET][40][30];
+    u8 left_image[INPUT_SET][40][30];
+    u8 right_image[INPUT_SET][40][30];
     u8 five_image[INPUT_SET][40][30];
 
     void image_to_array_40x30(QString location, u8 image_array[40][30]);
@@ -58,7 +61,10 @@ private slots:
     void _76800_1024_1024_6_picture_to_arrays(void);
 
     void get_fist_picture();
-    void get_two_picture();
+    void get_stop_picture();
+    void get_up_picture();
+    void get_left_picture();
+    void get_right_picture();
     void get_five_picture();
 
     void start_stream(void);

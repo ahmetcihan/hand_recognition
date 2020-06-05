@@ -10,9 +10,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     load_filter_parameters();
 
-    connect(ui->pushButton_snapshot_fist,SIGNAL(clicked(bool)),this,SLOT(get_fist_picture()));
-    connect(ui->pushButton_snapshot_two,SIGNAL(clicked(bool)),this,SLOT(get_two_picture()));
-    connect(ui->pushButton_snapshot_five,SIGNAL(clicked(bool)),this,SLOT(get_five_picture()));
+    connect(ui->pushButton_snapshot_fist,SIGNAL(clicked(bool)), this,SLOT(get_fist_picture()));
+    connect(ui->pushButton_snapshot_stop,SIGNAL(clicked(bool)), this,SLOT(get_stop_picture()));
+    connect(ui->pushButton_snapshot_up,SIGNAL(clicked(bool)),   this,SLOT(get_up_picture()));
+    connect(ui->pushButton_snapshot_left,SIGNAL(clicked(bool)), this,SLOT(get_left_picture()));
+    connect(ui->pushButton_snapshot_right,SIGNAL(clicked(bool)),this,SLOT(get_right_picture()));
+    connect(ui->pushButton_snapshot_five,SIGNAL(clicked(bool)), this,SLOT(get_five_picture()));
 
     _100_msec_timer = new QTimer(this);
     _100_msec_timer->setInterval(1000);
