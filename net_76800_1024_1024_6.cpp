@@ -345,10 +345,13 @@ void MainWindow::_76800_1024_1024_6_train_handler(void){
     ann_class->stop_the_training = 0;
 }
 void MainWindow::_76800_1024_1024_6_test_handler(void){
+    u8 tester[40][30];
+
+    image_to_array_40x30(tester_file_name,tester);
 
     for(u32 j = 0; j < 30; j++){
         for(u32 i = 0; i < 40; i++){
-            ann_class->net_76800_1024_1024_6.test_input[i + 40*j] = five_image[2][i][j];
+            ann_class->net_76800_1024_1024_6.test_input[i + 40*j] = tester[i][j];
         }
     }
 

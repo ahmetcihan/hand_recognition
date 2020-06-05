@@ -38,11 +38,17 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButton_start_stream,SIGNAL(clicked(bool)),this,SLOT(start_stream()));
 
     connect(ui->pushButton_shot,SIGNAL(clicked(bool)),this,SLOT(capture_video()));
+    connect(ui->pushButton_select_tester,SIGNAL(clicked(bool)), this,SLOT(select_tester_file()));
 
     //my_vid.open("/dev/video0");
     my_vid.open(0);
 
 }
+void MainWindow::select_tester_file(void){
+    tester_file_name = QFileDialog::getOpenFileName(this,"Open Test File","/home/ahmet/Desktop/gloves/",("Images (*.jpg)"));
+    qDebug() << "file name" << tester_file_name;
+}
+
 void MainWindow::start_stream(void){
     periodic_timer->start();
 }

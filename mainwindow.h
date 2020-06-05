@@ -8,6 +8,7 @@
 #include <QElapsedTimer>
 #include <QSettings>
 #include <QProcess>
+#include <QFileDialog>
 #include <QPainter>
 #include <QPixmap>
 #include <opencv2/core/core.hpp>
@@ -35,6 +36,8 @@ public:
     u8 left_image[INPUT_SET][40][30];
     u8 right_image[INPUT_SET][40][30];
     u8 five_image[INPUT_SET][40][30];
+
+    QString tester_file_name;
 
     void image_to_array_40x30(QString location, u8 image_array[40][30]);
 
@@ -71,6 +74,8 @@ private slots:
 
     void save_filter_parameters(void);
     void load_filter_parameters(void);
+
+    void select_tester_file(void);
 };
 
 #endif // MAINWINDOW_H
