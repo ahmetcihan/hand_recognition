@@ -151,7 +151,7 @@ void ann::_76800_1024_1024_6_ann_test(  double input[INPUT_COUNT],
 
     if(max_value_index == 0)        mainwindow->ui->label_result->setText(QString::fromUtf8("YUMRUK"));
     else if (max_value_index == 1)  mainwindow->ui->label_result->setText(QString::fromUtf8("DUR"));
-    else if (max_value_index == 2)  mainwindow->ui->label_result->setText(QString::fromUtf8("YUKAR"));
+    else if (max_value_index == 2)  mainwindow->ui->label_result->setText(QString::fromUtf8("YUKARI"));
     else if (max_value_index == 3)  mainwindow->ui->label_result->setText(QString::fromUtf8("SOL"));
     else if (max_value_index == 4)  mainwindow->ui->label_result->setText(QString::fromUtf8("SAĞ"));
     else if (max_value_index == 5)  mainwindow->ui->label_result->setText(QString::fromUtf8("BEŞ"));
