@@ -240,14 +240,10 @@ void ann::_76800_1024_1024_6_ann_train( double input[INPUT_COUNT][IO_ARRAY_LENGT
                     for(u32 i = 0; i < HIDDEN_COUNT_4; i++){
                         w_hidden_4_to_output[i][j] += global_error[j] * hidden_neuron_out_4[i] * learning_rate;
                     }
-                }
-                for(u32 i = 0; i < OUTPUT_COUNT; i++){
-                    output_bias[i] += global_error[i] * learning_rate;
+                    output_bias[j] += global_error[j] * learning_rate;
                 }
                 for(u32 i = 0; i < HIDDEN_COUNT_4; i++){
                     hidden_neuron_error_4[i] = 0;
-                }
-                for(u32 i = 0; i < HIDDEN_COUNT_4; i++){
                     for(u32 j = 0; j < OUTPUT_COUNT; j++){
                         hidden_neuron_error_4[i] += derivative_of_sigmoid_func(hidden_neuron_in_4[i]) * global_error[j] * w_hidden_4_to_output[i][j];
                     }
@@ -258,14 +254,10 @@ void ann::_76800_1024_1024_6_ann_train( double input[INPUT_COUNT][IO_ARRAY_LENGT
                     for(u32 j = 0; j < HIDDEN_COUNT_3; j++){
                         w_hidden_3_to_hidden_4[j][i] += hidden_neuron_error_4[i] * hidden_neuron_out_3[j] * learning_rate;
                     }
-                }
-                for(u32 i = 0; i < HIDDEN_COUNT_4; i++){
                     hidden_neuron_bias_4[i] += hidden_neuron_error_4[i] * learning_rate;
                 }
                 for(u32 i = 0; i < HIDDEN_COUNT_3; i++){
                     hidden_neuron_error_3[i] = 0;
-                }
-                for(u32 i = 0; i < HIDDEN_COUNT_3; i++){
                     for(u32 j = 0; j < HIDDEN_COUNT_4; j++){
                         hidden_neuron_error_3[i] +=  derivative_of_sigmoid_func(hidden_neuron_in_3[i]) * hidden_neuron_error_4[j] * w_hidden_3_to_hidden_4[i][j];
                     }
@@ -276,14 +268,10 @@ void ann::_76800_1024_1024_6_ann_train( double input[INPUT_COUNT][IO_ARRAY_LENGT
                     for(u32 j = 0; j < HIDDEN_COUNT_2; j++){
                         w_hidden_2_to_hidden_3[j][i] += hidden_neuron_error_3[i] * hidden_neuron_out_2[j] * learning_rate;
                     }
-                }
-                for(u32 i = 0; i < HIDDEN_COUNT_3; i++){
                     hidden_neuron_bias_3[i] += hidden_neuron_error_3[i] * learning_rate;
                 }
                 for(u32 i = 0; i < HIDDEN_COUNT_2; i++){
                     hidden_neuron_error_2[i] = 0;
-                }
-                for(u32 i = 0; i < HIDDEN_COUNT_2; i++){
                     for(u32 j = 0; j < HIDDEN_COUNT_3; j++){
                         hidden_neuron_error_2[i] +=  derivative_of_sigmoid_func(hidden_neuron_in_2[i]) * hidden_neuron_error_3[j] * w_hidden_2_to_hidden_3[i][j];
                     }
@@ -294,14 +282,10 @@ void ann::_76800_1024_1024_6_ann_train( double input[INPUT_COUNT][IO_ARRAY_LENGT
                     for(u32 j = 0; j < HIDDEN_COUNT_1; j++){
                         w_hidden_1_to_hidden_2[j][i] += hidden_neuron_error_2[i] * hidden_neuron_out_1[j] * learning_rate;
                     }
-                }
-                for(u32 i = 0; i < HIDDEN_COUNT_2; i++){
                     hidden_neuron_bias_2[i] += hidden_neuron_error_2[i] * learning_rate;
                 }
                 for(u32 i = 0; i < HIDDEN_COUNT_1; i++){
                     hidden_neuron_error_1[i] = 0;
-                }
-                for(u32 i = 0; i < HIDDEN_COUNT_1; i++){
                     for(u32 j = 0; j < HIDDEN_COUNT_2; j++){
                         hidden_neuron_error_1[i] +=  derivative_of_sigmoid_func(hidden_neuron_in_1[i]) * hidden_neuron_error_2[j] * w_hidden_1_to_hidden_2[i][j];
                     }
