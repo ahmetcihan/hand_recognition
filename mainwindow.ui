@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -816,10 +816,15 @@
        </property>
       </widget>
      </widget>
+    </widget>
+    <widget class="QWidget" name="tab_4">
+     <attribute name="title">
+      <string>TEST</string>
+     </attribute>
      <widget class="QLabel" name="label_video_original_2">
       <property name="geometry">
        <rect>
-        <x>340</x>
+        <x>10</x>
         <y>10</y>
         <width>320</width>
         <height>240</height>
@@ -832,7 +837,7 @@
      <widget class="QLabel" name="label_result">
       <property name="geometry">
        <rect>
-        <x>340</x>
+        <x>10</x>
         <y>260</y>
         <width>301</width>
         <height>61</height>
@@ -847,11 +852,162 @@
        <string>YUMRUK</string>
       </property>
      </widget>
-    </widget>
-    <widget class="QWidget" name="tab_4">
-     <attribute name="title">
-      <string>TEST</string>
-     </attribute>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>10</y>
+        <width>67</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>FIST</string>
+      </property>
+     </widget>
+     <widget class="QSlider" name="horizontalSlider_fist">
+      <property name="geometry">
+       <rect>
+        <x>439</x>
+        <y>10</y>
+        <width>211</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QSlider" name="horizontalSlider_stop">
+      <property name="geometry">
+       <rect>
+        <x>439</x>
+        <y>50</y>
+        <width>211</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>50</y>
+        <width>67</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>STOP</string>
+      </property>
+     </widget>
+     <widget class="QSlider" name="horizontalSlider_up">
+      <property name="geometry">
+       <rect>
+        <x>439</x>
+        <y>90</y>
+        <width>211</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>90</y>
+        <width>67</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>UP</string>
+      </property>
+     </widget>
+     <widget class="QSlider" name="horizontalSlider_left">
+      <property name="geometry">
+       <rect>
+        <x>439</x>
+        <y>130</y>
+        <width>211</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>130</y>
+        <width>67</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>LEFT</string>
+      </property>
+     </widget>
+     <widget class="QSlider" name="horizontalSlider_right">
+      <property name="geometry">
+       <rect>
+        <x>439</x>
+        <y>170</y>
+        <width>211</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_9">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>170</y>
+        <width>67</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>RIGHT</string>
+      </property>
+     </widget>
+     <widget class="QSlider" name="horizontalSlider_five">
+      <property name="geometry">
+       <rect>
+        <x>439</x>
+        <y>210</y>
+        <width>211</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_10">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>210</y>
+        <width>67</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>FIVE</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
