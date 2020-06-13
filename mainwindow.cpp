@@ -40,8 +40,76 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButton_select_tester,SIGNAL(clicked(bool)), this,SLOT(select_tester_file()));
 
     //my_vid.open("/dev/video0");
-    my_vid.open(0);
+    //my_vid.open(0);
 
+    image_manipulation();
+
+}
+void MainWindow::image_manipulation(void){
+    /*
+     * ///////monochrome save////////////////////////
+    QImage read_image;
+    QImage manipulated_image(40,30,QImage::Format_Mono);
+
+    for(u8 k = 1; k < 121 ; k++){
+        read_image.load(QString("/home/ahmet/Desktop/gloves/up/up_%1.jpg").arg(k));
+
+        for(u8 i = 0; i < read_image.width();i++){
+            for(u8 j = 0; j < read_image.height();j++){
+                if((read_image.pixel(i,j) & 0xFF) < 128){
+                    manipulated_image.setPixel(i,j,0);
+                }
+                else{
+                    manipulated_image.setPixel(i,j,1);
+
+                }
+            }
+        }
+        manipulated_image.save(QString("/home/ahmet/Desktop/gloves/up/up_%1.jpg").arg(k),0,100);
+    }
+    */
+
+
+/*
+    QImage read_image;
+    QImage manipulated_image(40,30,QImage::Format_Mono);
+    u32 first_row;
+    u32 first_column;
+    u8 point_detected = 0;
+
+    read_image.load("/home/ahmet/Desktop/gloves/fist/fist_1.jpg");
+
+    QPixmap my_pix = QPixmap::fromImage(read_image);
+    ui->label_small_image->setPixmap(my_pix);
+
+    for(u8 i = 0; i < read_image.width();i++){
+        for(u8 j = 0; j < read_image.height();j++){
+            qDebug() << QString("val-%1-%2-%3 :").arg(i).arg(j).arg((read_image.pixel(i,j) & 0xFF));
+            //manipulated_image.setPixel(i,j,qRgb(255,255,255));
+
+            if((read_image.pixel(i,j) & 0xFF) < 128){
+                manipulated_image.setPixel(i,j,0);
+
+                if(point_detected == 0){
+                    point_detected = 1;
+                    first_row = i;
+                    first_column = j;
+                    qDebug() << "point detected";
+                }
+            }
+            else{
+                manipulated_image.setPixel(i,j,1);
+
+            }
+        }
+    }
+    qDebug() << first_row << first_column;
+    QPixmap manipulated_pix = QPixmap::fromImage(manipulated_image);
+    ui->label_small_image_manipulated->setPixmap(manipulated_pix);
+
+    manipulated_image.save(QString("/home/ahmet/Desktop/denemci.jpg"),0,100);
+
+*/
 }
 void MainWindow::select_tester_file(void){
     tester_file_name = QFileDialog::getOpenFileName(this,"Open Test File","/home/ahmet/Desktop/gloves/",("Images (*.jpg)"));
@@ -93,7 +161,7 @@ void MainWindow::capture_video(void){
     ui->label_video_rotated->setPixmap(rotated_monochrome);
 
     QImage small_scale;
-    small_scale = momochrome.scaled(QSize(40,30),Qt::KeepAspectRatio,Qt::SmoothTransformation);
+    small_scale = momochrome.scaled(QSize(40,30),Qt::KeepAspectRatio,Qt::FastTransformation);
     QPixmap small_picture = QPixmap::fromImage(small_scale);
     ui->label_video_small_monochrome->setPixmap(small_picture);
     ui->label_video_small_monochrome_2->setPixmap(small_picture);
@@ -104,8 +172,10 @@ void MainWindow::capture_video(void){
     if(1){
         u8 tester[40][30];
 
+
         for(u8 i = 0; i < small_scale.width();i++){
             for(u8 j = 0; j < small_scale.height();j++){
+                qDebug() << "value" << small_scale.pixel(i,j);
                 tester[i][j] = 0;
                 if((small_scale.pixel(i,j) & 0xFF) == 0xFF){
                     tester[i][j] = 1;

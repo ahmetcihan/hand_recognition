@@ -75,6 +75,8 @@ private slots:
     void load_filter_parameters(void);
 
     void select_tester_file(void);
+
+    void image_manipulation(void);
 };
 
 #endif // MAINWINDOW_H
