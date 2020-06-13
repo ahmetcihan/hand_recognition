@@ -65,46 +65,77 @@ void MainWindow::image_manipulation(void){
                 }
             }
         }
+
+        manipulated_image.save(QString("/home/ahmet/Desktop/gloves/up/up_%1.jpg").arg(k),0,100);
+    }
+    */
+    /*
+    ////////////Align left////////////
+    QImage read_image;
+    QImage manipulated_image(40,30,QImage::Format_RGB888);
+    u32 first_row;
+    u8 point_detected = 0;
+
+    for(u8 k = 1; k < 121 ; k++){
+        first_row = 0;
+        point_detected = 0;
+        read_image.load(QString("/home/ahmet/Desktop/gloves/up/up_%1.jpg").arg(k));
+
+        for(u8 i = 0; i < read_image.width();i++){
+            for(u8 j = 0; j < read_image.height();j++){
+                manipulated_image.setPixel(i,j,qRgb(255,255,255));
+                if((read_image.pixel(i,j) & 0xFF) < 128){
+                    if(point_detected == 0){
+                        point_detected = 1;
+                        first_row = i;
+                    }
+                }
+            }
+        }
+        for(u8 i = (first_row-1); i < read_image.width();i++){
+            for(u8 j = 0; j < read_image.height();j++){
+                manipulated_image.setPixel(i-(first_row-1),j,read_image.pixel(i,j));
+            }
+        }
         manipulated_image.save(QString("/home/ahmet/Desktop/gloves/up/up_%1.jpg").arg(k),0,100);
     }
     */
 
+    /*
     QImage read_image;
     QImage manipulated_image(40,30,QImage::Format_RGB888);
     u32 first_row;
-    u32 first_column;
     u8 point_detected = 0;
 
-    read_image.load("/home/ahmet/Desktop/gloves/fist/fist_1.jpg");
+    read_image.load("/home/ahmet/Desktop/gloves/five/five_63.jpg");
 
     QPixmap my_pix = QPixmap::fromImage(read_image);
     ui->label_small_image->setPixmap(my_pix);
 
     for(u8 i = 0; i < read_image.width();i++){
         for(u8 j = 0; j < read_image.height();j++){
-            qDebug() << QString("val-%1-%2-%3 :").arg(i).arg(j).arg((read_image.pixel(i,j) & 0xFF));
-            //manipulated_image.setPixel(i,j,qRgb(255,255,255));
-
+            manipulated_image.setPixel(i,j,qRgb(255,255,255));
             if((read_image.pixel(i,j) & 0xFF) < 128){
-                manipulated_image.setPixel(i,j,qRgb(0,0,0));
                 if(point_detected == 0){
                     point_detected = 1;
                     first_row = i;
-                    first_column = j;
-                    qDebug() << "point detected";
                 }
-            }
-            else{
-                manipulated_image.setPixel(i,j,qRgb(255,255,255));
             }
         }
     }
-    qDebug() << first_row << first_column;
+
+    for(u8 i = (first_row-1); i < read_image.width();i++){
+        for(u8 j = 0; j < read_image.height();j++){
+            manipulated_image.setPixel(i-(first_row-1),j,read_image.pixel(i,j));
+        }
+    }
+
+
     QPixmap manipulated_pix = QPixmap::fromImage(manipulated_image);
     ui->label_small_image_manipulated->setPixmap(manipulated_pix);
 
     manipulated_image.save(QString("/home/ahmet/Desktop/denemci.jpg"),0,100);
-
+    */
 }
 void MainWindow::select_tester_file(void){
     tester_file_name = QFileDialog::getOpenFileName(this,"Open Test File","/home/ahmet/Desktop/gloves/",("Images (*.jpg)"));

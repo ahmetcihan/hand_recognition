@@ -506,8 +506,10 @@ void MainWindow::image_to_array_40x30(QString location, u8 image_array[40][30]){
 
     for(u8 i = 0; i < read_image.width();i++){
         for(u8 j = 0; j < read_image.height();j++){
-            image_array[i][j] = 0;
-            if((read_image.pixel(i,j) & 0xFF) == 0xFF){
+            if((read_image.pixel(i,j) & 0xFF) < 128){
+                image_array[i][j] = 0;
+            }
+            else{
                 image_array[i][j] = 1;
             }
         }
