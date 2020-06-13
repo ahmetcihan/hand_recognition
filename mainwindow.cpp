@@ -40,9 +40,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButton_select_tester,SIGNAL(clicked(bool)), this,SLOT(select_tester_file()));
 
     //my_vid.open("/dev/video0");
-    //my_vid.open(0);
+    my_vid.open(0);
 
-    image_manipulation();
+    //image_manipulation();
 
 }
 void MainWindow::image_manipulation(void){
@@ -146,18 +146,17 @@ void MainWindow::start_stream(void){
     periodic_timer->start();
 }
 void MainWindow::capture_video(void){
-    static QElapsedTimer my_timer;
+    static QElapsedTimer my_elapsed_timer;
 
-    my_timer.restart();
+    my_elapsed_timer.restart();
 
+    //get original frame
     cv::Mat original_frame;
-
     my_vid >> original_frame;
-
     cv::cvtColor(original_frame,original_frame,CV_BGR2RGB);
-
     qDebug() << "fps" << my_vid.get(CV_CAP_PROP_FPS) << "width" << my_vid.get(CV_CAP_PROP_FRAME_WIDTH) << "height" << my_vid.get(CV_CAP_PROP_FRAME_HEIGHT);
 
+    //resize original frame
     cv::resize(original_frame,original_frame, cv::Size(320,240),0,0,CV_INTER_LINEAR);
 
     QImage my_image((uchar*)original_frame.data, original_frame.cols, original_frame.rows, original_frame.step, QImage::Format_RGB888);
@@ -166,12 +165,11 @@ void MainWindow::capture_video(void){
 
     ui->label_video->setPixmap(original_pix);
     ui->label_video_original_2->setPixmap(original_pix);
+    //qDebug() << "color" << QColor(my_image.pixel(160,120)).red() << QColor(my_image.pixel(160,120)).green() << QColor(my_image.pixel(160,120)).blue();
 
-    qDebug() << "color" << QColor(my_image.pixel(160,120)).red() << QColor(my_image.pixel(160,120)).green() << QColor(my_image.pixel(160,120)).blue();
-
+    //change to monocrome
     for(u16 i = 0; i < my_image.width(); i++){
         for(u16 j = 0; j < my_image.height(); j++){
-            //qDebug() << QString("val-%1-%2 :").arg(i).arg(j) << QColor(rotated_image.pixel(i,j)).green();
             if((QColor(my_image.pixel(i,j)).red() >= ui->spinBox_red_min->value()) && (QColor(my_image.pixel(i,j)).red() <= ui->spinBox_red_max->value()) &&
                (QColor(my_image.pixel(i,j)).green() >= ui->spinBox_green_min->value()) && (QColor(my_image.pixel(i,j)).green() <= ui->spinBox_green_max->value()) &&
                (QColor(my_image.pixel(i,j)).blue() >= ui->spinBox_blue_min->value()) && (QColor(my_image.pixel(i,j)).blue() <= ui->spinBox_blue_max->value())){
@@ -183,27 +181,67 @@ void MainWindow::capture_video(void){
         }
     }
 
-    QPixmap rotated_monochrome = QPixmap::fromImage(momochrome);
-    ui->label_video_rotated->setPixmap(rotated_monochrome);
+    ui->label_video_monocrome->setPixmap(QPixmap::fromImage(momochrome));
 
+    //change to small_scale
     QImage small_scale;
     small_scale = momochrome.scaled(QSize(40,30),Qt::KeepAspectRatio,Qt::FastTransformation);
-    QPixmap small_picture = QPixmap::fromImage(small_scale);
+
+    //Align left
+    QImage align_left_image(40,30,QImage::Format_RGB888);
+    u32 first_row = 0;
+    u8 point_detected = 0;
+
+    first_row = 0;
+    point_detected = 0;
+
+    for(u8 i = 0; i < small_scale.width();i++){
+        for(u8 j = 0; j < small_scale.height();j++){
+            align_left_image.setPixel(i,j,qRgb(255,255,255));
+            if((small_scale.pixel(i,j) & 0xFF) < 128){
+                if(point_detected == 0){
+                    point_detected = 1;
+                    first_row = i;
+                }
+            }
+        }
+    }
+    QImage test_image;
+    QPixmap small_picture;
+
+    if(first_row > 0){
+        for(u8 i = (first_row-1); i < small_scale.width();i++){
+            for(u8 j = 0; j < small_scale.height();j++){
+                align_left_image.setPixel(i-(first_row-1),j,small_scale.pixel(i,j));
+            }
+        }
+        small_picture = QPixmap::fromImage(align_left_image);
+        test_image = align_left_image;
+    }
+    else{
+        small_picture = QPixmap::fromImage(small_scale);
+        test_image = small_scale;
+    }
+
+
     ui->label_video_small_monochrome->setPixmap(small_picture);
     ui->label_video_small_monochrome_2->setPixmap(small_picture);
+    ui->label_video_small_monochrome_3->setPixmap(small_picture);
     ui->label_hand_two->setPixmap(small_picture);
 
     original_frame.release();
 
+    // push into ANN
     if(1){
         u8 tester[40][30];
 
 
-        for(u8 i = 0; i < small_scale.width();i++){
-            for(u8 j = 0; j < small_scale.height();j++){
-                qDebug() << "value" << small_scale.pixel(i,j);
-                tester[i][j] = 0;
-                if((small_scale.pixel(i,j) & 0xFF) == 0xFF){
+        for(u8 i = 0; i < test_image.width();i++){
+            for(u8 j = 0; j < test_image.height();j++){
+                if((test_image.pixel(i,j) & 0xFF) < 128){
+                    tester[i][j] = 0;
+                }
+                else{
                     tester[i][j] = 1;
                 }
             }
@@ -230,7 +268,7 @@ void MainWindow::capture_video(void){
     }
 
 
-    qDebug() << "elapsed time" << my_timer.elapsed();
+    qDebug() << "elapsed time" << my_elapsed_timer.elapsed();
 }
 
 void MainWindow::_100_msec_timer_handle(void){
