@@ -69,10 +69,8 @@ void MainWindow::image_manipulation(void){
     }
     */
 
-
-/*
     QImage read_image;
-    QImage manipulated_image(40,30,QImage::Format_Mono);
+    QImage manipulated_image(40,30,QImage::Format_RGB888);
     u32 first_row;
     u32 first_column;
     u8 point_detected = 0;
@@ -88,8 +86,7 @@ void MainWindow::image_manipulation(void){
             //manipulated_image.setPixel(i,j,qRgb(255,255,255));
 
             if((read_image.pixel(i,j) & 0xFF) < 128){
-                manipulated_image.setPixel(i,j,0);
-
+                manipulated_image.setPixel(i,j,qRgb(0,0,0));
                 if(point_detected == 0){
                     point_detected = 1;
                     first_row = i;
@@ -98,8 +95,7 @@ void MainWindow::image_manipulation(void){
                 }
             }
             else{
-                manipulated_image.setPixel(i,j,1);
-
+                manipulated_image.setPixel(i,j,qRgb(255,255,255));
             }
         }
     }
@@ -109,7 +105,6 @@ void MainWindow::image_manipulation(void){
 
     manipulated_image.save(QString("/home/ahmet/Desktop/denemci.jpg"),0,100);
 
-*/
 }
 void MainWindow::select_tester_file(void){
     tester_file_name = QFileDialog::getOpenFileName(this,"Open Test File","/home/ahmet/Desktop/gloves/",("Images (*.jpg)"));
