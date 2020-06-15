@@ -6,8 +6,8 @@ double ann::_76800_1024_1024_6_ann_calculate_total_error(double *max_err){
     double aux;
     double max_error = 0;
 
-    for(u8 i = 0; i < OUTPUT_COUNT; i++){
-        for(u8 j = 0; j < IO_ARRAY_LENGTH; j++){
+    for(u32 i = 0; i < OUTPUT_COUNT; i++){
+        for(u32 j = 0; j < IO_ARRAY_LENGTH; j++){
             aux = net_76800_1024_1024_6.desired_output[i][j] - net_76800_1024_1024_6.calculated_output[i][j];
             if(fabs(aux) > max_error)  max_error = fabs(aux);
             aux = aux * aux;
@@ -93,17 +93,16 @@ void ann::_76800_1024_1024_6_ann_test(  double input[INPUT_COUNT],
         calculated_output[j]   = output_sigmoid_func(output_in[j]);
     }
 
-    qDebug() << "**********testing***************";
-    for(u32 i = 0; i < OUTPUT_COUNT; i++){
-        qDebug() << QString("output[%1] :").arg(i) << calculated_output[i];
-    }
-
-    qDebug() << "% " << 100*calculated_output[0] << "\t" << "ihtimal fist";
-    qDebug() << "% " << 100*calculated_output[1] << "\t" << "ihtimal stop";
-    qDebug() << "% " << 100*calculated_output[2] << "\t" << "ihtimal up";
-    qDebug() << "% " << 100*calculated_output[3] << "\t" << "ihtimal left";
-    qDebug() << "% " << 100*calculated_output[4] << "\t" << "ihtimal right";
-    qDebug() << "% " << 100*calculated_output[5] << "\t" << "ihtimal five";
+//    qDebug() << "**********testing***************";
+//    for(u32 i = 0; i < OUTPUT_COUNT; i++){
+//        qDebug() << QString("output[%1] :").arg(i) << calculated_output[i];
+//    }
+//    qDebug() << "% " << 100*calculated_output[0] << "\t" << "ihtimal fist";
+//    qDebug() << "% " << 100*calculated_output[1] << "\t" << "ihtimal stop";
+//    qDebug() << "% " << 100*calculated_output[2] << "\t" << "ihtimal up";
+//    qDebug() << "% " << 100*calculated_output[3] << "\t" << "ihtimal left";
+//    qDebug() << "% " << 100*calculated_output[4] << "\t" << "ihtimal right";
+//    qDebug() << "% " << 100*calculated_output[5] << "\t" << "ihtimal five";
 
     u32 max_value_index = 0;
     double max_value = 0;
@@ -311,7 +310,7 @@ void ann::_76800_1024_1024_6_ann_train( double input[INPUT_COUNT][IO_ARRAY_LENGT
         }
         net_76800_1024_1024_6.total_err = 0;
         net_76800_1024_1024_6.max_error = 0;
-        for(u8 i = 0; i < INPUT_SET; i++){
+        for(u32 i = 0; i < INPUT_SET; i++){
             net_76800_1024_1024_6.total_err += inset_sse[i];
             if(max_abs_err[i] > net_76800_1024_1024_6.max_error){
                 net_76800_1024_1024_6.max_error = max_abs_err[i];

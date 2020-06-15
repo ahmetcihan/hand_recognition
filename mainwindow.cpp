@@ -17,6 +17,13 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButton_snapshot_right,SIGNAL(clicked(bool)),this,SLOT(get_right_picture()));
     connect(ui->pushButton_snapshot_five,SIGNAL(clicked(bool)), this,SLOT(get_five_picture()));
 
+    connect(ui->pushButton_snapshot_fist_automatic,SIGNAL(clicked(bool)), this,SLOT(get_fist_picture_automatic()));
+    connect(ui->pushButton_snapshot_stop_automatic,SIGNAL(clicked(bool)), this,SLOT(get_stop_picture_automatic()));
+    connect(ui->pushButton_snapshot_up_automatic,SIGNAL(clicked(bool)),   this,SLOT(get_up_picture_automatic()));
+    connect(ui->pushButton_snapshot_left_automatic,SIGNAL(clicked(bool)), this,SLOT(get_left_picture_automatic()));
+    connect(ui->pushButton_snapshot_right_automatic,SIGNAL(clicked(bool)),this,SLOT(get_right_picture_automatic()));
+    connect(ui->pushButton_snapshot_five_automatic,SIGNAL(clicked(bool)), this,SLOT(get_five_picture_automatic()));
+
     _100_msec_timer = new QTimer(this);
     _100_msec_timer->setInterval(1000);
     _100_msec_timer->start();
@@ -154,7 +161,7 @@ void MainWindow::capture_video(void){
     cv::Mat original_frame;
     my_vid >> original_frame;
     cv::cvtColor(original_frame,original_frame,CV_BGR2RGB);
-    qDebug() << "fps" << my_vid.get(CV_CAP_PROP_FPS) << "width" << my_vid.get(CV_CAP_PROP_FRAME_WIDTH) << "height" << my_vid.get(CV_CAP_PROP_FRAME_HEIGHT);
+    //qDebug() << "fps" << my_vid.get(CV_CAP_PROP_FPS) << "width" << my_vid.get(CV_CAP_PROP_FRAME_WIDTH) << "height" << my_vid.get(CV_CAP_PROP_FRAME_HEIGHT);
 
     //resize original frame
     cv::resize(original_frame,original_frame, cv::Size(320,240),0,0,CV_INTER_LINEAR);
@@ -182,6 +189,7 @@ void MainWindow::capture_video(void){
     }
 
     ui->label_video_monocrome->setPixmap(QPixmap::fromImage(momochrome));
+    ui->label_video_monocrome_2->setPixmap(QPixmap::fromImage(momochrome));
 
     //change to small_scale
     QImage small_scale;

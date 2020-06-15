@@ -69,6 +69,13 @@ private slots:
     void get_right_picture();
     void get_five_picture();
 
+    void get_fist_picture_automatic();
+    void get_stop_picture_automatic();
+    void get_up_picture_automatic();
+    void get_left_picture_automatic();
+    void get_right_picture_automatic();
+    void get_five_picture_automatic();
+
     void start_stream(void);
 
     void save_filter_parameters(void);
