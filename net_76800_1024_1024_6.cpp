@@ -17,17 +17,19 @@ double ann::_76800_1024_1024_6_ann_calculate_total_error(double *max_err){
     *max_err = max_error;
     return total_error;
 }
-void ann::_76800_1024_1024_6_ann_test(  double input[INPUT_COUNT],
-                                        double hidden_neuron_bias_1[HIDDEN_COUNT_1],
-                                        double hidden_neuron_bias_2[HIDDEN_COUNT_2],
-                                        double hidden_neuron_bias_3[HIDDEN_COUNT_3],
-                                        double hidden_neuron_bias_4[HIDDEN_COUNT_4],
-                                        double output_bias[OUTPUT_COUNT],
-                                        double w_input_to_hidden_1[INPUT_COUNT][HIDDEN_COUNT_1],
-                                        double w_hidden_1_to_hidden_2[HIDDEN_COUNT_1][HIDDEN_COUNT_2],
-                                        double w_hidden_2_to_hidden_3[HIDDEN_COUNT_2][HIDDEN_COUNT_3],
-                                        double w_hidden_3_to_hidden_4[HIDDEN_COUNT_3][HIDDEN_COUNT_4],
-                                        double w_hidden_4_to_output[HIDDEN_COUNT_4][OUTPUT_COUNT]){
+void ann::_76800_1024_1024_6_ann_test(double input[INPUT_COUNT],
+                                      double hidden_neuron_bias_1[HIDDEN_COUNT_1],
+                                      double hidden_neuron_bias_2[HIDDEN_COUNT_2],
+                                      double hidden_neuron_bias_3[HIDDEN_COUNT_3],
+                                      double hidden_neuron_bias_4[HIDDEN_COUNT_4],
+                                      double hidden_neuron_bias_5[HIDDEN_COUNT_5],
+                                      double output_bias[OUTPUT_COUNT],
+                                      double w_input_to_hidden_1[INPUT_COUNT][HIDDEN_COUNT_1],
+                                      double w_hidden_1_to_hidden_2[HIDDEN_COUNT_1][HIDDEN_COUNT_2],
+                                      double w_hidden_2_to_hidden_3[HIDDEN_COUNT_2][HIDDEN_COUNT_3],
+                                      double w_hidden_3_to_hidden_4[HIDDEN_COUNT_3][HIDDEN_COUNT_4],
+                                      double w_hidden_4_to_hidden_5[HIDDEN_COUNT_4][HIDDEN_COUNT_5],
+                                      double w_hidden_5_to_output[HIDDEN_COUNT_5][OUTPUT_COUNT]){
     double hidden_neuron_in_1[HIDDEN_COUNT_1];
     double hidden_neuron_out_1[HIDDEN_COUNT_1];
 
@@ -39,6 +41,9 @@ void ann::_76800_1024_1024_6_ann_test(  double input[INPUT_COUNT],
 
     double hidden_neuron_in_4[HIDDEN_COUNT_4];
     double hidden_neuron_out_4[HIDDEN_COUNT_4];
+
+    double hidden_neuron_in_5[HIDDEN_COUNT_5];
+    double hidden_neuron_out_5[HIDDEN_COUNT_5];
 
     double output_in[OUTPUT_COUNT];
     double calculated_output[OUTPUT_COUNT];
@@ -84,11 +89,20 @@ void ann::_76800_1024_1024_6_ann_test(  double input[INPUT_COUNT],
         hidden_neuron_out_4[i] = sigmoid_func(hidden_neuron_in_4[i]);
     }
 
-    /*******************HIDDEN4 TO OUTPUT*********************/
+    /*******************HIDDEN4 TO HIDDEN5*********************/
+    for(u32 i = 0; i < HIDDEN_COUNT_5; i++){
+        hidden_neuron_in_5[i] = hidden_neuron_bias_5[i];
+        for(u32 j = 0; j < HIDDEN_COUNT_4; j++){
+            hidden_neuron_in_5[i] += hidden_neuron_out_4[j]*w_hidden_4_to_hidden_5[j][i];
+        }
+        hidden_neuron_out_5[i] = sigmoid_func(hidden_neuron_in_5[i]);
+    }
+
+    /*******************HIDDEN5 TO OUTPUT*********************/
     for(u32 j = 0; j < OUTPUT_COUNT; j++){
         output_in[j] =  output_bias[j];
-        for(u32 i = 0; i < HIDDEN_COUNT_4; i++){
-            output_in[j] += hidden_neuron_out_4[i]*w_hidden_4_to_output[i][j];
+        for(u32 i = 0; i < HIDDEN_COUNT_5; i++){
+            output_in[j] += hidden_neuron_out_5[i]*w_hidden_5_to_output[i][j];
         }
         calculated_output[j]   = output_sigmoid_func(output_in[j]);
     }
@@ -153,12 +167,14 @@ void ann::_76800_1024_1024_6_ann_train( double input[INPUT_COUNT][IO_ARRAY_LENGT
                                         double hidden_neuron_bias_2[HIDDEN_COUNT_2],
                                         double hidden_neuron_bias_3[HIDDEN_COUNT_3],
                                         double hidden_neuron_bias_4[HIDDEN_COUNT_4],
+                                        double hidden_neuron_bias_5[HIDDEN_COUNT_5],
                                         double output_bias[OUTPUT_COUNT],
                                         double w_input_to_hidden_1[INPUT_COUNT][HIDDEN_COUNT_1],
                                         double w_hidden_1_to_hidden_2[HIDDEN_COUNT_1][HIDDEN_COUNT_2],
                                         double w_hidden_2_to_hidden_3[HIDDEN_COUNT_2][HIDDEN_COUNT_3],
                                         double w_hidden_3_to_hidden_4[HIDDEN_COUNT_3][HIDDEN_COUNT_4],
-                                        double w_hidden_4_to_output[HIDDEN_COUNT_4][OUTPUT_COUNT],
+                                        double w_hidden_4_to_hidden_5[HIDDEN_COUNT_4][HIDDEN_COUNT_5],
+                                        double w_hidden_5_to_output[HIDDEN_COUNT_5][OUTPUT_COUNT],
                                         u32 epoch, double learning_rate){
 
     double hidden_neuron_in_1[HIDDEN_COUNT_1];
@@ -176,6 +192,10 @@ void ann::_76800_1024_1024_6_ann_train( double input[INPUT_COUNT][IO_ARRAY_LENGT
     double hidden_neuron_in_4[HIDDEN_COUNT_4];
     double hidden_neuron_out_4[HIDDEN_COUNT_4];
     double hidden_neuron_error_4[HIDDEN_COUNT_4];
+
+    double hidden_neuron_in_5[HIDDEN_COUNT_5];
+    double hidden_neuron_out_5[HIDDEN_COUNT_5];
+    double hidden_neuron_error_5[HIDDEN_COUNT_5];
 
     double output_error[OUTPUT_COUNT];
     double global_error[OUTPUT_COUNT];
@@ -227,11 +247,20 @@ void ann::_76800_1024_1024_6_ann_train( double input[INPUT_COUNT][IO_ARRAY_LENGT
                     hidden_neuron_out_4[i] = sigmoid_func(hidden_neuron_in_4[i]);
                 }
 
-                /*******************HIDDEN4 TO OUTPUT*********************/
+                /*******************HIDDEN4 TO HIDDEN5*********************/
+                for(u32 i = 0; i < HIDDEN_COUNT_5; i++){
+                    hidden_neuron_in_5[i] = hidden_neuron_bias_5[i];
+                    for(u32 j = 0; j < HIDDEN_COUNT_4; j++){
+                        hidden_neuron_in_5[i] += hidden_neuron_out_4[j]*w_hidden_4_to_hidden_5[j][i];
+                    }
+                    hidden_neuron_out_5[i] = sigmoid_func(hidden_neuron_in_5[i]);
+                }
+
+                /*******************HIDDEN5 TO OUTPUT*********************/
                 for(u32 j = 0; j < OUTPUT_COUNT; j++){
                     output_in[j] =  output_bias[j];
-                    for(u32 i = 0; i < HIDDEN_COUNT_4; i++){
-                        output_in[j] += hidden_neuron_out_4[i]*w_hidden_4_to_output[i][j];
+                    for(u32 i = 0; i < HIDDEN_COUNT_5; i++){
+                        output_in[j] += hidden_neuron_out_5[i]*w_hidden_5_to_output[i][j];
                     }
                     output_out[j]   = output_sigmoid_func(output_in[j]);
                     output_error[j] = desired_output[j][k] - output_out[j];
@@ -240,17 +269,31 @@ void ann::_76800_1024_1024_6_ann_train( double input[INPUT_COUNT][IO_ARRAY_LENGT
                 }
 
                 /********************BACKPROPAGATION**********************/
-                /*******************OUTPUT TO HIDDEN4*********************/
+                /*******************OUTPUT TO HIDDEN5*********************/
                 for(u32 j = 0; j < OUTPUT_COUNT; j++){
-                    for(u32 i = 0; i < HIDDEN_COUNT_4; i++){
-                        w_hidden_4_to_output[i][j] += global_error[j] * hidden_neuron_out_4[i] * learning_rate;
+                    for(u32 i = 0; i < HIDDEN_COUNT_5; i++){
+                        w_hidden_5_to_output[i][j] += global_error[j] * hidden_neuron_out_5[i] * learning_rate;
                     }
                     output_bias[j] += global_error[j] * learning_rate;
                 }
+                for(u32 i = 0; i < HIDDEN_COUNT_5; i++){
+                    hidden_neuron_error_5[i] = 0;
+                    for(u32 j = 0; j < OUTPUT_COUNT; j++){
+                        hidden_neuron_error_5[i] += derivative_of_sigmoid_func(hidden_neuron_in_5[i]) * global_error[j] * w_hidden_5_to_output[i][j];
+                    }
+                }
+
+                /*******************HIDDEN5 TO HIDDEN4*********************/
+                for(u32 i = 0; i < HIDDEN_COUNT_5; i++){
+                    for(u32 j = 0; j < HIDDEN_COUNT_4; j++){
+                        w_hidden_4_to_hidden_5[j][i] += hidden_neuron_error_5[i] * hidden_neuron_out_4[j] * learning_rate;
+                    }
+                    hidden_neuron_bias_5[i] += hidden_neuron_error_5[i] * learning_rate;
+                }
                 for(u32 i = 0; i < HIDDEN_COUNT_4; i++){
                     hidden_neuron_error_4[i] = 0;
-                    for(u32 j = 0; j < OUTPUT_COUNT; j++){
-                        hidden_neuron_error_4[i] += derivative_of_sigmoid_func(hidden_neuron_in_4[i]) * global_error[j] * w_hidden_4_to_output[i][j];
+                    for(u32 j = 0; j < HIDDEN_COUNT_5; j++){
+                        hidden_neuron_error_4[i] +=  derivative_of_sigmoid_func(hidden_neuron_in_4[i]) * hidden_neuron_error_5[j] * w_hidden_4_to_hidden_5[i][j];
                     }
                 }
 
@@ -337,6 +380,9 @@ void MainWindow::_76800_1024_1024_6_random_initilize_handler(void){
     for(u32 i = 0; i < HIDDEN_COUNT_4; i++){
         ann_class->net_76800_1024_1024_6.hidden_neuron_bias_4[i] = ((double) qrand()/RAND_MAX) * (-2) + 1;
     }
+    for(u32 i = 0; i < HIDDEN_COUNT_5; i++){
+        ann_class->net_76800_1024_1024_6.hidden_neuron_bias_5[i] = ((double) qrand()/RAND_MAX) * (-2) + 1;
+    }
     for(u32 i = 0; i < OUTPUT_COUNT; i++){
         ann_class->net_76800_1024_1024_6.output_bias[i] = ((double) qrand()/RAND_MAX) * (-2) + 1;
     }
@@ -362,8 +408,13 @@ void MainWindow::_76800_1024_1024_6_random_initilize_handler(void){
         }
     }
     for(u32 i = 0; i < HIDDEN_COUNT_4; i++){
+        for(u32 j = 0; j < HIDDEN_COUNT_5; j++){
+            ann_class->net_76800_1024_1024_6.w_hidden_4_to_hidden_5[i][j] = ((double) qrand()/RAND_MAX) * (-2) + 1;
+        }
+    }
+    for(u32 i = 0; i < HIDDEN_COUNT_5; i++){
         for(u32 j = 0; j < OUTPUT_COUNT; j++){
-            ann_class->net_76800_1024_1024_6.w_hidden_4_to_output[i][j] = ((double) qrand()/RAND_MAX) * (-2) + 1;
+            ann_class->net_76800_1024_1024_6.w_hidden_5_to_output[i][j] = ((double) qrand()/RAND_MAX) * (-2) + 1;
         }
     }
 
@@ -389,12 +440,14 @@ void MainWindow::_76800_1024_1024_6_test_handler(void){
                                             ann_class->net_76800_1024_1024_6.hidden_neuron_bias_2,
                                             ann_class->net_76800_1024_1024_6.hidden_neuron_bias_3,
                                             ann_class->net_76800_1024_1024_6.hidden_neuron_bias_4,
+                                            ann_class->net_76800_1024_1024_6.hidden_neuron_bias_5,
                                             ann_class->net_76800_1024_1024_6.output_bias,
                                             ann_class->net_76800_1024_1024_6.w_input_to_hidden_1,
                                             ann_class->net_76800_1024_1024_6.w_hidden_1_to_hidden_2,
                                             ann_class->net_76800_1024_1024_6.w_hidden_2_to_hidden_3,
                                             ann_class->net_76800_1024_1024_6.w_hidden_3_to_hidden_4,
-                                            ann_class->net_76800_1024_1024_6.w_hidden_4_to_output);
+                                            ann_class->net_76800_1024_1024_6.w_hidden_4_to_hidden_5,
+                                            ann_class->net_76800_1024_1024_6.w_hidden_5_to_output);
 
 }
 void MainWindow::_76800_1024_1024_6_save_weights_handler(void){
@@ -413,6 +466,9 @@ void MainWindow::_76800_1024_1024_6_save_weights_handler(void){
     }
     for(u32 i = 0; i < HIDDEN_COUNT_4; i++){
         settings.setValue(QString("hb4-%1").arg(i),ann_class->net_76800_1024_1024_6.hidden_neuron_bias_4[i]);
+    }
+    for(u32 i = 0; i < HIDDEN_COUNT_5; i++){
+        settings.setValue(QString("hb5-%1").arg(i),ann_class->net_76800_1024_1024_6.hidden_neuron_bias_5[i]);
     }
     for(u32 i = 0; i < OUTPUT_COUNT; i++){
         settings.setValue(QString("ob-%1").arg(i),ann_class->net_76800_1024_1024_6.output_bias[i]);
@@ -439,8 +495,13 @@ void MainWindow::_76800_1024_1024_6_save_weights_handler(void){
         }
     }
     for(u32 i = 0; i < HIDDEN_COUNT_4; i++){
+        for(u32 j = 0; j < HIDDEN_COUNT_5; j++){
+            settings.setValue(QString("h42h5-%1-%2").arg(i).arg(j),ann_class->net_76800_1024_1024_6.w_hidden_4_to_hidden_5[i][j]);
+        }
+    }
+    for(u32 i = 0; i < HIDDEN_COUNT_5; i++){
         for(u32 j = 0; j < OUTPUT_COUNT; j++){
-            settings.setValue(QString("h42o-%1-%2").arg(i).arg(j),ann_class->net_76800_1024_1024_6.w_hidden_4_to_output[i][j]);
+            settings.setValue(QString("h52o-%1-%2").arg(i).arg(j),ann_class->net_76800_1024_1024_6.w_hidden_5_to_output[i][j]);
         }
     }
     settings.endGroup();
@@ -463,6 +524,9 @@ void MainWindow::_76800_1024_1024_6_load_saved_weights_handler(void){
     }
     for(u32 i = 0; i < HIDDEN_COUNT_4; i++){
         ann_class->net_76800_1024_1024_6.hidden_neuron_bias_4[i] = settings.value(QString("w/hb4-%1").arg(i)).toDouble();
+    }
+    for(u32 i = 0; i < HIDDEN_COUNT_5; i++){
+        ann_class->net_76800_1024_1024_6.hidden_neuron_bias_5[i] = settings.value(QString("w/hb5-%1").arg(i)).toDouble();
     }
     for(u32 i = 0; i < OUTPUT_COUNT; i++){
         ann_class->net_76800_1024_1024_6.output_bias[i] = settings.value(QString("w/ob-%1").arg(i)).toDouble();
@@ -489,8 +553,13 @@ void MainWindow::_76800_1024_1024_6_load_saved_weights_handler(void){
         }
     }
     for(u32 i = 0; i < HIDDEN_COUNT_4; i++){
+        for(u32 j = 0; j < HIDDEN_COUNT_5; j++){
+            ann_class->net_76800_1024_1024_6.w_hidden_4_to_hidden_5[i][j] = settings.value(QString("w/h42h5-%1-%2").arg(i).arg(j)).toDouble();
+        }
+    }
+    for(u32 i = 0; i < HIDDEN_COUNT_5; i++){
         for(u32 j = 0; j < OUTPUT_COUNT; j++){
-            ann_class->net_76800_1024_1024_6.w_hidden_4_to_output[i][j] = settings.value(QString("w/h42o-%1-%2").arg(i).arg(j)).toDouble();
+            ann_class->net_76800_1024_1024_6.w_hidden_5_to_output[i][j] = settings.value(QString("w/h52o-%1-%2").arg(i).arg(j)).toDouble();
         }
     }
     ui->label_76800_1024_1024_6_load_saved_weights->setText("Loaded..");

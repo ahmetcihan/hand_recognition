@@ -267,12 +267,14 @@ void MainWindow::capture_video(void){
                                                 ann_class->net_76800_1024_1024_6.hidden_neuron_bias_2,
                                                 ann_class->net_76800_1024_1024_6.hidden_neuron_bias_3,
                                                 ann_class->net_76800_1024_1024_6.hidden_neuron_bias_4,
+                                                ann_class->net_76800_1024_1024_6.hidden_neuron_bias_5,
                                                 ann_class->net_76800_1024_1024_6.output_bias,
                                                 ann_class->net_76800_1024_1024_6.w_input_to_hidden_1,
                                                 ann_class->net_76800_1024_1024_6.w_hidden_1_to_hidden_2,
                                                 ann_class->net_76800_1024_1024_6.w_hidden_2_to_hidden_3,
                                                 ann_class->net_76800_1024_1024_6.w_hidden_3_to_hidden_4,
-                                                ann_class->net_76800_1024_1024_6.w_hidden_4_to_output);
+                                                ann_class->net_76800_1024_1024_6.w_hidden_4_to_hidden_5,
+                                                ann_class->net_76800_1024_1024_6.w_hidden_5_to_output);
     }
 
 
@@ -291,10 +293,10 @@ void MainWindow::_100_msec_timer_handle(void){
                                                             arg(ann_class->net_76800_1024_1024_6.hidden_neuron_bias_2[0]).
                                                             arg(ann_class->net_76800_1024_1024_6.hidden_neuron_bias_3[0]).
                                                             arg(ann_class->net_76800_1024_1024_6.w_input_to_hidden_1[0][0]));
-        ui->label_76800_1024_1024_6_train_status_3->setText(QString("wh122-0 : %1 , wh223-0 : %2 , wh32o-0 : %3").
+        ui->label_76800_1024_1024_6_train_status_3->setText(QString("wh122-0 : %1 , wh223-0 : %2 , wh52o-0 : %3").
                                                             arg(ann_class->net_76800_1024_1024_6.w_hidden_1_to_hidden_2[0][0]).
                                                             arg(ann_class->net_76800_1024_1024_6.w_hidden_2_to_hidden_3[0][0]).
-                                                            arg(ann_class->net_76800_1024_1024_6.w_hidden_4_to_output[0][0]));
+                                                            arg(ann_class->net_76800_1024_1024_6.w_hidden_5_to_output[0][0]));
         ui->label_76800_1024_1024_6_train_status_4->setText(QString("max_err : %1 , inset : %2").
                                                             arg(ann_class->net_76800_1024_1024_6.max_error).
                                                             arg(ann_class->net_76800_1024_1024_6.max_error_inset_no));
