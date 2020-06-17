@@ -19,8 +19,44 @@ ann::ann(MainWindow *master, QWidget *parent) :
     thread_1->start();
 
     stop_the_training = 0;
+    game_command = 255;
+
+    periodic_timer = new QTimer(this);
+    periodic_timer->setInterval(100);
+    connect(periodic_timer,SIGNAL(timeout()),this,SLOT(play_game()));
+    periodic_timer->start();
+
+    this->show();
+
 
 }
+void ann::play_game(void){
+    switch (game_command) {
+    case 2:
+        if(ui->pushButton->pos().y() > 5){
+            ui->pushButton->setGeometry(ui->pushButton->pos().x(),ui->pushButton->pos().y() - 5,100,100);
+        }
+        break;
+    case 3:
+        if(ui->pushButton->pos().x() > 5){
+            ui->pushButton->setGeometry(ui->pushButton->pos().x() - 5,ui->pushButton->pos().y(),100,100);
+        }
+        break;
+    case 4:
+        if(ui->pushButton->pos().x() < 695){
+            ui->pushButton->setGeometry(ui->pushButton->pos().x() + 5,ui->pushButton->pos().y(),100,100);
+        }
+        break;
+    case 5:
+        if(ui->pushButton->pos().y() < 380){
+            ui->pushButton->setGeometry(ui->pushButton->pos().x(),ui->pushButton->pos().y() + 5,100,100);
+        }
+        break;
+    default:
+        break;
+    }
+}
+
 void ann::thread_handler(void){
     if(train_status == 1){
         _76800_1024_1024_6_ann_train(   net_76800_1024_1024_6.input,

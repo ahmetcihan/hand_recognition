@@ -153,6 +153,8 @@ void ann::_76800_1024_1024_6_ann_test(double input[INPUT_COUNT],
     else if (max_value_index == 4)  mainwindow->ui->label_result->setText(QString::fromUtf8("SAĞ"));
     else if (max_value_index == 5)  mainwindow->ui->label_result->setText(QString::fromUtf8("BEŞ"));
 
+    game_command = max_value_index;
+
     mainwindow->ui->horizontalSlider_fist->setValue(100*calculated_output[0]);
     mainwindow->ui->horizontalSlider_stop->setValue(100*calculated_output[1]);
     mainwindow->ui->horizontalSlider_up->setValue(100*calculated_output[2]);
