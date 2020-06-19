@@ -62,13 +62,6 @@ private slots:
     void _76800_1024_1024_6_stop_train_handler(void);
     void _76800_1024_1024_6_picture_to_arrays(void);
 
-    void get_fist_picture();
-    void get_stop_picture();
-    void get_up_picture();
-    void get_left_picture();
-    void get_right_picture();
-    void get_five_picture();
-
     void get_fist_picture_automatic();
     void get_stop_picture_automatic();
     void get_up_picture_automatic();

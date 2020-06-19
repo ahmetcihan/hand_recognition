@@ -137,46 +137,31 @@ void ann::_76800_1024_1024_6_ann_test(double input[INPUT_COUNT],
         }
     }
 
-    if(void_detected == 1){
+    if(max_value_index == 0)    str = QString("% %1 ihtimal fist").arg((u32)(100*calculated_output[0]));
+    if(max_value_index == 1)    str = QString("% %1 ihtimal stop").arg((u32)(100*calculated_output[1]));
+    if(max_value_index == 2)    str = QString("% %1 ihtimal up").arg((u32)(100*calculated_output[2]));
+    if(max_value_index == 3)    str = QString("% %1 ihtimal left").arg((u32)(100*calculated_output[3]));
+    if(max_value_index == 4)    str = QString("% %1 ihtimal right").arg((u32)(100*calculated_output[4]));
+    if(max_value_index == 5)    str = QString("% %1 ihtimal five").arg((u32)(100*calculated_output[5]));
 
-        mainwindow->ui->label_76800_1024_1024_6_test->setText("Boşluk");
-        mainwindow->ui->label_result->setText(QString::fromUtf8("BOŞLUK"));
-        game_command = 255;
-        mainwindow->ui->horizontalSlider_fist->setValue(0);
-        mainwindow->ui->horizontalSlider_stop->setValue(0);
-        mainwindow->ui->horizontalSlider_up->setValue(0);
-        mainwindow->ui->horizontalSlider_left->setValue(0);
-        mainwindow->ui->horizontalSlider_right->setValue(0);
-        mainwindow->ui->horizontalSlider_five->setValue(0);
-        mainwindow->ui->horizontalSlider_nothing->setValue(100);
-    }
-    else{
-        if(max_value_index == 0)    str = QString("% %1 ihtimal fist").arg((u32)(100*calculated_output[0]));
-        if(max_value_index == 1)    str = QString("% %1 ihtimal stop").arg((u32)(100*calculated_output[1]));
-        if(max_value_index == 2)    str = QString("% %1 ihtimal up").arg((u32)(100*calculated_output[2]));
-        if(max_value_index == 3)    str = QString("% %1 ihtimal left").arg((u32)(100*calculated_output[3]));
-        if(max_value_index == 4)    str = QString("% %1 ihtimal right").arg((u32)(100*calculated_output[4]));
-        if(max_value_index == 5)    str = QString("% %1 ihtimal five").arg((u32)(100*calculated_output[5]));
+    mainwindow->ui->label_76800_1024_1024_6_test->setText(str);
 
-        mainwindow->ui->label_76800_1024_1024_6_test->setText(str);
+    if(max_value_index == 0)        mainwindow->ui->label_result->setText(QString::fromUtf8("YUMRUK"));
+    else if (max_value_index == 1)  mainwindow->ui->label_result->setText(QString::fromUtf8("DUR"));
+    else if (max_value_index == 2)  mainwindow->ui->label_result->setText(QString::fromUtf8("YUKARI"));
+    else if (max_value_index == 3)  mainwindow->ui->label_result->setText(QString::fromUtf8("SOL"));
+    else if (max_value_index == 4)  mainwindow->ui->label_result->setText(QString::fromUtf8("SAĞ"));
+    else if (max_value_index == 5)  mainwindow->ui->label_result->setText(QString::fromUtf8("BEŞ"));
 
-        if(max_value_index == 0)        mainwindow->ui->label_result->setText(QString::fromUtf8("YUMRUK"));
-        else if (max_value_index == 1)  mainwindow->ui->label_result->setText(QString::fromUtf8("DUR"));
-        else if (max_value_index == 2)  mainwindow->ui->label_result->setText(QString::fromUtf8("YUKARI"));
-        else if (max_value_index == 3)  mainwindow->ui->label_result->setText(QString::fromUtf8("SOL"));
-        else if (max_value_index == 4)  mainwindow->ui->label_result->setText(QString::fromUtf8("SAĞ"));
-        else if (max_value_index == 5)  mainwindow->ui->label_result->setText(QString::fromUtf8("BEŞ"));
+    game_command = max_value_index;
 
-        game_command = max_value_index;
-
-        mainwindow->ui->horizontalSlider_fist->setValue(100*calculated_output[0]);
-        mainwindow->ui->horizontalSlider_stop->setValue(100*calculated_output[1]);
-        mainwindow->ui->horizontalSlider_up->setValue(100*calculated_output[2]);
-        mainwindow->ui->horizontalSlider_left->setValue(100*calculated_output[3]);
-        mainwindow->ui->horizontalSlider_right->setValue(100*calculated_output[4]);
-        mainwindow->ui->horizontalSlider_five->setValue(100*calculated_output[5]);
-        mainwindow->ui->horizontalSlider_nothing->setValue(0);
-    }
+    mainwindow->ui->horizontalSlider_fist->setValue(100*calculated_output[0]);
+    mainwindow->ui->horizontalSlider_stop->setValue(100*calculated_output[1]);
+    mainwindow->ui->horizontalSlider_up->setValue(100*calculated_output[2]);
+    mainwindow->ui->horizontalSlider_left->setValue(100*calculated_output[3]);
+    mainwindow->ui->horizontalSlider_right->setValue(100*calculated_output[4]);
+    mainwindow->ui->horizontalSlider_five->setValue(100*calculated_output[5]);
+    mainwindow->ui->horizontalSlider_nothing->setValue(0);
 }
 
 void ann::_76800_1024_1024_6_ann_train( double input[INPUT_COUNT][IO_ARRAY_LENGTH*INPUT_SET],
@@ -592,23 +577,18 @@ void MainWindow::image_to_array_40x30(QString location, u8 image_array[40][30]){
 
     for(u8 i = 0; i < read_image.width();i++){
         for(u8 j = 0; j < read_image.height();j++){
-            if((read_image.pixel(i,j) & 0xFF) < 128){
-                image_array[i][j] = 0;
-            }
-            else{
-                image_array[i][j] = 1;
-            }
+            image_array[i][j] = QColor(read_image.pixel(i,j)).black();
         }
     }
 }
 void MainWindow::_76800_1024_1024_6_picture_to_arrays(void){
     for (u32 i = 0; i < INPUT_SET; i++){
-        image_to_array_40x30(QString("/home/ahmet/Desktop/gloves/fist/fist_%1.jpg").arg(i+1),    fist_image[i]);
-        image_to_array_40x30(QString("/home/ahmet/Desktop/gloves/stop/stop_%1.jpg").arg(i+1),    stop_image[i]);
-        image_to_array_40x30(QString("/home/ahmet/Desktop/gloves/up/up_%1.jpg").arg(i+1),      up_image[i]);
-        image_to_array_40x30(QString("/home/ahmet/Desktop/gloves/left/left_%1.jpg").arg(i+1),    left_image[i]);
-        image_to_array_40x30(QString("/home/ahmet/Desktop/gloves/right/right_%1.jpg").arg(i+1),   right_image[i]);
-        image_to_array_40x30(QString("/home/ahmet/Desktop/gloves/five/five_%1.jpg").arg(i+1),    five_image[i]);
+        image_to_array_40x30(QString("/home/ahmet/Desktop/gloves/fist/fist_%1.jpg").arg(i+1),   fist_image[i]);
+        image_to_array_40x30(QString("/home/ahmet/Desktop/gloves/stop/stop_%1.jpg").arg(i+1),   stop_image[i]);
+        image_to_array_40x30(QString("/home/ahmet/Desktop/gloves/up/up_%1.jpg").arg(i+1),       up_image[i]);
+        image_to_array_40x30(QString("/home/ahmet/Desktop/gloves/left/left_%1.jpg").arg(i+1),   left_image[i]);
+        image_to_array_40x30(QString("/home/ahmet/Desktop/gloves/right/right_%1.jpg").arg(i+1), right_image[i]);
+        image_to_array_40x30(QString("/home/ahmet/Desktop/gloves/five/five_%1.jpg").arg(i+1),   five_image[i]);
     }
 }
 void MainWindow::_76800_1024_1024_6_prepare_io_pairs_handler(void){
@@ -617,32 +597,32 @@ void MainWindow::_76800_1024_1024_6_prepare_io_pairs_handler(void){
     for(u32 k = 0; k < INPUT_SET; k++){
         for(u32 j = 0; j < 30; j++){
             for(u32 i = 0; i < 40; i++){
-                ann_class->net_76800_1024_1024_6.input[i + 40*j][0 + k*IO_ARRAY_LENGTH] = fist_image[k][i][j];
+                ann_class->net_76800_1024_1024_6.input[i + 40*j][0 + k*IO_ARRAY_LENGTH] = (double)fist_image[k][i][j]/255;
             }
         }
         for(u32 j = 0; j < 30; j++){
             for(u32 i = 0; i < 40; i++){
-                ann_class->net_76800_1024_1024_6.input[i + 40*j][1 + k*IO_ARRAY_LENGTH] = stop_image[k][i][j];
+                ann_class->net_76800_1024_1024_6.input[i + 40*j][1 + k*IO_ARRAY_LENGTH] = (double)stop_image[k][i][j]/255;
             }
         }
         for(u32 j = 0; j < 30; j++){
             for(u32 i = 0; i < 40; i++){
-                ann_class->net_76800_1024_1024_6.input[i + 40*j][2 + k*IO_ARRAY_LENGTH] = up_image[k][i][j];
+                ann_class->net_76800_1024_1024_6.input[i + 40*j][2 + k*IO_ARRAY_LENGTH] = (double)up_image[k][i][j]/255;
             }
         }
         for(u32 j = 0; j < 30; j++){
             for(u32 i = 0; i < 40; i++){
-                ann_class->net_76800_1024_1024_6.input[i + 40*j][3 + k*IO_ARRAY_LENGTH] = left_image[k][i][j];
+                ann_class->net_76800_1024_1024_6.input[i + 40*j][3 + k*IO_ARRAY_LENGTH] = (double)left_image[k][i][j]/255;
             }
         }
         for(u32 j = 0; j < 30; j++){
             for(u32 i = 0; i < 40; i++){
-                ann_class->net_76800_1024_1024_6.input[i + 40*j][4 + k*IO_ARRAY_LENGTH] = right_image[k][i][j];
+                ann_class->net_76800_1024_1024_6.input[i + 40*j][4 + k*IO_ARRAY_LENGTH] = (double)right_image[k][i][j]/255;
             }
         }
         for(u32 j = 0; j < 30; j++){
             for(u32 i = 0; i < 40; i++){
-                ann_class->net_76800_1024_1024_6.input[i + 40*j][5 + k*IO_ARRAY_LENGTH] = five_image[k][i][j];
+                ann_class->net_76800_1024_1024_6.input[i + 40*j][5 + k*IO_ARRAY_LENGTH] = (double)five_image[k][i][j]/255;
             }
         }
     }

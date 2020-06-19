@@ -32,7 +32,6 @@ public:
     u32 epoch_no;
     u8 stop_the_training;
     u8 game_command;
-    u8 void_detected;
     u8 start_animation;
 
     struct _76800_1024_1024_6_str{

@@ -11,13 +11,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     load_filter_parameters();
 
-    connect(ui->pushButton_snapshot_fist,SIGNAL(clicked(bool)), this,SLOT(get_fist_picture()));
-    connect(ui->pushButton_snapshot_stop,SIGNAL(clicked(bool)), this,SLOT(get_stop_picture()));
-    connect(ui->pushButton_snapshot_up,SIGNAL(clicked(bool)),   this,SLOT(get_up_picture()));
-    connect(ui->pushButton_snapshot_left,SIGNAL(clicked(bool)), this,SLOT(get_left_picture()));
-    connect(ui->pushButton_snapshot_right,SIGNAL(clicked(bool)),this,SLOT(get_right_picture()));
-    connect(ui->pushButton_snapshot_five,SIGNAL(clicked(bool)), this,SLOT(get_five_picture()));
-
     connect(ui->pushButton_snapshot_fist_automatic,SIGNAL(clicked(bool)), this,SLOT(get_fist_picture_automatic()));
     connect(ui->pushButton_snapshot_stop_automatic,SIGNAL(clicked(bool)), this,SLOT(get_stop_picture_automatic()));
     connect(ui->pushButton_snapshot_up_automatic,SIGNAL(clicked(bool)),   this,SLOT(get_up_picture_automatic()));
@@ -178,6 +171,7 @@ void MainWindow::capture_video(void){
 
     QImage greyscale_image((uchar*)original_frame.data, original_frame.cols, original_frame.rows, original_frame.step, QImage::Format_Indexed8);
     ui->label_video_greyscale->setPixmap(QPixmap::fromImage(greyscale_image));
+    ui->label_video_greyscale_2->setPixmap(QPixmap::fromImage(greyscale_image));
 
     //change to small_scale
     QImage small_scale;
@@ -194,33 +188,19 @@ void MainWindow::capture_video(void){
     original_frame.release();
 
     // push into ANN
-    if(0){
+    if(1){
         u8 tester[40][30];
-        u32 void_detector = 0;
 
 
         for(u8 i = 0; i < small_scale.width();i++){
             for(u8 j = 0; j < small_scale.height();j++){
-                if((small_scale.pixel(i,j) & 0xFF) < 128){
-                    tester[i][j] = 0;
-                }
-                else{
-                    tester[i][j] = 1;
-                    void_detector++;
-                }
+                tester[i][j] = QColor(small_scale.pixel(i,j)).black();
             }
         }
-        if(void_detector > 1100){
-            ann_class->void_detected = 1;
-        }
-        else{
-            ann_class->void_detected = 0;
-        }
-
 
         for(u32 j = 0; j < 30; j++){
             for(u32 i = 0; i < 40; i++){
-                ann_class->net_76800_1024_1024_6.test_input[i + 40*j] = tester[i][j];
+                ann_class->net_76800_1024_1024_6.test_input[i + 40*j] = (double)tester[i][j]/255;
             }
         }
 

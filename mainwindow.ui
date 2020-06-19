@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -626,200 +626,10 @@
        </property>
       </widget>
      </widget>
-     <widget class="QGroupBox" name="groupBox_2">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>120</width>
-        <height>311</height>
-       </rect>
-      </property>
-      <property name="title">
-       <string>Single</string>
-      </property>
-      <widget class="QLabel" name="label_snapshot_five">
-       <property name="geometry">
-        <rect>
-         <x>65</x>
-         <y>270</y>
-         <width>40</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>TextLabel</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_snapshot_left">
-       <property name="geometry">
-        <rect>
-         <x>5</x>
-         <y>190</y>
-         <width>60</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>LEFT</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_snapshot_stop">
-       <property name="geometry">
-        <rect>
-         <x>5</x>
-         <y>110</y>
-         <width>60</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>STOP</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_snapshot_up">
-       <property name="geometry">
-        <rect>
-         <x>65</x>
-         <y>150</y>
-         <width>40</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>TextLabel</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_snapshot_five">
-       <property name="geometry">
-        <rect>
-         <x>5</x>
-         <y>270</y>
-         <width>60</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>FIVE</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_snapshot_fist">
-       <property name="geometry">
-        <rect>
-         <x>65</x>
-         <y>70</y>
-         <width>40</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>TextLabel</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_snapshot_right">
-       <property name="geometry">
-        <rect>
-         <x>65</x>
-         <y>230</y>
-         <width>40</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>TextLabel</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_snapshot_up">
-       <property name="geometry">
-        <rect>
-         <x>5</x>
-         <y>150</y>
-         <width>60</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>UP</string>
-       </property>
-      </widget>
-      <widget class="QSpinBox" name="spinBox_snapshot_no">
-       <property name="geometry">
-        <rect>
-         <x>5</x>
-         <y>30</y>
-         <width>100</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>14</pointsize>
-        </font>
-       </property>
-       <property name="minimum">
-        <number>1</number>
-       </property>
-       <property name="maximum">
-        <number>200</number>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_snapshot_fist">
-       <property name="geometry">
-        <rect>
-         <x>5</x>
-         <y>70</y>
-         <width>60</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>FIST</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_snapshot_right">
-       <property name="geometry">
-        <rect>
-         <x>5</x>
-         <y>230</y>
-         <width>60</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>RIGHT</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_snapshot_left">
-       <property name="geometry">
-        <rect>
-         <x>65</x>
-         <y>190</y>
-         <width>40</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>TextLabel</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_snapshot_stop">
-       <property name="geometry">
-        <rect>
-         <x>65</x>
-         <y>110</y>
-         <width>40</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>TextLabel</string>
-       </property>
-      </widget>
-     </widget>
      <widget class="QGroupBox" name="groupBox_3">
       <property name="geometry">
        <rect>
-        <x>135</x>
+        <x>10</x>
         <y>10</y>
         <width>165</width>
         <height>311</height>
@@ -1126,7 +936,7 @@
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <widget class="QLabel" name="label_video_monocrome_2">
+      <widget class="QLabel" name="label_video_greyscale_2">
        <property name="geometry">
         <rect>
          <x>1</x>
