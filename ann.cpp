@@ -26,7 +26,7 @@ ann::ann(MainWindow *master, QWidget *parent) :
     connect(periodic_timer,SIGNAL(timeout()),this,SLOT(play_game()));
     periodic_timer->start();
 
-    this->show();
+    //this->show();
     start_animation = 0;
 
 }

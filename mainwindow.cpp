@@ -168,87 +168,40 @@ void MainWindow::capture_video(void){
     cv::resize(original_frame,original_frame, cv::Size(320,240),0,0,CV_INTER_LINEAR);
 
     QImage my_image((uchar*)original_frame.data, original_frame.cols, original_frame.rows, original_frame.step, QImage::Format_RGB888);
-    QImage momochrome((uchar*)original_frame.data, original_frame.cols, original_frame.rows, original_frame.step, QImage::Format_RGB888);
     QPixmap original_pix = QPixmap::fromImage(my_image);
 
     ui->label_video->setPixmap(original_pix);
     ui->label_video_original_2->setPixmap(original_pix);
     //qDebug() << "color" << QColor(my_image.pixel(160,120)).red() << QColor(my_image.pixel(160,120)).green() << QColor(my_image.pixel(160,120)).blue();
 
-    //change to monocrome
-    for(u16 i = 0; i < my_image.width(); i++){
-        for(u16 j = 0; j < my_image.height(); j++){
-            if((QColor(my_image.pixel(i,j)).red() >= ui->spinBox_red_min->value()) && (QColor(my_image.pixel(i,j)).red() <= ui->spinBox_red_max->value()) &&
-               (QColor(my_image.pixel(i,j)).green() >= ui->spinBox_green_min->value()) && (QColor(my_image.pixel(i,j)).green() <= ui->spinBox_green_max->value()) &&
-               (QColor(my_image.pixel(i,j)).blue() >= ui->spinBox_blue_min->value()) && (QColor(my_image.pixel(i,j)).blue() <= ui->spinBox_blue_max->value())){
-                momochrome.setPixel(i,j,qRgb(0,0,0));
-            }
-            else{
-                momochrome.setPixel(i,j,qRgb(255,255,255));
-            }
-        }
-    }
+    cv::cvtColor(original_frame,original_frame,CV_RGB2GRAY);
 
-    ui->label_video_monocrome->setPixmap(QPixmap::fromImage(momochrome));
-    ui->label_video_monocrome_2->setPixmap(QPixmap::fromImage(momochrome));
+    QImage greyscale_image((uchar*)original_frame.data, original_frame.cols, original_frame.rows, original_frame.step, QImage::Format_Indexed8);
+    ui->label_video_greyscale->setPixmap(QPixmap::fromImage(greyscale_image));
 
     //change to small_scale
     QImage small_scale;
-    small_scale = momochrome.scaled(QSize(40,30),Qt::KeepAspectRatio,Qt::FastTransformation);
+    small_scale = greyscale_image.scaled(QSize(40,30),Qt::KeepAspectRatio,Qt::SmoothTransformation);
 
-    //Align left
-    QImage align_left_image(40,30,QImage::Format_RGB888);
-    u32 first_row = 0;
-    u8 point_detected = 0;
-
-    first_row = 0;
-    point_detected = 0;
-
-    for(u8 i = 0; i < small_scale.width();i++){
-        for(u8 j = 0; j < small_scale.height();j++){
-            align_left_image.setPixel(i,j,qRgb(255,255,255));
-            if((small_scale.pixel(i,j) & 0xFF) < 128){
-                if(point_detected == 0){
-                    point_detected = 1;
-                    first_row = i;
-                }
-            }
-        }
-    }
-    QImage test_image;
     QPixmap small_picture;
-
-    if(first_row > 0){
-        for(u8 i = (first_row-1); i < small_scale.width();i++){
-            for(u8 j = 0; j < small_scale.height();j++){
-                align_left_image.setPixel(i-(first_row-1),j,small_scale.pixel(i,j));
-            }
-        }
-        small_picture = QPixmap::fromImage(align_left_image);
-        test_image = align_left_image;
-    }
-    else{
-        small_picture = QPixmap::fromImage(small_scale);
-        test_image = small_scale;
-    }
-
+    small_picture = QPixmap::fromImage(small_scale);
 
     ui->label_video_small_monochrome->setPixmap(small_picture);
     ui->label_video_small_monochrome_2->setPixmap(small_picture);
     ui->label_video_small_monochrome_3->setPixmap(small_picture);
-    ui->label_hand_two->setPixmap(small_picture);
+    ui->label_video_small_monochrome_4->setPixmap(small_picture);
 
     original_frame.release();
 
     // push into ANN
-    if(1){
+    if(0){
         u8 tester[40][30];
         u32 void_detector = 0;
 
 
-        for(u8 i = 0; i < test_image.width();i++){
-            for(u8 j = 0; j < test_image.height();j++){
-                if((test_image.pixel(i,j) & 0xFF) < 128){
+        for(u8 i = 0; i < small_scale.width();i++){
+            for(u8 j = 0; j < small_scale.height();j++){
+                if((small_scale.pixel(i,j) & 0xFF) < 128){
                     tester[i][j] = 0;
                 }
                 else{
@@ -288,7 +241,7 @@ void MainWindow::capture_video(void){
 
 
     qDebug() << "elapsed time" << my_elapsed_timer.elapsed();
-    ann_class->start_animation = 1;
+    //ann_class->start_animation = 1;
 }
 
 void MainWindow::_100_msec_timer_handle(void){

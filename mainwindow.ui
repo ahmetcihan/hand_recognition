@@ -310,7 +310,7 @@
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <widget class="QLabel" name="label_hand_two">
+      <widget class="QLabel" name="label_video_small_monochrome_4">
        <property name="geometry">
         <rect>
          <x>1</x>
@@ -394,7 +394,7 @@
        <string>TextLabel</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_video_monocrome">
+     <widget class="QLabel" name="label_video_greyscale">
       <property name="geometry">
        <rect>
         <x>340</x>
