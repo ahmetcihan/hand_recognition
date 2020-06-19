@@ -165,17 +165,12 @@ void MainWindow::capture_video(void){
 
     ui->label_video->setPixmap(original_pix);
     ui->label_video_original_2->setPixmap(original_pix);
-    //qDebug() << "color" << QColor(my_image.pixel(160,120)).red() << QColor(my_image.pixel(160,120)).green() << QColor(my_image.pixel(160,120)).blue();
-
-    cv::cvtColor(original_frame,original_frame,CV_RGB2GRAY);
-
-    QImage greyscale_image((uchar*)original_frame.data, original_frame.cols, original_frame.rows, original_frame.step, QImage::Format_Indexed8);
-    ui->label_video_greyscale->setPixmap(QPixmap::fromImage(greyscale_image));
-    ui->label_video_greyscale_2->setPixmap(QPixmap::fromImage(greyscale_image));
+    ui->label_video_greyscale->setPixmap(original_pix);
+    ui->label_video_greyscale_2->setPixmap(original_pix);
 
     //change to small_scale
     QImage small_scale;
-    small_scale = greyscale_image.scaled(QSize(40,30),Qt::KeepAspectRatio,Qt::SmoothTransformation);
+    small_scale = my_image.scaled(QSize(40,30),Qt::KeepAspectRatio,Qt::SmoothTransformation);
 
     QPixmap small_picture;
     small_picture = QPixmap::fromImage(small_scale);
@@ -188,7 +183,7 @@ void MainWindow::capture_video(void){
     original_frame.release();
 
     // push into ANN
-    if(1){
+    if(0){
         u8 tester[40][30];
 
 
