@@ -428,13 +428,15 @@ void MainWindow::_76800_1024_1024_6_train_handler(void){
     ann_class->stop_the_training = 0;
 }
 void MainWindow::_76800_1024_1024_6_test_handler(void){
-    u8 tester[40][30];
+    u8 tester[40][30][3];
 
     image_to_array_40x30(tester_file_name,tester);
 
     for(u32 j = 0; j < 30; j++){
         for(u32 i = 0; i < 40; i++){
-            ann_class->net_76800_1024_1024_6.test_input[i + 40*j] = tester[i][j];
+            ann_class->net_76800_1024_1024_6.test_input[3*(i + 40*j) + 0] = (double)tester[i][j][0]/255;
+            ann_class->net_76800_1024_1024_6.test_input[3*(i + 40*j) + 1] = (double)tester[i][j][1]/255;
+            ann_class->net_76800_1024_1024_6.test_input[3*(i + 40*j) + 2] = (double)tester[i][j][2]/255;
         }
     }
 
@@ -570,14 +572,16 @@ void MainWindow::_76800_1024_1024_6_load_saved_weights_handler(void){
 void MainWindow::_76800_1024_1024_6_stop_train_handler(void){
     ann_class->stop_the_training = 1;
 }
-void MainWindow::image_to_array_40x30(QString location, u8 image_array[40][30]){
+void MainWindow::image_to_array_40x30(QString location, u8 image_array[40][30][3]){
     QImage read_image;
 
     read_image.load(location);
 
     for(u8 i = 0; i < read_image.width();i++){
         for(u8 j = 0; j < read_image.height();j++){
-            image_array[i][j] = QColor(read_image.pixel(i,j)).black();
+            image_array[i][j][0] = QColor(read_image.pixel(i,j)).red();
+            image_array[i][j][1] = QColor(read_image.pixel(i,j)).green();
+            image_array[i][j][2] = QColor(read_image.pixel(i,j)).blue();
         }
     }
 }
@@ -597,32 +601,44 @@ void MainWindow::_76800_1024_1024_6_prepare_io_pairs_handler(void){
     for(u32 k = 0; k < INPUT_SET; k++){
         for(u32 j = 0; j < 30; j++){
             for(u32 i = 0; i < 40; i++){
-                ann_class->net_76800_1024_1024_6.input[i + 40*j][0 + k*IO_ARRAY_LENGTH] = (double)fist_image[k][i][j]/255;
+                ann_class->net_76800_1024_1024_6.input[3*(i + 40*j) + 0][0 + k*IO_ARRAY_LENGTH] = (double)fist_image[k][i][j][0]/255;
+                ann_class->net_76800_1024_1024_6.input[3*(i + 40*j) + 1][0 + k*IO_ARRAY_LENGTH] = (double)fist_image[k][i][j][1]/255;
+                ann_class->net_76800_1024_1024_6.input[3*(i + 40*j) + 2][0 + k*IO_ARRAY_LENGTH] = (double)fist_image[k][i][j][2]/255;
             }
         }
         for(u32 j = 0; j < 30; j++){
             for(u32 i = 0; i < 40; i++){
-                ann_class->net_76800_1024_1024_6.input[i + 40*j][1 + k*IO_ARRAY_LENGTH] = (double)stop_image[k][i][j]/255;
+                ann_class->net_76800_1024_1024_6.input[3*(i + 40*j) + 0][1 + k*IO_ARRAY_LENGTH] = (double)stop_image[k][i][j][0]/255;
+                ann_class->net_76800_1024_1024_6.input[3*(i + 40*j) + 1][1 + k*IO_ARRAY_LENGTH] = (double)stop_image[k][i][j][1]/255;
+                ann_class->net_76800_1024_1024_6.input[3*(i + 40*j) + 2][1 + k*IO_ARRAY_LENGTH] = (double)stop_image[k][i][j][2]/255;
             }
         }
         for(u32 j = 0; j < 30; j++){
             for(u32 i = 0; i < 40; i++){
-                ann_class->net_76800_1024_1024_6.input[i + 40*j][2 + k*IO_ARRAY_LENGTH] = (double)up_image[k][i][j]/255;
+                ann_class->net_76800_1024_1024_6.input[3*(i + 40*j) + 0][2 + k*IO_ARRAY_LENGTH] = (double)up_image[k][i][j][0]/255;
+                ann_class->net_76800_1024_1024_6.input[3*(i + 40*j) + 1][2 + k*IO_ARRAY_LENGTH] = (double)up_image[k][i][j][1]/255;
+                ann_class->net_76800_1024_1024_6.input[3*(i + 40*j) + 2][2 + k*IO_ARRAY_LENGTH] = (double)up_image[k][i][j][2]/255;
             }
         }
         for(u32 j = 0; j < 30; j++){
             for(u32 i = 0; i < 40; i++){
-                ann_class->net_76800_1024_1024_6.input[i + 40*j][3 + k*IO_ARRAY_LENGTH] = (double)left_image[k][i][j]/255;
+                ann_class->net_76800_1024_1024_6.input[3*(i + 40*j) + 0][3 + k*IO_ARRAY_LENGTH] = (double)left_image[k][i][j][0]/255;
+                ann_class->net_76800_1024_1024_6.input[3*(i + 40*j) + 1][3 + k*IO_ARRAY_LENGTH] = (double)left_image[k][i][j][1]/255;
+                ann_class->net_76800_1024_1024_6.input[3*(i + 40*j) + 2][3 + k*IO_ARRAY_LENGTH] = (double)left_image[k][i][j][2]/255;
             }
         }
         for(u32 j = 0; j < 30; j++){
             for(u32 i = 0; i < 40; i++){
-                ann_class->net_76800_1024_1024_6.input[i + 40*j][4 + k*IO_ARRAY_LENGTH] = (double)right_image[k][i][j]/255;
+                ann_class->net_76800_1024_1024_6.input[3*(i + 40*j) + 0][4 + k*IO_ARRAY_LENGTH] = (double)right_image[k][i][j][0]/255;
+                ann_class->net_76800_1024_1024_6.input[3*(i + 40*j) + 1][4 + k*IO_ARRAY_LENGTH] = (double)right_image[k][i][j][1]/255;
+                ann_class->net_76800_1024_1024_6.input[3*(i + 40*j) + 2][4 + k*IO_ARRAY_LENGTH] = (double)right_image[k][i][j][2]/255;
             }
         }
         for(u32 j = 0; j < 30; j++){
             for(u32 i = 0; i < 40; i++){
-                ann_class->net_76800_1024_1024_6.input[i + 40*j][5 + k*IO_ARRAY_LENGTH] = (double)five_image[k][i][j]/255;
+                ann_class->net_76800_1024_1024_6.input[3*(i + 40*j) + 0][5 + k*IO_ARRAY_LENGTH] = (double)five_image[k][i][j][0]/255;
+                ann_class->net_76800_1024_1024_6.input[3*(i + 40*j) + 1][5 + k*IO_ARRAY_LENGTH] = (double)five_image[k][i][j][1]/255;
+                ann_class->net_76800_1024_1024_6.input[3*(i + 40*j) + 2][5 + k*IO_ARRAY_LENGTH] = (double)five_image[k][i][j][2]/255;
             }
         }
     }

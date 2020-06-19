@@ -183,19 +183,22 @@ void MainWindow::capture_video(void){
     original_frame.release();
 
     // push into ANN
-    if(0){
-        u8 tester[40][30];
-
+    if(1){
+        u8 tester[40][30][3];
 
         for(u8 i = 0; i < small_scale.width();i++){
             for(u8 j = 0; j < small_scale.height();j++){
-                tester[i][j] = QColor(small_scale.pixel(i,j)).black();
+                tester[i][j][0] = QColor(small_scale.pixel(i,j)).red();
+                tester[i][j][1] = QColor(small_scale.pixel(i,j)).green();
+                tester[i][j][2] = QColor(small_scale.pixel(i,j)).blue();
             }
         }
 
         for(u32 j = 0; j < 30; j++){
             for(u32 i = 0; i < 40; i++){
-                ann_class->net_76800_1024_1024_6.test_input[i + 40*j] = (double)tester[i][j]/255;
+                ann_class->net_76800_1024_1024_6.test_input[3*(i + 40*j) + 0] = (double)tester[i][j][0]/255;
+                ann_class->net_76800_1024_1024_6.test_input[3*(i + 40*j) + 1] = (double)tester[i][j][1]/255;
+                ann_class->net_76800_1024_1024_6.test_input[3*(i + 40*j) + 2] = (double)tester[i][j][2]/255;
             }
         }
 
