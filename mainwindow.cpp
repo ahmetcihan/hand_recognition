@@ -243,6 +243,7 @@ void MainWindow::capture_video(void){
     // push into ANN
     if(1){
         u8 tester[40][30];
+        u32 void_detector = 0;
 
 
         for(u8 i = 0; i < test_image.width();i++){
@@ -252,8 +253,15 @@ void MainWindow::capture_video(void){
                 }
                 else{
                     tester[i][j] = 1;
+                    void_detector++;
                 }
             }
+        }
+        if(void_detector > 1100){
+            ann_class->void_detected = 1;
+        }
+        else{
+            ann_class->void_detected = 0;
         }
 
 
@@ -280,6 +288,7 @@ void MainWindow::capture_video(void){
 
 
     qDebug() << "elapsed time" << my_elapsed_timer.elapsed();
+    ann_class->start_animation = 1;
 }
 
 void MainWindow::_100_msec_timer_handle(void){

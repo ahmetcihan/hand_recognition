@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -1360,6 +1360,32 @@
         <string>TextLabel</string>
        </property>
       </widget>
+     </widget>
+     <widget class="QSlider" name="horizontalSlider_nothing">
+      <property name="geometry">
+       <rect>
+        <x>439</x>
+        <y>250</y>
+        <width>211</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_11">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>250</y>
+        <width>67</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>NOTHING</string>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_5">

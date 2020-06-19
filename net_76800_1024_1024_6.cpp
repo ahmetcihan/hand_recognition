@@ -137,30 +137,46 @@ void ann::_76800_1024_1024_6_ann_test(double input[INPUT_COUNT],
         }
     }
 
-    if(max_value_index == 0)    str = QString("% %1 ihtimal fist").arg((u32)(100*calculated_output[0]));
-    if(max_value_index == 1)    str = QString("% %1 ihtimal stop").arg((u32)(100*calculated_output[1]));
-    if(max_value_index == 2)    str = QString("% %1 ihtimal up").arg((u32)(100*calculated_output[2]));
-    if(max_value_index == 3)    str = QString("% %1 ihtimal left").arg((u32)(100*calculated_output[3]));
-    if(max_value_index == 4)    str = QString("% %1 ihtimal right").arg((u32)(100*calculated_output[4]));
-    if(max_value_index == 5)    str = QString("% %1 ihtimal five").arg((u32)(100*calculated_output[5]));
+    if(void_detected == 1){
 
-    mainwindow->ui->label_76800_1024_1024_6_test->setText(str);
+        mainwindow->ui->label_76800_1024_1024_6_test->setText("Boşluk");
+        mainwindow->ui->label_result->setText(QString::fromUtf8("BOŞLUK"));
+        game_command = 255;
+        mainwindow->ui->horizontalSlider_fist->setValue(0);
+        mainwindow->ui->horizontalSlider_stop->setValue(0);
+        mainwindow->ui->horizontalSlider_up->setValue(0);
+        mainwindow->ui->horizontalSlider_left->setValue(0);
+        mainwindow->ui->horizontalSlider_right->setValue(0);
+        mainwindow->ui->horizontalSlider_five->setValue(0);
+        mainwindow->ui->horizontalSlider_nothing->setValue(100);
+    }
+    else{
+        if(max_value_index == 0)    str = QString("% %1 ihtimal fist").arg((u32)(100*calculated_output[0]));
+        if(max_value_index == 1)    str = QString("% %1 ihtimal stop").arg((u32)(100*calculated_output[1]));
+        if(max_value_index == 2)    str = QString("% %1 ihtimal up").arg((u32)(100*calculated_output[2]));
+        if(max_value_index == 3)    str = QString("% %1 ihtimal left").arg((u32)(100*calculated_output[3]));
+        if(max_value_index == 4)    str = QString("% %1 ihtimal right").arg((u32)(100*calculated_output[4]));
+        if(max_value_index == 5)    str = QString("% %1 ihtimal five").arg((u32)(100*calculated_output[5]));
 
-    if(max_value_index == 0)        mainwindow->ui->label_result->setText(QString::fromUtf8("YUMRUK"));
-    else if (max_value_index == 1)  mainwindow->ui->label_result->setText(QString::fromUtf8("DUR"));
-    else if (max_value_index == 2)  mainwindow->ui->label_result->setText(QString::fromUtf8("YUKARI"));
-    else if (max_value_index == 3)  mainwindow->ui->label_result->setText(QString::fromUtf8("SOL"));
-    else if (max_value_index == 4)  mainwindow->ui->label_result->setText(QString::fromUtf8("SAĞ"));
-    else if (max_value_index == 5)  mainwindow->ui->label_result->setText(QString::fromUtf8("BEŞ"));
+        mainwindow->ui->label_76800_1024_1024_6_test->setText(str);
 
-    game_command = max_value_index;
+        if(max_value_index == 0)        mainwindow->ui->label_result->setText(QString::fromUtf8("YUMRUK"));
+        else if (max_value_index == 1)  mainwindow->ui->label_result->setText(QString::fromUtf8("DUR"));
+        else if (max_value_index == 2)  mainwindow->ui->label_result->setText(QString::fromUtf8("YUKARI"));
+        else if (max_value_index == 3)  mainwindow->ui->label_result->setText(QString::fromUtf8("SOL"));
+        else if (max_value_index == 4)  mainwindow->ui->label_result->setText(QString::fromUtf8("SAĞ"));
+        else if (max_value_index == 5)  mainwindow->ui->label_result->setText(QString::fromUtf8("BEŞ"));
 
-    mainwindow->ui->horizontalSlider_fist->setValue(100*calculated_output[0]);
-    mainwindow->ui->horizontalSlider_stop->setValue(100*calculated_output[1]);
-    mainwindow->ui->horizontalSlider_up->setValue(100*calculated_output[2]);
-    mainwindow->ui->horizontalSlider_left->setValue(100*calculated_output[3]);
-    mainwindow->ui->horizontalSlider_right->setValue(100*calculated_output[4]);
-    mainwindow->ui->horizontalSlider_five->setValue(100*calculated_output[5]);
+        game_command = max_value_index;
+
+        mainwindow->ui->horizontalSlider_fist->setValue(100*calculated_output[0]);
+        mainwindow->ui->horizontalSlider_stop->setValue(100*calculated_output[1]);
+        mainwindow->ui->horizontalSlider_up->setValue(100*calculated_output[2]);
+        mainwindow->ui->horizontalSlider_left->setValue(100*calculated_output[3]);
+        mainwindow->ui->horizontalSlider_right->setValue(100*calculated_output[4]);
+        mainwindow->ui->horizontalSlider_five->setValue(100*calculated_output[5]);
+        mainwindow->ui->horizontalSlider_nothing->setValue(0);
+    }
 }
 
 void ann::_76800_1024_1024_6_ann_train( double input[INPUT_COUNT][IO_ARRAY_LENGTH*INPUT_SET],
