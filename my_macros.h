@@ -1,7 +1,7 @@
 #ifndef MY_MACROS
 #define MY_MACROS
 
-#define INPUT_COUNT     1200*3
+#define INPUT_COUNT     4800*3
 #define HIDDEN_COUNT_1  128
 #define HIDDEN_COUNT_2  32
 #define HIDDEN_COUNT_3  32

@@ -30,16 +30,16 @@ public:
     ~MainWindow();
     Ui::MainWindow *ui;
 
-    u8 fist_image[INPUT_SET][40][30][3];
-    u8 stop_image[INPUT_SET][40][30][3];
-    u8 up_image[INPUT_SET][40][30][3];
-    u8 left_image[INPUT_SET][40][30][3];
-    u8 right_image[INPUT_SET][40][30][3];
-    u8 five_image[INPUT_SET][40][30][3];
+    u8 fist_image[INPUT_SET][80][60][3];
+    u8 stop_image[INPUT_SET][80][60][3];
+    u8 up_image[INPUT_SET][80][60][3];
+    u8 left_image[INPUT_SET][80][60][3];
+    u8 right_image[INPUT_SET][80][60][3];
+    u8 five_image[INPUT_SET][80][60][3];
 
     QString tester_file_name;
 
-    void image_to_array_40x30(QString location, u8 image_array[40][30][3]);
+    void image_to_array_80x60(QString location, u8 image_array[80][60][3]);
 
 private:
     ann *ann_class;

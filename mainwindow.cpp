@@ -50,7 +50,7 @@ void MainWindow::image_manipulation(void){
     /*
      * ///////monochrome save////////////////////////
     QImage read_image;
-    QImage manipulated_image(40,30,QImage::Format_Mono);
+    QImage manipulated_image(80,60,QImage::Format_Mono);
 
     for(u8 k = 1; k < 121 ; k++){
         read_image.load(QString("/home/ahmet/Desktop/gloves/up/up_%1.jpg").arg(k));
@@ -73,7 +73,7 @@ void MainWindow::image_manipulation(void){
     /*
     ////////////Align left////////////
     QImage read_image;
-    QImage manipulated_image(40,30,QImage::Format_RGB888);
+    QImage manipulated_image(80,60,QImage::Format_RGB888);
     u32 first_row;
     u8 point_detected = 0;
 
@@ -104,7 +104,7 @@ void MainWindow::image_manipulation(void){
 
     /*
     QImage read_image;
-    QImage manipulated_image(40,30,QImage::Format_RGB888);
+    QImage manipulated_image(80,60,QImage::Format_RGB888);
     u32 first_row;
     u8 point_detected = 0;
 
@@ -170,7 +170,7 @@ void MainWindow::capture_video(void){
 
     //change to small_scale
     QImage small_scale;
-    small_scale = my_image.scaled(QSize(40,30),Qt::KeepAspectRatio,Qt::SmoothTransformation);
+    small_scale = my_image.scaled(QSize(80,60),Qt::KeepAspectRatio,Qt::SmoothTransformation);
 
     QPixmap small_picture;
     small_picture = QPixmap::fromImage(small_scale);
@@ -184,7 +184,7 @@ void MainWindow::capture_video(void){
 
     // push into ANN
     if(1){
-        u8 tester[40][30][3];
+        u8 tester[80][60][3];
 
         for(u8 i = 0; i < small_scale.width();i++){
             for(u8 j = 0; j < small_scale.height();j++){
@@ -194,11 +194,11 @@ void MainWindow::capture_video(void){
             }
         }
 
-        for(u32 j = 0; j < 30; j++){
-            for(u32 i = 0; i < 40; i++){
-                ann_class->net_76800_1024_1024_6.test_input[3*(i + 40*j) + 0] = (double)tester[i][j][0]/255;
-                ann_class->net_76800_1024_1024_6.test_input[3*(i + 40*j) + 1] = (double)tester[i][j][1]/255;
-                ann_class->net_76800_1024_1024_6.test_input[3*(i + 40*j) + 2] = (double)tester[i][j][2]/255;
+        for(u32 j = 0; j < 60; j++){
+            for(u32 i = 0; i < 80; i++){
+                ann_class->net_76800_1024_1024_6.test_input[3*(i + 80*j) + 0] = (double)tester[i][j][0]/255;
+                ann_class->net_76800_1024_1024_6.test_input[3*(i + 80*j) + 1] = (double)tester[i][j][1]/255;
+                ann_class->net_76800_1024_1024_6.test_input[3*(i + 80*j) + 2] = (double)tester[i][j][2]/255;
             }
         }
 
