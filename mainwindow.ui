@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -273,7 +273,7 @@
       <property name="geometry">
        <rect>
         <x>560</x>
-        <y>50</y>
+        <y>80</y>
         <width>100</width>
         <height>30</height>
        </rect>
@@ -298,10 +298,10 @@
      <widget class="QFrame" name="frame">
       <property name="geometry">
        <rect>
-        <x>620</x>
+        <x>580</x>
         <y>10</y>
-        <width>42</width>
-        <height>32</height>
+        <width>82</width>
+        <height>62</height>
        </rect>
       </property>
       <property name="frameShape">
@@ -315,8 +315,8 @@
         <rect>
          <x>1</x>
          <y>1</y>
-         <width>40</width>
-         <height>30</height>
+         <width>80</width>
+         <height>60</height>
         </rect>
        </property>
        <property name="text">
@@ -354,7 +354,7 @@
       <property name="geometry">
        <rect>
         <x>560</x>
-        <y>90</y>
+        <y>120</y>
         <width>100</width>
         <height>30</height>
        </rect>
@@ -566,10 +566,10 @@
      <widget class="QFrame" name="frame_2">
       <property name="geometry">
        <rect>
-        <x>340</x>
+        <x>300</x>
         <y>260</y>
-        <width>42</width>
-        <height>32</height>
+        <width>82</width>
+        <height>62</height>
        </rect>
       </property>
       <property name="frameShape">
@@ -583,8 +583,8 @@
         <rect>
          <x>1</x>
          <y>1</y>
-         <width>40</width>
-         <height>30</height>
+         <width>80</width>
+         <height>60</height>
         </rect>
        </property>
        <property name="text">
@@ -600,10 +600,10 @@
      <widget class="QFrame" name="frame_3">
       <property name="geometry">
        <rect>
-        <x>610</x>
+        <x>570</x>
         <y>10</y>
-        <width>42</width>
-        <height>32</height>
+        <width>82</width>
+        <height>62</height>
        </rect>
       </property>
       <property name="frameShape">
@@ -617,8 +617,8 @@
         <rect>
          <x>1</x>
          <y>1</y>
-         <width>40</width>
-         <height>30</height>
+         <width>80</width>
+         <height>60</height>
         </rect>
        </property>
        <property name="text">
@@ -925,7 +925,7 @@
       <property name="geometry">
        <rect>
         <x>330</x>
-        <y>70</y>
+        <y>80</y>
         <width>322</width>
         <height>242</height>
        </rect>
@@ -1147,8 +1147,8 @@
        <rect>
         <x>10</x>
         <y>340</y>
-        <width>42</width>
-        <height>32</height>
+        <width>82</width>
+        <height>62</height>
        </rect>
       </property>
       <property name="frameShape">
@@ -1162,8 +1162,8 @@
         <rect>
          <x>1</x>
          <y>1</y>
-         <width>40</width>
-         <height>30</height>
+         <width>80</width>
+         <height>60</height>
         </rect>
        </property>
        <property name="text">
