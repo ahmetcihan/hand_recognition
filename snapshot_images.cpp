@@ -29,19 +29,6 @@ void MainWindow::get_stop_picture_automatic(){
         pic_no = 1;
     }
 }
-void MainWindow::get_up_picture_automatic(){
-    static int pic_no = 1;
-    QImage img = ui->label_video_small_monochrome->pixmap()->toImage();
-    img.save(QString("/home/ahmet/Desktop/gloves/up/up_%1.jpg").arg(pic_no),0,100);
-    ui->label_snap_auto_up->setText(QString::number(pic_no));
-    if(pic_no < ui->spinBox_snapshot_up_last->value()){
-        pic_no++;
-        QTimer::singleShot(100,this,SLOT(get_up_picture_automatic()));
-    }
-    else{
-        pic_no = 1;
-    }
-}
 void MainWindow::get_left_picture_automatic(){
     static int pic_no = 1;
     QImage img = ui->label_video_small_monochrome->pixmap()->toImage();
@@ -50,32 +37,6 @@ void MainWindow::get_left_picture_automatic(){
     if(pic_no < ui->spinBox_snapshot_left_last->value()){
         pic_no++;
         QTimer::singleShot(100,this,SLOT(get_left_picture_automatic()));
-    }
-    else{
-        pic_no = 1;
-    }
-}
-void MainWindow::get_right_picture_automatic(){
-    static int pic_no = 1;
-    QImage img = ui->label_video_small_monochrome->pixmap()->toImage();
-    img.save(QString("/home/ahmet/Desktop/gloves/right/right_%1.jpg").arg(pic_no),0,100);
-    ui->label_snap_auto_right->setText(QString::number(pic_no));
-    if(pic_no < ui->spinBox_snapshot_right_last->value()){
-        pic_no++;
-        QTimer::singleShot(100,this,SLOT(get_right_picture_automatic()));
-    }
-    else{
-        pic_no = 1;
-    }
-}
-void MainWindow::get_five_picture_automatic(){
-    static int pic_no = 1;
-    QImage img = ui->label_video_small_monochrome->pixmap()->toImage();
-    img.save(QString("/home/ahmet/Desktop/gloves/five/five_%1.jpg").arg(pic_no),0,100);
-    ui->label_snap_auto_five->setText(QString::number(pic_no));
-    if(pic_no < ui->spinBox_snapshot_five_last->value()){
-        pic_no++;
-        QTimer::singleShot(100,this,SLOT(get_five_picture_automatic()));
     }
     else{
         pic_no = 1;

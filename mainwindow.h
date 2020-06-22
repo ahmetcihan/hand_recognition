@@ -32,10 +32,7 @@ public:
 
     u8 fist_image[INPUT_SET][80][60][3];
     u8 stop_image[INPUT_SET][80][60][3];
-    u8 up_image[INPUT_SET][80][60][3];
     u8 left_image[INPUT_SET][80][60][3];
-    u8 right_image[INPUT_SET][80][60][3];
-    u8 five_image[INPUT_SET][80][60][3];
 
     QString tester_file_name;
 
@@ -64,10 +61,7 @@ private slots:
 
     void get_fist_picture_automatic();
     void get_stop_picture_automatic();
-    void get_up_picture_automatic();
     void get_left_picture_automatic();
-    void get_right_picture_automatic();
-    void get_five_picture_automatic();
 
     void start_stream(void);
 

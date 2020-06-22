@@ -137,30 +137,21 @@ void ann::_76800_1024_1024_6_ann_test(double input[INPUT_COUNT],
         }
     }
 
-    if(max_value_index == 0)    str = QString("% %1 ihtimal fist").arg((u32)(100*calculated_output[0]));
-    if(max_value_index == 1)    str = QString("% %1 ihtimal stop").arg((u32)(100*calculated_output[1]));
-    if(max_value_index == 2)    str = QString("% %1 ihtimal up").arg((u32)(100*calculated_output[2]));
-    if(max_value_index == 3)    str = QString("% %1 ihtimal left").arg((u32)(100*calculated_output[3]));
-    if(max_value_index == 4)    str = QString("% %1 ihtimal right").arg((u32)(100*calculated_output[4]));
-    if(max_value_index == 5)    str = QString("% %1 ihtimal five").arg((u32)(100*calculated_output[5]));
+    if(max_value_index == 0)    str = QString("% %1 ihtimal ahmet").arg((u32)(100*calculated_output[0]));
+    if(max_value_index == 1)    str = QString("% %1 ihtimal musa").arg((u32)(100*calculated_output[1]));
+    if(max_value_index == 2)    str = QString("% %1 ihtimal semiha").arg((u32)(100*calculated_output[2]));
 
     mainwindow->ui->label_76800_1024_1024_6_test->setText(str);
 
-    if(max_value_index == 0)        mainwindow->ui->label_result->setText(QString::fromUtf8("YUMRUK"));
-    else if (max_value_index == 1)  mainwindow->ui->label_result->setText(QString::fromUtf8("DUR"));
-    else if (max_value_index == 2)  mainwindow->ui->label_result->setText(QString::fromUtf8("YUKARI"));
-    else if (max_value_index == 3)  mainwindow->ui->label_result->setText(QString::fromUtf8("SOL"));
-    else if (max_value_index == 4)  mainwindow->ui->label_result->setText(QString::fromUtf8("SAĞ"));
-    else if (max_value_index == 5)  mainwindow->ui->label_result->setText(QString::fromUtf8("BEŞ"));
+    if(max_value_index == 0)        mainwindow->ui->label_result->setText(QString::fromUtf8("AHMET"));
+    else if (max_value_index == 1)  mainwindow->ui->label_result->setText(QString::fromUtf8("MUSA"));
+    else if (max_value_index == 2)  mainwindow->ui->label_result->setText(QString::fromUtf8("SEMİHA"));
 
     game_command = max_value_index;
 
     mainwindow->ui->horizontalSlider_fist->setValue(100*calculated_output[0]);
     mainwindow->ui->horizontalSlider_stop->setValue(100*calculated_output[1]);
-    mainwindow->ui->horizontalSlider_up->setValue(100*calculated_output[2]);
-    mainwindow->ui->horizontalSlider_left->setValue(100*calculated_output[3]);
-    mainwindow->ui->horizontalSlider_right->setValue(100*calculated_output[4]);
-    mainwindow->ui->horizontalSlider_five->setValue(100*calculated_output[5]);
+    mainwindow->ui->horizontalSlider_left->setValue(100*calculated_output[2]);
     mainwindow->ui->horizontalSlider_nothing->setValue(0);
 }
 
@@ -589,10 +580,7 @@ void MainWindow::_76800_1024_1024_6_picture_to_arrays(void){
     for (u32 i = 0; i < INPUT_SET; i++){
         image_to_array_80x60(QString("/home/ahmet/Desktop/gloves/fist/fist_%1.jpg").arg(i+1),   fist_image[i]);
         image_to_array_80x60(QString("/home/ahmet/Desktop/gloves/stop/stop_%1.jpg").arg(i+1),   stop_image[i]);
-        image_to_array_80x60(QString("/home/ahmet/Desktop/gloves/up/up_%1.jpg").arg(i+1),       up_image[i]);
         image_to_array_80x60(QString("/home/ahmet/Desktop/gloves/left/left_%1.jpg").arg(i+1),   left_image[i]);
-        image_to_array_80x60(QString("/home/ahmet/Desktop/gloves/right/right_%1.jpg").arg(i+1), right_image[i]);
-        image_to_array_80x60(QString("/home/ahmet/Desktop/gloves/five/five_%1.jpg").arg(i+1),   five_image[i]);
     }
 }
 void MainWindow::_76800_1024_1024_6_prepare_io_pairs_handler(void){
@@ -615,30 +603,9 @@ void MainWindow::_76800_1024_1024_6_prepare_io_pairs_handler(void){
         }
         for(u32 j = 0; j < 60; j++){
             for(u32 i = 0; i < 80; i++){
-                ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 0][2 + k*IO_ARRAY_LENGTH] = (double)up_image[k][i][j][0]/255;
-                ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 1][2 + k*IO_ARRAY_LENGTH] = (double)up_image[k][i][j][1]/255;
-                ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 2][2 + k*IO_ARRAY_LENGTH] = (double)up_image[k][i][j][2]/255;
-            }
-        }
-        for(u32 j = 0; j < 60; j++){
-            for(u32 i = 0; i < 80; i++){
-                ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 0][3 + k*IO_ARRAY_LENGTH] = (double)left_image[k][i][j][0]/255;
-                ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 1][3 + k*IO_ARRAY_LENGTH] = (double)left_image[k][i][j][1]/255;
-                ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 2][3 + k*IO_ARRAY_LENGTH] = (double)left_image[k][i][j][2]/255;
-            }
-        }
-        for(u32 j = 0; j < 60; j++){
-            for(u32 i = 0; i < 80; i++){
-                ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 0][4 + k*IO_ARRAY_LENGTH] = (double)right_image[k][i][j][0]/255;
-                ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 1][4 + k*IO_ARRAY_LENGTH] = (double)right_image[k][i][j][1]/255;
-                ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 2][4 + k*IO_ARRAY_LENGTH] = (double)right_image[k][i][j][2]/255;
-            }
-        }
-        for(u32 j = 0; j < 60; j++){
-            for(u32 i = 0; i < 80; i++){
-                ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 0][5 + k*IO_ARRAY_LENGTH] = (double)five_image[k][i][j][0]/255;
-                ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 1][5 + k*IO_ARRAY_LENGTH] = (double)five_image[k][i][j][1]/255;
-                ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 2][5 + k*IO_ARRAY_LENGTH] = (double)five_image[k][i][j][2]/255;
+                ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 0][2 + k*IO_ARRAY_LENGTH] = (double)left_image[k][i][j][0]/255;
+                ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 1][2 + k*IO_ARRAY_LENGTH] = (double)left_image[k][i][j][1]/255;
+                ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 2][2 + k*IO_ARRAY_LENGTH] = (double)left_image[k][i][j][2]/255;
             }
         }
     }

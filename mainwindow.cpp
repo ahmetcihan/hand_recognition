@@ -13,10 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->pushButton_snapshot_fist_automatic,SIGNAL(clicked(bool)), this,SLOT(get_fist_picture_automatic()));
     connect(ui->pushButton_snapshot_stop_automatic,SIGNAL(clicked(bool)), this,SLOT(get_stop_picture_automatic()));
-    connect(ui->pushButton_snapshot_up_automatic,SIGNAL(clicked(bool)),   this,SLOT(get_up_picture_automatic()));
     connect(ui->pushButton_snapshot_left_automatic,SIGNAL(clicked(bool)), this,SLOT(get_left_picture_automatic()));
-    connect(ui->pushButton_snapshot_right_automatic,SIGNAL(clicked(bool)),this,SLOT(get_right_picture_automatic()));
-    connect(ui->pushButton_snapshot_five_automatic,SIGNAL(clicked(bool)), this,SLOT(get_five_picture_automatic()));
 
     _100_msec_timer = new QTimer(this);
     _100_msec_timer->setInterval(1000);
