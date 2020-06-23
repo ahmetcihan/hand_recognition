@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -295,35 +295,6 @@
        <string>-----------------</string>
       </property>
      </widget>
-     <widget class="QFrame" name="frame">
-      <property name="geometry">
-       <rect>
-        <x>580</x>
-        <y>10</y>
-        <width>82</width>
-        <height>62</height>
-       </rect>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <widget class="QLabel" name="label_video_small_monochrome_4">
-       <property name="geometry">
-        <rect>
-         <x>1</x>
-         <y>1</y>
-         <width>80</width>
-         <height>60</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>TextLabel</string>
-       </property>
-      </widget>
-     </widget>
      <widget class="QPushButton" name="pushButton_select_tester">
       <property name="geometry">
        <rect>
@@ -368,19 +339,6 @@
        <string>TextLabel</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_video_greyscale">
-      <property name="geometry">
-       <rect>
-        <x>340</x>
-        <y>10</y>
-        <width>320</width>
-        <height>240</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="pushButton_shot">
       <property name="geometry">
        <rect>
@@ -406,165 +364,6 @@
       <property name="text">
        <string>START STREAM</string>
       </property>
-     </widget>
-     <widget class="QGroupBox" name="groupBox">
-      <property name="geometry">
-       <rect>
-        <x>400</x>
-        <y>260</y>
-        <width>251</width>
-        <height>150</height>
-       </rect>
-      </property>
-      <property name="title">
-       <string>FILTER</string>
-      </property>
-      <widget class="QSpinBox" name="spinBox_blue_max">
-       <property name="geometry">
-        <rect>
-         <x>170</x>
-         <y>110</y>
-         <width>71</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="maximum">
-        <number>255</number>
-       </property>
-      </widget>
-      <widget class="QSpinBox" name="spinBox_green_max">
-       <property name="geometry">
-        <rect>
-         <x>170</x>
-         <y>70</y>
-         <width>71</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="maximum">
-        <number>255</number>
-       </property>
-      </widget>
-      <widget class="QSpinBox" name="spinBox_blue_min">
-       <property name="geometry">
-        <rect>
-         <x>80</x>
-         <y>110</y>
-         <width>71</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="maximum">
-        <number>255</number>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_4">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>110</y>
-         <width>67</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>BLUE</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_3">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>70</y>
-         <width>67</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>GREEN</string>
-       </property>
-      </widget>
-      <widget class="QSpinBox" name="spinBox_green_min">
-       <property name="geometry">
-        <rect>
-         <x>80</x>
-         <y>70</y>
-         <width>71</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="maximum">
-        <number>255</number>
-       </property>
-      </widget>
-      <widget class="QSpinBox" name="spinBox_red_min">
-       <property name="geometry">
-        <rect>
-         <x>80</x>
-         <y>30</y>
-         <width>71</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="maximum">
-        <number>255</number>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_2">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>30</y>
-         <width>67</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>RED</string>
-       </property>
-      </widget>
-      <widget class="QSpinBox" name="spinBox_red_max">
-       <property name="geometry">
-        <rect>
-         <x>170</x>
-         <y>30</y>
-         <width>71</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="maximum">
-        <number>255</number>
-       </property>
-      </widget>
-     </widget>
-     <widget class="QFrame" name="frame_2">
-      <property name="geometry">
-       <rect>
-        <x>300</x>
-        <y>260</y>
-        <width>82</width>
-        <height>62</height>
-       </rect>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <widget class="QLabel" name="label_video_small_monochrome">
-       <property name="geometry">
-        <rect>
-         <x>1</x>
-         <y>1</y>
-         <width>80</width>
-         <height>60</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>TextLabel</string>
-       </property>
-      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_3">
@@ -600,160 +399,6 @@
        </property>
       </widget>
      </widget>
-     <widget class="QGroupBox" name="groupBox_3">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>165</width>
-        <height>311</height>
-       </rect>
-      </property>
-      <property name="title">
-       <string>Automatic</string>
-      </property>
-      <widget class="QSpinBox" name="spinBox_snapshot_fist_last">
-       <property name="geometry">
-        <rect>
-         <x>70</x>
-         <y>70</y>
-         <width>60</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>14</pointsize>
-        </font>
-       </property>
-       <property name="minimum">
-        <number>1</number>
-       </property>
-       <property name="maximum">
-        <number>1000</number>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_snapshot_stop_automatic">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>110</y>
-         <width>60</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>STOP</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_snapshot_left_automatic">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>150</y>
-         <width>60</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>LEFT</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton_snapshot_fist_automatic">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>70</y>
-         <width>60</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>FIST</string>
-       </property>
-      </widget>
-      <widget class="QSpinBox" name="spinBox_snapshot_stop_last">
-       <property name="geometry">
-        <rect>
-         <x>70</x>
-         <y>110</y>
-         <width>60</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>14</pointsize>
-        </font>
-       </property>
-       <property name="minimum">
-        <number>1</number>
-       </property>
-       <property name="maximum">
-        <number>1000</number>
-       </property>
-      </widget>
-      <widget class="QSpinBox" name="spinBox_snapshot_left_last">
-       <property name="geometry">
-        <rect>
-         <x>70</x>
-         <y>150</y>
-         <width>60</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>14</pointsize>
-        </font>
-       </property>
-       <property name="minimum">
-        <number>1</number>
-       </property>
-       <property name="maximum">
-        <number>1000</number>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_snap_auto_fist">
-       <property name="geometry">
-        <rect>
-         <x>130</x>
-         <y>70</y>
-         <width>30</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>------</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_snap_auto_stop">
-       <property name="geometry">
-        <rect>
-         <x>130</x>
-         <y>110</y>
-         <width>30</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>------</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_snap_auto_left">
-       <property name="geometry">
-        <rect>
-         <x>130</x>
-         <y>150</y>
-         <width>30</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>------</string>
-       </property>
-      </widget>
-     </widget>
      <widget class="QFrame" name="frame_7">
       <property name="geometry">
        <rect>
@@ -782,6 +427,53 @@
         <string>TextLabel</string>
        </property>
       </widget>
+     </widget>
+     <widget class="QLabel" name="label_snap_auto_object">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>30</y>
+        <width>30</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>------</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_snapshot_object_automatic">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>60</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>GET IT</string>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="spinBox_snapshot_object_last">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>30</y>
+        <width>60</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="minimum">
+       <number>1</number>
+      </property>
+      <property name="maximum">
+       <number>1000</number>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_4">
@@ -848,84 +540,6 @@
        </property>
       </widget>
      </widget>
-     <widget class="QLabel" name="label_ahmet">
-      <property name="geometry">
-       <rect>
-        <x>340</x>
-        <y>340</y>
-        <width>80</width>
-        <height>60</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_musa">
-      <property name="geometry">
-       <rect>
-        <x>440</x>
-        <y>340</y>
-        <width>80</width>
-        <height>60</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_semiha">
-      <property name="geometry">
-       <rect>
-        <x>540</x>
-        <y>340</y>
-        <width>80</width>
-        <height>60</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label">
-      <property name="geometry">
-       <rect>
-        <x>340</x>
-        <y>320</y>
-        <width>67</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>AHMET</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_7">
-      <property name="geometry">
-       <rect>
-        <x>440</x>
-        <y>320</y>
-        <width>67</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>MUSA</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_9">
-      <property name="geometry">
-       <rect>
-        <x>540</x>
-        <y>320</y>
-        <width>67</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>SEMIHA</string>
-      </property>
-     </widget>
     </widget>
     <widget class="QWidget" name="tab_5">
      <attribute name="title">
@@ -936,8 +550,8 @@
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>42</width>
-        <height>32</height>
+        <width>82</width>
+        <height>62</height>
        </rect>
       </property>
       <property name="frameShape">
@@ -951,8 +565,8 @@
         <rect>
          <x>1</x>
          <y>1</y>
-         <width>40</width>
-         <height>30</height>
+         <width>80</width>
+         <height>60</height>
         </rect>
        </property>
        <property name="text">
@@ -963,10 +577,10 @@
      <widget class="QFrame" name="frame_5">
       <property name="geometry">
        <rect>
-        <x>70</x>
+        <x>120</x>
         <y>10</y>
-        <width>42</width>
-        <height>32</height>
+        <width>82</width>
+        <height>62</height>
        </rect>
       </property>
       <property name="frameShape">
@@ -980,118 +594,14 @@
         <rect>
          <x>1</x>
          <y>1</y>
-         <width>40</width>
-         <height>30</height>
+         <width>80</width>
+         <height>60</height>
         </rect>
        </property>
        <property name="text">
         <string>TextLabel</string>
        </property>
       </widget>
-     </widget>
-     <widget class="QLabel" name="label_8">
-      <property name="geometry">
-       <rect>
-        <x>160</x>
-        <y>90</y>
-        <width>67</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>SEMIHA</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_11">
-      <property name="geometry">
-       <rect>
-        <x>161</x>
-        <y>130</y>
-        <width>67</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>NOTHING</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_5">
-      <property name="geometry">
-       <rect>
-        <x>160</x>
-        <y>10</y>
-        <width>67</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>AHMET</string>
-      </property>
-     </widget>
-     <widget class="QSlider" name="horizontalSlider_fist">
-      <property name="geometry">
-       <rect>
-        <x>239</x>
-        <y>10</y>
-        <width>211</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-     <widget class="QSlider" name="horizontalSlider_left">
-      <property name="geometry">
-       <rect>
-        <x>239</x>
-        <y>90</y>
-        <width>211</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-     <widget class="QSlider" name="horizontalSlider_stop">
-      <property name="geometry">
-       <rect>
-        <x>239</x>
-        <y>50</y>
-        <width>211</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-     <widget class="QSlider" name="horizontalSlider_nothing">
-      <property name="geometry">
-       <rect>
-        <x>240</x>
-        <y>130</y>
-        <width>211</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_6">
-      <property name="geometry">
-       <rect>
-        <x>160</x>
-        <y>50</y>
-        <width>67</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>MUSA</string>
-      </property>
      </widget>
     </widget>
    </widget>

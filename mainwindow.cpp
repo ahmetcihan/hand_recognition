@@ -9,11 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ann_class = new ann(this);
 
-    load_filter_parameters();
-
-    connect(ui->pushButton_snapshot_fist_automatic,SIGNAL(clicked(bool)), this,SLOT(get_fist_picture_automatic()));
-    connect(ui->pushButton_snapshot_stop_automatic,SIGNAL(clicked(bool)), this,SLOT(get_stop_picture_automatic()));
-    connect(ui->pushButton_snapshot_left_automatic,SIGNAL(clicked(bool)), this,SLOT(get_left_picture_automatic()));
+    connect(ui->pushButton_snapshot_object_automatic,SIGNAL(clicked(bool)), this,SLOT(get_object_picture_automatic()));
 
     _100_msec_timer = new QTimer(this);
     _100_msec_timer->setInterval(1000);
@@ -39,22 +35,35 @@ MainWindow::MainWindow(QWidget *parent) :
     //my_vid.open("/dev/video0");
     my_vid.open(0);
 
-    //image_manipulation();
+    image_manipulation();
 
-    QImage read_image;
-    read_image.load("/home/ahmet/Desktop/gloves/fist/fist_338.jpg");
-    QPixmap my_pix = QPixmap::fromImage(read_image);
-    ui->label_ahmet->setPixmap(my_pix);
-    read_image.load("/home/ahmet/Desktop/gloves/stop/stop_57.jpg");
-    my_pix = QPixmap::fromImage(read_image);
-    ui->label_musa->setPixmap(my_pix);
-    read_image.load("/home/ahmet/Desktop/gloves/left/left_225.jpg");
-    my_pix = QPixmap::fromImage(read_image);
-    ui->label_semiha->setPixmap(my_pix);
-
+    //setMouseTracking(true);
 
 }
+void MainWindow::mousePressEvent(QMouseEvent *event){
+    qDebug() << "x-pos" << event->pos().x() << "y-pos" << event->pos().y();
+}
+
 void MainWindow::image_manipulation(void){
+    /*
+    QImage read_image;
+    read_image.load("/home/ahmet/Desktop/gloves/fist/fist_1.jpg");
+
+    QPainter my_painter(&read_image);
+
+    my_painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
+    my_painter.setRenderHints(QPainter::HighQualityAntialiasing);
+    my_painter.setBrush(Qt::red);
+    my_painter.setPen(QPen(Qt::yellow,3.0));
+    my_painter.drawEllipse(QPoint(20,20),10,10);
+    my_painter.end();
+
+
+    QPixmap my_pix = QPixmap::fromImage(read_image);
+
+    ui->label_small_image->setPixmap(my_pix);
+    */
+
     /*
      * ///////monochrome save////////////////////////
     QImage read_image;
@@ -173,7 +182,6 @@ void MainWindow::capture_video(void){
 
     ui->label_video->setPixmap(original_pix);
     ui->label_video_original_2->setPixmap(original_pix);
-    ui->label_video_greyscale->setPixmap(original_pix);
     ui->label_video_greyscale_2->setPixmap(original_pix);
 
     //change to small_scale
@@ -183,10 +191,8 @@ void MainWindow::capture_video(void){
     QPixmap small_picture;
     small_picture = QPixmap::fromImage(small_scale);
 
-    ui->label_video_small_monochrome->setPixmap(small_picture);
     ui->label_video_small_monochrome_2->setPixmap(small_picture);
     ui->label_video_small_monochrome_3->setPixmap(small_picture);
-    ui->label_video_small_monochrome_4->setPixmap(small_picture);
 
     original_frame.release();
 
@@ -231,6 +237,7 @@ void MainWindow::capture_video(void){
 }
 
 void MainWindow::_100_msec_timer_handle(void){
+
     if(ann_class->train_status == 1){
         ui->label_76800_1024_1024_6_train->setText(QString("training status %  %1").arg(ann_class->epoch_status));
         ui->label_76800_1024_1024_6_train_status->setText(QString("Epoch : %1 , Error : %2 , ob-0 : %3 , hb1-0 : %4").
@@ -251,34 +258,7 @@ void MainWindow::_100_msec_timer_handle(void){
                                                             arg(ann_class->net_76800_1024_1024_6.max_error_inset_no));
     }
 }
-void MainWindow::save_filter_parameters(void){
-    QSettings settings("filter_parameters.ini",QSettings::IniFormat);
-
-    settings.beginGroup("f");
-
-    settings.setValue("red_min",ui->spinBox_red_min->value());
-    settings.setValue("red_max",ui->spinBox_red_max->value());
-    settings.setValue("green_min",ui->spinBox_green_min->value());
-    settings.setValue("green_max",ui->spinBox_green_max->value());
-    settings.setValue("blue_min",ui->spinBox_blue_min->value());
-    settings.setValue("blue_max",ui->spinBox_blue_max->value());
-    settings.endGroup();
-    settings.sync();
-
-}
-void MainWindow::load_filter_parameters(void){
-    QSettings settings("filter_parameters.ini",QSettings::IniFormat);
-
-    ui->spinBox_red_min->setValue(settings.value("f/red_min").toInt());
-    ui->spinBox_red_max->setValue(settings.value("f/red_max").toInt());
-    ui->spinBox_green_min->setValue(settings.value("f/green_min").toInt());
-    ui->spinBox_green_max->setValue(settings.value("f/green_max").toInt());
-    ui->spinBox_blue_min->setValue(settings.value("f/blue_min").toInt());
-    ui->spinBox_blue_max->setValue(settings.value("f/blue_max").toInt());
-
-}
 MainWindow::~MainWindow()
 {
-    save_filter_parameters();
     delete ui;
 }

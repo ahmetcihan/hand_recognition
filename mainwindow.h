@@ -11,6 +11,7 @@
 #include <QFileDialog>
 #include <QPainter>
 #include <QPixmap>
+#include <QMouseEvent>
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -30,13 +31,14 @@ public:
     ~MainWindow();
     Ui::MainWindow *ui;
 
-    u8 fist_image[80][60][3];
-    u8 stop_image[80][60][3];
-    u8 left_image[80][60][3];
+    u8 object_image[80][60][3];
 
     QString tester_file_name;
 
     void image_to_array_80x60(QString location, u8 image_array[80][60][3]);
+
+protected:
+    void mousePressEvent(QMouseEvent * event);
 
 private:
     ann *ann_class;
@@ -57,14 +59,9 @@ private slots:
     void _76800_1024_1024_6_save_weights_handler(void);
     void _76800_1024_1024_6_stop_train_handler(void);
 
-    void get_fist_picture_automatic();
-    void get_stop_picture_automatic();
-    void get_left_picture_automatic();
+    void get_object_picture_automatic();
 
     void start_stream(void);
-
-    void save_filter_parameters(void);
-    void load_filter_parameters(void);
 
     void select_tester_file(void);
 

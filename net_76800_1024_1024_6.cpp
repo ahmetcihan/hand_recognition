@@ -107,17 +107,6 @@ void ann::_76800_1024_1024_6_ann_test(double input[INPUT_COUNT],
         calculated_output[j]   = output_sigmoid_func(output_in[j]);
     }
 
-//    qDebug() << "**********testing***************";
-//    for(u32 i = 0; i < OUTPUT_COUNT; i++){
-//        qDebug() << QString("output[%1] :").arg(i) << calculated_output[i];
-//    }
-//    qDebug() << "% " << 100*calculated_output[0] << "\t" << "ihtimal fist";
-//    qDebug() << "% " << 100*calculated_output[1] << "\t" << "ihtimal stop";
-//    qDebug() << "% " << 100*calculated_output[2] << "\t" << "ihtimal up";
-//    qDebug() << "% " << 100*calculated_output[3] << "\t" << "ihtimal left";
-//    qDebug() << "% " << 100*calculated_output[4] << "\t" << "ihtimal right";
-//    qDebug() << "% " << 100*calculated_output[5] << "\t" << "ihtimal five";
-
     u32 max_value_index = 0;
     double max_value = 0;
     QString str = "";
@@ -149,10 +138,6 @@ void ann::_76800_1024_1024_6_ann_test(double input[INPUT_COUNT],
 
     game_command = max_value_index;
 
-    mainwindow->ui->horizontalSlider_fist->setValue(100*calculated_output[0]);
-    mainwindow->ui->horizontalSlider_stop->setValue(100*calculated_output[1]);
-    mainwindow->ui->horizontalSlider_left->setValue(100*calculated_output[2]);
-    mainwindow->ui->horizontalSlider_nothing->setValue(0);
 }
 
 void ann::_76800_1024_1024_6_ann_train( double input[INPUT_COUNT][IO_ARRAY_LENGTH],
@@ -597,29 +582,13 @@ void MainWindow::image_to_array_80x60(QString location, u8 image_array[80][60][3
     }
 }
 void MainWindow::_76800_1024_1024_6_picture_to_arrays(u32 inset){
-    image_to_array_80x60(QString("/home/ahmet/Desktop/gloves/fist/fist_%1.jpg").arg(inset+1),   fist_image);
-    image_to_array_80x60(QString("/home/ahmet/Desktop/gloves/stop/stop_%1.jpg").arg(inset+1),   stop_image);
-    image_to_array_80x60(QString("/home/ahmet/Desktop/gloves/left/left_%1.jpg").arg(inset+1),   left_image);
+    image_to_array_80x60(QString("/home/ahmet/Desktop/objects/object_%1.jpg").arg(inset+1),   object_image);
 
     for(u32 j = 0; j < 60; j++){
         for(u32 i = 0; i < 80; i++){
-            ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 0][0] = (double)fist_image[i][j][0]/255;
-            ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 1][0] = (double)fist_image[i][j][1]/255;
-            ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 2][0] = (double)fist_image[i][j][2]/255;
-        }
-    }
-    for(u32 j = 0; j < 60; j++){
-        for(u32 i = 0; i < 80; i++){
-            ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 0][1] = (double)stop_image[i][j][0]/255;
-            ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 1][1] = (double)stop_image[i][j][1]/255;
-            ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 2][1] = (double)stop_image[i][j][2]/255;
-        }
-    }
-    for(u32 j = 0; j < 60; j++){
-        for(u32 i = 0; i < 80; i++){
-            ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 0][2] = (double)left_image[i][j][0]/255;
-            ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 1][2] = (double)left_image[i][j][1]/255;
-            ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 2][2] = (double)left_image[i][j][2]/255;
+            ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 0][0] = (double)object_image[i][j][0]/255;
+            ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 1][0] = (double)object_image[i][j][1]/255;
+            ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 2][0] = (double)object_image[i][j][2]/255;
         }
     }
 }
