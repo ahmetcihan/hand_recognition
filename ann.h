@@ -35,7 +35,7 @@ public:
     u8 start_animation;
 
     struct _76800_1024_1024_6_str{
-        double input[INPUT_COUNT][IO_ARRAY_LENGTH*INPUT_SET];
+        double input[INPUT_COUNT][IO_ARRAY_LENGTH];
         double desired_output[OUTPUT_COUNT][IO_ARRAY_LENGTH];
         double calculated_output[OUTPUT_COUNT][IO_ARRAY_LENGTH];
         double hidden_neuron_bias_1[HIDDEN_COUNT_1];
@@ -57,7 +57,7 @@ public:
     };
     struct _76800_1024_1024_6_str net_76800_1024_1024_6;
 
-    void _76800_1024_1024_6_ann_train(  double input[INPUT_COUNT][IO_ARRAY_LENGTH*INPUT_SET],
+    void _76800_1024_1024_6_ann_train(  double input[INPUT_COUNT][IO_ARRAY_LENGTH],
                                         double desired_output[OUTPUT_COUNT][IO_ARRAY_LENGTH], double calculated_output[OUTPUT_COUNT][IO_ARRAY_LENGTH],
                                         double hidden_neuron_bias_1[HIDDEN_COUNT_1],
                                         double hidden_neuron_bias_2[HIDDEN_COUNT_2],

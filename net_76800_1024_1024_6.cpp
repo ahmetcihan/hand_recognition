@@ -155,7 +155,7 @@ void ann::_76800_1024_1024_6_ann_test(double input[INPUT_COUNT],
     mainwindow->ui->horizontalSlider_nothing->setValue(0);
 }
 
-void ann::_76800_1024_1024_6_ann_train( double input[INPUT_COUNT][IO_ARRAY_LENGTH*INPUT_SET],
+void ann::_76800_1024_1024_6_ann_train( double input[INPUT_COUNT][IO_ARRAY_LENGTH],
                                         double desired_output[OUTPUT_COUNT][IO_ARRAY_LENGTH], double calculated_output[OUTPUT_COUNT][IO_ARRAY_LENGTH],
                                         double hidden_neuron_bias_1[HIDDEN_COUNT_1],
                                         double hidden_neuron_bias_2[HIDDEN_COUNT_2],
@@ -200,7 +200,8 @@ void ann::_76800_1024_1024_6_ann_train( double input[INPUT_COUNT][IO_ARRAY_LENGT
     static double max_abs_err[INPUT_SET];
 
     for(u32 era = 0; era < epoch; era++){
-        for(u16 inset = 0; inset < INPUT_SET; inset++){
+        for(u32 inset = 0; inset < INPUT_SET; inset++){
+            mainwindow->_76800_1024_1024_6_picture_to_arrays(inset);
             for(u32 k = 0; k < IO_ARRAY_LENGTH; k++){
                 learning_rate = mainwindow->ui->doubleSpinBox->value() * mainwindow->ui->doubleSpinBox_2->value();
 
@@ -412,6 +413,15 @@ void MainWindow::_76800_1024_1024_6_random_initilize_handler(void){
         }
     }
 
+    for(u32 i = 0; i < OUTPUT_COUNT; i++){
+        for(u32 j = 0; j < OUTPUT_COUNT; j++){
+            ann_class->net_76800_1024_1024_6.desired_output[i][j] = 0;
+            if(i == j){
+                ann_class->net_76800_1024_1024_6.desired_output[i][j] = 1;
+            }
+        }
+    }
+
     ui->label_76800_1024_1024_6_random_initilize->setText("Initilized randomly");
 }
 void MainWindow::_76800_1024_1024_6_train_handler(void){
@@ -558,6 +568,16 @@ void MainWindow::_76800_1024_1024_6_load_saved_weights_handler(void){
             ann_class->net_76800_1024_1024_6.w_hidden_5_to_output[i][j] = settings.value(QString("w/h52o-%1-%2").arg(i).arg(j)).toDouble();
         }
     }
+
+    for(u32 i = 0; i < OUTPUT_COUNT; i++){
+        for(u32 j = 0; j < OUTPUT_COUNT; j++){
+            ann_class->net_76800_1024_1024_6.desired_output[i][j] = 0;
+            if(i == j){
+                ann_class->net_76800_1024_1024_6.desired_output[i][j] = 1;
+            }
+        }
+    }
+
     ui->label_76800_1024_1024_6_load_saved_weights->setText("Loaded..");
 }
 void MainWindow::_76800_1024_1024_6_stop_train_handler(void){
@@ -576,47 +596,30 @@ void MainWindow::image_to_array_80x60(QString location, u8 image_array[80][60][3
         }
     }
 }
-void MainWindow::_76800_1024_1024_6_picture_to_arrays(void){
-    for (u32 i = 0; i < INPUT_SET; i++){
-        image_to_array_80x60(QString("/home/ahmet/Desktop/gloves/fist/fist_%1.jpg").arg(i+1),   fist_image[i]);
-        image_to_array_80x60(QString("/home/ahmet/Desktop/gloves/stop/stop_%1.jpg").arg(i+1),   stop_image[i]);
-        image_to_array_80x60(QString("/home/ahmet/Desktop/gloves/left/left_%1.jpg").arg(i+1),   left_image[i]);
-    }
-}
-void MainWindow::_76800_1024_1024_6_prepare_io_pairs_handler(void){
-    _76800_1024_1024_6_picture_to_arrays();
+void MainWindow::_76800_1024_1024_6_picture_to_arrays(u32 inset){
+    image_to_array_80x60(QString("/home/ahmet/Desktop/gloves/fist/fist_%1.jpg").arg(inset+1),   fist_image);
+    image_to_array_80x60(QString("/home/ahmet/Desktop/gloves/stop/stop_%1.jpg").arg(inset+1),   stop_image);
+    image_to_array_80x60(QString("/home/ahmet/Desktop/gloves/left/left_%1.jpg").arg(inset+1),   left_image);
 
-    for(u32 k = 0; k < INPUT_SET; k++){
-        for(u32 j = 0; j < 60; j++){
-            for(u32 i = 0; i < 80; i++){
-                ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 0][0 + k*IO_ARRAY_LENGTH] = (double)fist_image[k][i][j][0]/255;
-                ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 1][0 + k*IO_ARRAY_LENGTH] = (double)fist_image[k][i][j][1]/255;
-                ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 2][0 + k*IO_ARRAY_LENGTH] = (double)fist_image[k][i][j][2]/255;
-            }
-        }
-        for(u32 j = 0; j < 60; j++){
-            for(u32 i = 0; i < 80; i++){
-                ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 0][1 + k*IO_ARRAY_LENGTH] = (double)stop_image[k][i][j][0]/255;
-                ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 1][1 + k*IO_ARRAY_LENGTH] = (double)stop_image[k][i][j][1]/255;
-                ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 2][1 + k*IO_ARRAY_LENGTH] = (double)stop_image[k][i][j][2]/255;
-            }
-        }
-        for(u32 j = 0; j < 60; j++){
-            for(u32 i = 0; i < 80; i++){
-                ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 0][2 + k*IO_ARRAY_LENGTH] = (double)left_image[k][i][j][0]/255;
-                ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 1][2 + k*IO_ARRAY_LENGTH] = (double)left_image[k][i][j][1]/255;
-                ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 2][2 + k*IO_ARRAY_LENGTH] = (double)left_image[k][i][j][2]/255;
-            }
+    for(u32 j = 0; j < 60; j++){
+        for(u32 i = 0; i < 80; i++){
+            ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 0][0] = (double)fist_image[i][j][0]/255;
+            ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 1][0] = (double)fist_image[i][j][1]/255;
+            ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 2][0] = (double)fist_image[i][j][2]/255;
         }
     }
-
-    for(u32 i = 0; i < OUTPUT_COUNT; i++){
-        for(u32 j = 0; j < OUTPUT_COUNT; j++){
-            ann_class->net_76800_1024_1024_6.desired_output[i][j] = 0;
-            if(i == j){
-                ann_class->net_76800_1024_1024_6.desired_output[i][j] = 1;
-            }
+    for(u32 j = 0; j < 60; j++){
+        for(u32 i = 0; i < 80; i++){
+            ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 0][1] = (double)stop_image[i][j][0]/255;
+            ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 1][1] = (double)stop_image[i][j][1]/255;
+            ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 2][1] = (double)stop_image[i][j][2]/255;
         }
     }
-    ui->label_76800_1024_1024_6_prepare_io->setText("Prepared..");
+    for(u32 j = 0; j < 60; j++){
+        for(u32 i = 0; i < 80; i++){
+            ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 0][2] = (double)left_image[i][j][0]/255;
+            ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 1][2] = (double)left_image[i][j][1]/255;
+            ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 2][2] = (double)left_image[i][j][2]/255;
+        }
+    }
 }

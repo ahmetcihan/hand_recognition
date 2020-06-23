@@ -324,32 +324,6 @@
        </property>
       </widget>
      </widget>
-     <widget class="QLabel" name="label_76800_1024_1024_6_prepare_io">
-      <property name="geometry">
-       <rect>
-        <x>230</x>
-        <y>10</y>
-        <width>200</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>-----------------</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_76800_1024_1024_6_prepare_io">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>211</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Prepare IO Pairs</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="pushButton_select_tester">
       <property name="geometry">
        <rect>
@@ -845,84 +819,6 @@
        <string>YUMRUK</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_5">
-      <property name="geometry">
-       <rect>
-        <x>360</x>
-        <y>10</y>
-        <width>67</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>FIST</string>
-      </property>
-     </widget>
-     <widget class="QSlider" name="horizontalSlider_fist">
-      <property name="geometry">
-       <rect>
-        <x>439</x>
-        <y>10</y>
-        <width>211</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-     <widget class="QSlider" name="horizontalSlider_stop">
-      <property name="geometry">
-       <rect>
-        <x>439</x>
-        <y>50</y>
-        <width>211</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_6">
-      <property name="geometry">
-       <rect>
-        <x>360</x>
-        <y>50</y>
-        <width>67</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>STOP</string>
-      </property>
-     </widget>
-     <widget class="QSlider" name="horizontalSlider_left">
-      <property name="geometry">
-       <rect>
-        <x>439</x>
-        <y>90</y>
-        <width>211</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_8">
-      <property name="geometry">
-       <rect>
-        <x>360</x>
-        <y>90</y>
-        <width>67</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>LEFT</string>
-      </property>
-     </widget>
      <widget class="QFrame" name="frame_6">
       <property name="geometry">
        <rect>
@@ -952,30 +848,82 @@
        </property>
       </widget>
      </widget>
-     <widget class="QSlider" name="horizontalSlider_nothing">
+     <widget class="QLabel" name="label_ahmet">
       <property name="geometry">
        <rect>
-        <x>439</x>
-        <y>250</y>
-        <width>211</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_11">
-      <property name="geometry">
-       <rect>
-        <x>360</x>
-        <y>250</y>
-        <width>67</width>
-        <height>30</height>
+        <x>340</x>
+        <y>340</y>
+        <width>80</width>
+        <height>60</height>
        </rect>
       </property>
       <property name="text">
-       <string>NOTHING</string>
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_musa">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>340</y>
+        <width>80</width>
+        <height>60</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_semiha">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>340</y>
+        <width>80</width>
+        <height>60</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>320</y>
+        <width>67</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>AHMET</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>320</y>
+        <width>67</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>MUSA</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_9">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>320</y>
+        <width>67</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>SEMIHA</string>
       </property>
      </widget>
     </widget>
@@ -1040,6 +988,110 @@
         <string>TextLabel</string>
        </property>
       </widget>
+     </widget>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>90</y>
+        <width>67</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>SEMIHA</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_11">
+      <property name="geometry">
+       <rect>
+        <x>161</x>
+        <y>130</y>
+        <width>67</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>NOTHING</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>10</y>
+        <width>67</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>AHMET</string>
+      </property>
+     </widget>
+     <widget class="QSlider" name="horizontalSlider_fist">
+      <property name="geometry">
+       <rect>
+        <x>239</x>
+        <y>10</y>
+        <width>211</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QSlider" name="horizontalSlider_left">
+      <property name="geometry">
+       <rect>
+        <x>239</x>
+        <y>90</y>
+        <width>211</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QSlider" name="horizontalSlider_stop">
+      <property name="geometry">
+       <rect>
+        <x>239</x>
+        <y>50</y>
+        <width>211</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QSlider" name="horizontalSlider_nothing">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>130</y>
+        <width>211</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>50</y>
+        <width>67</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>MUSA</string>
+      </property>
      </widget>
     </widget>
    </widget>

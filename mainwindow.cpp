@@ -20,7 +20,6 @@ MainWindow::MainWindow(QWidget *parent) :
     _100_msec_timer->start();
     connect(this->_100_msec_timer,SIGNAL(timeout()),this,SLOT(_100_msec_timer_handle()));
 
-    connect(ui->pushButton_76800_1024_1024_6_prepare_io,SIGNAL(clicked(bool)),this,SLOT(_76800_1024_1024_6_prepare_io_pairs_handler()));
     connect(ui->pushButton_76800_1024_1024_6_random_initilize,SIGNAL(clicked(bool)),this,SLOT(_76800_1024_1024_6_random_initilize_handler()));
     connect(ui->pushButton_76800_1024_1024_6_train,SIGNAL(clicked(bool)),this,SLOT(_76800_1024_1024_6_train_handler()));
     connect(ui->pushButton_76800_1024_1024_6_test,SIGNAL(clicked(bool)),this,SLOT(_76800_1024_1024_6_test_handler()));
@@ -41,6 +40,18 @@ MainWindow::MainWindow(QWidget *parent) :
     my_vid.open(0);
 
     //image_manipulation();
+
+    QImage read_image;
+    read_image.load("/home/ahmet/Desktop/gloves/fist/fist_338.jpg");
+    QPixmap my_pix = QPixmap::fromImage(read_image);
+    ui->label_ahmet->setPixmap(my_pix);
+    read_image.load("/home/ahmet/Desktop/gloves/stop/stop_57.jpg");
+    my_pix = QPixmap::fromImage(read_image);
+    ui->label_musa->setPixmap(my_pix);
+    read_image.load("/home/ahmet/Desktop/gloves/left/left_225.jpg");
+    my_pix = QPixmap::fromImage(read_image);
+    ui->label_semiha->setPixmap(my_pix);
+
 
 }
 void MainWindow::image_manipulation(void){

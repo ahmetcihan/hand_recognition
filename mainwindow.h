@@ -30,9 +30,9 @@ public:
     ~MainWindow();
     Ui::MainWindow *ui;
 
-    u8 fist_image[INPUT_SET][80][60][3];
-    u8 stop_image[INPUT_SET][80][60][3];
-    u8 left_image[INPUT_SET][80][60][3];
+    u8 fist_image[80][60][3];
+    u8 stop_image[80][60][3];
+    u8 left_image[80][60][3];
 
     QString tester_file_name;
 
@@ -50,14 +50,12 @@ private slots:
 
     void _100_msec_timer_handle(void);
 
-    void _76800_1024_1024_6_prepare_io_pairs_handler(void);
     void _76800_1024_1024_6_random_initilize_handler(void);
     void _76800_1024_1024_6_load_saved_weights_handler(void);
     void _76800_1024_1024_6_train_handler(void);
     void _76800_1024_1024_6_test_handler(void);
     void _76800_1024_1024_6_save_weights_handler(void);
     void _76800_1024_1024_6_stop_train_handler(void);
-    void _76800_1024_1024_6_picture_to_arrays(void);
 
     void get_fist_picture_automatic();
     void get_stop_picture_automatic();
@@ -71,6 +69,10 @@ private slots:
     void select_tester_file(void);
 
     void image_manipulation(void);
+
+public slots:
+    void _76800_1024_1024_6_picture_to_arrays(u32 inset);
+
 };
 
 #endif // MAINWINDOW_H
