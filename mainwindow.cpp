@@ -31,17 +31,36 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->pushButton_shot,SIGNAL(clicked(bool)),this,SLOT(capture_video()));
     connect(ui->pushButton_select_tester,SIGNAL(clicked(bool)), this,SLOT(select_tester_file()));
+    connect(ui->pushButton_get_image,SIGNAL(clicked(bool)), this,SLOT(get_image()));
+    connect(ui->pushButton_save_image_location,SIGNAL(clicked(bool)), this,SLOT(save_image_location()));
+    connect(ui->pushButton_start_auto_point,SIGNAL(clicked(bool)), this,SLOT(start_auto_pointer()));
+    connect(ui->pushButton_stop_auto_point,SIGNAL(clicked(bool)), this,SLOT(stop_auto_pointer()));
 
     //my_vid.open("/dev/video0");
     my_vid.open(0);
 
     image_manipulation();
+    auto_pointer = 0;
 
     //setMouseTracking(true);
 
 }
 void MainWindow::mousePressEvent(QMouseEvent *event){
-    qDebug() << "x-pos" << event->pos().x() << "y-pos" << event->pos().y();
+    u32 x_pos,y_pos;
+    x_pos = event->pos().x();
+    y_pos = event->pos().y();
+
+    ball_pos_x = x_pos - 23;
+    ball_pos_y = y_pos - 56;
+
+    qDebug() << "x-pos" << x_pos << "y-pos" << y_pos;
+    ui->label_pos->setText(QString("x : %1 , y : %2").arg(ball_pos_x).arg(ball_pos_y));
+
+    if(auto_pointer == 1){
+        save_image_location();
+        ui->spinBox_get_image_no->setValue(ui->spinBox_get_image_no->value() + 1);
+        QTimer::singleShot(1000,this, SLOT(get_image()));
+    }
 }
 
 void MainWindow::image_manipulation(void){

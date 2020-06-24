@@ -32,6 +32,9 @@ public:
     Ui::MainWindow *ui;
 
     u8 object_image[80][60][3];
+    u32 ball_pos_x;
+    u32 ball_pos_y;
+    u8 auto_pointer;
 
     QString tester_file_name;
 
@@ -69,6 +72,10 @@ private slots:
 
 public slots:
     void _76800_1024_1024_6_picture_to_arrays(u32 inset);
+    void get_image(void);
+    void save_image_location(void);
+    void start_auto_pointer(void);
+    void stop_auto_pointer(void);
 
 };
 
