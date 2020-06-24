@@ -11,7 +11,7 @@ void MainWindow::get_object_picture_automatic(){
     ui->label_snap_auto_object->setText(QString::number(pic_no));
     if(pic_no < ui->spinBox_snapshot_object_last->value()){
         pic_no++;
-        QTimer::singleShot(100,this,SLOT(get_object_picture_automatic()));
+        QTimer::singleShot(1000,this,SLOT(get_object_picture_automatic()));
     }
     else{
         pic_no = 1;

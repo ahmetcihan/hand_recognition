@@ -34,6 +34,8 @@ public:
     u8 object_image[80][60][3];
     u32 ball_pos_x;
     u32 ball_pos_y;
+    u32 test_pos_x;
+    u32 test_pos_y;
     u8 auto_pointer;
 
     QString tester_file_name;

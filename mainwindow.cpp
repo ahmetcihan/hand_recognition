@@ -211,7 +211,23 @@ void MainWindow::capture_video(void){
     small_picture = QPixmap::fromImage(small_scale);
 
     ui->label_video_small_monochrome_2->setPixmap(small_picture);
-    ui->label_video_small_monochrome_3->setPixmap(small_picture);
+
+    QImage read_image;
+    read_image = small_scale;
+
+    QPainter my_painter(&read_image);
+
+    my_painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
+    my_painter.setRenderHints(QPainter::HighQualityAntialiasing);
+    //my_painter.setBrush(Qt::red);
+    my_painter.setPen(QPen(Qt::blue,3.0));
+    my_painter.drawEllipse(QPoint(test_pos_x,test_pos_y),10,10);
+    my_painter.end();
+
+
+    QPixmap my_pix = QPixmap::fromImage(read_image);
+
+    ui->label_video_small_monochrome_3->setPixmap(my_pix);
 
     original_frame.release();
 

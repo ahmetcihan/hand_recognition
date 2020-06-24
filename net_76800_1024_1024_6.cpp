@@ -104,38 +104,11 @@ void ann::_76800_1024_1024_6_ann_test(double input[INPUT_COUNT],
         }
         calculated_output[j]   = output_sigmoid_func(output_in[j]);
     }
+    mainwindow->test_pos_x = calculated_output[0]*80;
+    mainwindow->test_pos_y = calculated_output[1]*60;
 
-    u32 max_value_index = 0;
-    double max_value = 0;
-    QString str = "";
-
-    for(u32 i = 0; i < OUTPUT_COUNT; i++){
-        if(calculated_output[i] > max_value){
-            max_value = calculated_output[i];
-            max_value_index = i;
-        }
-    }
-    double out_strict[OUTPUT_COUNT] = {0};
-
-    for(u32 i = 0; i < OUTPUT_COUNT; i++){
-        if(calculated_output[i] > 1.0){
-            out_strict[i] = calculated_output[i] - 1.0;
-            calculated_output[i] = calculated_output[i] - 2*out_strict[i];
-        }
-    }
-
-    if(max_value_index == 0)    str = QString("% %1 ihtimal ahmet").arg((u32)(100*calculated_output[0]));
-    if(max_value_index == 1)    str = QString("% %1 ihtimal musa").arg((u32)(100*calculated_output[1]));
-    if(max_value_index == 2)    str = QString("% %1 ihtimal semiha").arg((u32)(100*calculated_output[2]));
-
-    mainwindow->ui->label_76800_1024_1024_6_test->setText(str);
-
-    if(max_value_index == 0)        mainwindow->ui->label_result->setText(QString::fromUtf8("AHMET"));
-    else if (max_value_index == 1)  mainwindow->ui->label_result->setText(QString::fromUtf8("MUSA"));
-    else if (max_value_index == 2)  mainwindow->ui->label_result->setText(QString::fromUtf8("SEMİHA"));
-
-    game_command = max_value_index;
-
+    qDebug() << "x_pos : " << calculated_output[0]*80;
+    qDebug() << "y_pos : " << calculated_output[1]*60;
 }
 
 void ann::_76800_1024_1024_6_ann_train( double input[INPUT_COUNT],
@@ -325,6 +298,8 @@ void ann::_76800_1024_1024_6_ann_train( double input[INPUT_COUNT],
             for(u32 i = 0; i < HIDDEN_COUNT_1; i++){
                 hidden_neuron_bias_1[i] +=hidden_neuron_error_1[i] * learning_rate;
             }
+
+
             inset_sse[inset] = _76800_1024_1024_6_ann_calculate_total_error(&max_abs_err[inset]);
         }
         net_76800_1024_1024_6.total_err = 0;
@@ -392,10 +367,6 @@ void MainWindow::_76800_1024_1024_6_random_initilize_handler(void){
         for(u32 j = 0; j < OUTPUT_COUNT; j++){
             ann_class->net_76800_1024_1024_6.w_hidden_5_to_output[i][j] = ((double) qrand()/RAND_MAX) * (-2) + 1;
         }
-    }
-
-    for(u32 i = 0; i < OUTPUT_COUNT; i++){
-        ann_class->net_76800_1024_1024_6.desired_output[i] = 0;
     }
 
     ui->label_76800_1024_1024_6_random_initilize->setText("Initilized randomly");
@@ -545,10 +516,6 @@ void MainWindow::_76800_1024_1024_6_load_saved_weights_handler(void){
         }
     }
 
-    for(u32 i = 0; i < OUTPUT_COUNT; i++){
-        ann_class->net_76800_1024_1024_6.desired_output[i] = 0;
-    }
-
     ui->label_76800_1024_1024_6_load_saved_weights->setText("Loaded..");
 }
 void MainWindow::_76800_1024_1024_6_stop_train_handler(void){
@@ -577,4 +544,9 @@ void MainWindow::_76800_1024_1024_6_picture_to_arrays(u32 inset){
             ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 2] = (double)object_image[i][j][2]/255;
         }
     }
+    QSettings settings("x_y_pos.ini",QSettings::IniFormat);
+
+    ann_class->net_76800_1024_1024_6.desired_output[0] = (double)(settings.value(QString("pos/x_%1").arg(inset+1)).toInt())/80;
+    ann_class->net_76800_1024_1024_6.desired_output[1] = (double)(settings.value(QString("pos/y_%1").arg(inset+1)).toInt())/60;
+
 }
