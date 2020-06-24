@@ -96,21 +96,17 @@ void ann::thread_handler(void){
                                         100000, 0.001);
 
         for(u32 i = 0; i < OUTPUT_COUNT; i++){
-            for(u32 j = 0; j < IO_ARRAY_LENGTH; j++){
-                qDebug() << QString("desired output[%1][%2] : ").arg(i).arg(j) << net_76800_1024_1024_6.desired_output[i][j] <<
-                            QString("calculated output[%1][%2] : ").arg(i).arg(j) << net_76800_1024_1024_6.calculated_output[i][j];
-            }
+            qDebug() << QString("desired output[%1] : ").arg(i) << net_76800_1024_1024_6.desired_output[i] <<
+                        QString("calculated output[%1] : ").arg(i) << net_76800_1024_1024_6.calculated_output[i];
         }
 
         double total_error = 0;
         double aux;
 
         for(u32 i = 0; i < OUTPUT_COUNT; i++){
-            for(u32 j = 0; j < IO_ARRAY_LENGTH; j++){
-                aux = net_76800_1024_1024_6.desired_output[i][j] - net_76800_1024_1024_6.calculated_output[i][j];
-                aux = aux * aux;
-                total_error += aux;
-            }
+            aux = net_76800_1024_1024_6.desired_output[i] - net_76800_1024_1024_6.calculated_output[i];
+            aux = aux * aux;
+            total_error += aux;
         }
 
         mainwindow->ui->label_76800_1024_1024_6_train->setText(QString("Trained. Total error is %1").arg(total_error));
