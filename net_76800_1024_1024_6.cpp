@@ -9,8 +9,8 @@ double ann::_76800_1024_1024_6_ann_calculate_total_error(double *max_err){
     for(u32 i = 0; i < OUTPUT_COUNT; i++){
         aux = net_76800_1024_1024_6.desired_output[i] - net_76800_1024_1024_6.calculated_output[i];
         if(fabs(aux) > max_error)  max_error = fabs(aux);
-        aux = aux * aux;
-        total_error += aux;
+        //aux = aux * aux;
+        total_error += fabs(aux);
     }
     *max_err = max_error;
     return total_error;
@@ -104,11 +104,11 @@ void ann::_76800_1024_1024_6_ann_test(double input[INPUT_COUNT],
         }
         calculated_output[j]   = output_sigmoid_func(output_in[j]);
     }
-    mainwindow->test_pos_x = calculated_output[0]*80;
-    mainwindow->test_pos_y = calculated_output[1]*60;
+    mainwindow->test_pos_x = classic_MA_1(calculated_output[0])*80 + 0.5;
+    mainwindow->test_pos_y = classic_MA_2(calculated_output[1])*60 + 0.5;
 
-    qDebug() << "x_pos : " << calculated_output[0]*80;
-    qDebug() << "y_pos : " << calculated_output[1]*60;
+    qDebug() << "x_pos : " << calculated_output[0]*80 << "int-x :" << mainwindow->test_pos_x;
+    qDebug() << "y_pos : " << calculated_output[1]*60 << "int-y :" << mainwindow->test_pos_y;
 }
 
 void ann::_76800_1024_1024_6_ann_train( double input[INPUT_COUNT],

@@ -109,7 +109,7 @@ void ann::thread_handler(void){
             total_error += aux;
         }
 
-        mainwindow->ui->label_76800_1024_1024_6_train->setText(QString("Trained. Total error is %1").arg(total_error));
+        mainwindow->ui->label_76800_1024_1024_6_train->setText(QString("Trained. Total err %1").arg(total_error));
         train_status = 0;
     }
 }

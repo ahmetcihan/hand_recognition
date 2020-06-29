@@ -96,7 +96,8 @@ private:
     double derivative_of_sigmoid_func(double val);
     double output_sigmoid_func(double val);
     double output_derivative_of_sigmoid_func(double val);
-
+    double classic_MA_1(double raw_signal);
+    double classic_MA_2(double raw_signal);
 
 private slots:
     void thread_handler(void);

@@ -200,20 +200,35 @@ void MainWindow::capture_video(void){
     QPixmap original_pix = QPixmap::fromImage(my_image);
 
     ui->label_video->setPixmap(original_pix);
-    ui->label_video_original_2->setPixmap(original_pix);
     ui->label_video_greyscale_2->setPixmap(original_pix);
 
     //change to small_scale
     QImage small_scale;
     small_scale = my_image.scaled(QSize(80,60),Qt::KeepAspectRatio,Qt::SmoothTransformation);
 
-    QPixmap small_picture;
-    small_picture = QPixmap::fromImage(small_scale);
+    //change to monocrome
+    QImage monochrome;
+    monochrome = small_scale;
 
-    ui->label_video_small_monochrome_2->setPixmap(small_picture);
+    for(u16 i = 0; i < small_scale.width(); i++){
+        for(u16 j = 0; j < small_scale.height(); j++){
+            if((QColor(small_scale.pixel(i,j)).red() >= ui->spinBox_red_min->value()) && (QColor(small_scale.pixel(i,j)).red() <= ui->spinBox_red_max->value()) &&
+            (QColor(small_scale.pixel(i,j)).green() >= ui->spinBox_green_min->value()) && (QColor(small_scale.pixel(i,j)).green() <= ui->spinBox_green_max->value()) &&
+            (QColor(small_scale.pixel(i,j)).blue() >= ui->spinBox_blue_min->value()) && (QColor(small_scale.pixel(i,j)).blue() <= ui->spinBox_blue_max->value())){
+                monochrome.setPixel(i,j,qRgb(0,0,0));
+            }
+            else{
+                monochrome.setPixel(i,j,qRgb(255,255,255));
+            }
+        }
+    }
+
+    ui->label_video_small_monochrome_2->setPixmap(QPixmap::fromImage(monochrome));
+
+
 
     QImage read_image;
-    read_image = small_scale;
+    read_image = my_image;
 
     QPainter my_painter(&read_image);
 
@@ -221,13 +236,15 @@ void MainWindow::capture_video(void){
     my_painter.setRenderHints(QPainter::HighQualityAntialiasing);
     //my_painter.setBrush(Qt::red);
     my_painter.setPen(QPen(Qt::blue,3.0));
-    my_painter.drawEllipse(QPoint(test_pos_x,test_pos_y),10,10);
+    my_painter.drawEllipse(QPoint(4*test_pos_x,4*test_pos_y),40,40);
     my_painter.end();
 
 
     QPixmap my_pix = QPixmap::fromImage(read_image);
 
-    ui->label_video_small_monochrome_3->setPixmap(my_pix);
+    //ui->label_video_small_monochrome_3->setPixmap(my_pix);
+
+    ui->label_video_original_2->setPixmap(my_pix);
 
     original_frame.release();
 
@@ -235,11 +252,11 @@ void MainWindow::capture_video(void){
     if(1){
         u8 tester[80][60][3];
 
-        for(u8 i = 0; i < small_scale.width();i++){
-            for(u8 j = 0; j < small_scale.height();j++){
-                tester[i][j][0] = QColor(small_scale.pixel(i,j)).red();
-                tester[i][j][1] = QColor(small_scale.pixel(i,j)).green();
-                tester[i][j][2] = QColor(small_scale.pixel(i,j)).blue();
+        for(u8 i = 0; i < monochrome.width();i++){
+            for(u8 j = 0; j < monochrome.height();j++){
+                tester[i][j][0] = QColor(monochrome.pixel(i,j)).red();
+                tester[i][j][1] = QColor(monochrome.pixel(i,j)).green();
+                tester[i][j][2] = QColor(monochrome.pixel(i,j)).blue();
             }
         }
 

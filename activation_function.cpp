@@ -42,3 +42,53 @@ double ann::output_sigmoid_func(double val){
 double ann::output_derivative_of_sigmoid_func(double val){
     return (sigmoid_func(val) * (1 - sigmoid_func(val)));                     //sigmoid   - good - u:0.8 is the best
 }
+double ann::classic_MA_1(double raw_signal){
+    static double running_average[64];
+    double processed_value = 0;
+    uint16_t j;
+    static u8 do_it_once = 1;
+    u8 filter_coefficient = 8;
+
+    if(do_it_once == 1){
+        do_it_once = 0;
+        for(u8 i = 0; i < 64; i++){
+            running_average[i] = 0;
+        }
+    }
+
+    for (j = 0; j < (filter_coefficient-1); j++){
+        running_average[j] = running_average[j+1];
+        processed_value += running_average[j];
+    }
+    running_average[filter_coefficient-1] = raw_signal;
+    processed_value += raw_signal;
+
+    processed_value = (processed_value)/(filter_coefficient);
+
+    return processed_value;
+}
+double ann::classic_MA_2(double raw_signal){
+    static double running_average[64];
+    double processed_value = 0;
+    uint16_t j;
+    static u8 do_it_once = 1;
+    u8 filter_coefficient = 8;
+
+    if(do_it_once == 1){
+        do_it_once = 0;
+        for(u8 i = 0; i < 64; i++){
+            running_average[i] = 0;
+        }
+    }
+
+    for (j = 0; j < (filter_coefficient-1); j++){
+        running_average[j] = running_average[j+1];
+        processed_value += running_average[j];
+    }
+    running_average[filter_coefficient-1] = raw_signal;
+    processed_value += raw_signal;
+
+    processed_value = (processed_value)/(filter_coefficient);
+
+    return processed_value;
+}
