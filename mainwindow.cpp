@@ -37,12 +37,62 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButton_stop_auto_point,SIGNAL(clicked(bool)), this,SLOT(stop_auto_pointer()));
 
     //my_vid.open("/dev/video0");
-    my_vid.open(0);
+    //my_vid.open(0);
 
     image_manipulation();
     auto_pointer = 0;
 
     //setMouseTracking(true);
+    read_money_values();
+
+}
+void MainWindow::read_money_values(void){
+    QFile file("/home/ahmet/Desktop/inputs.csv");
+    file.open(QIODevice::ReadOnly);
+
+    QByteArray line;
+    u32 line_no = 0;
+    u32 number[140];
+    double dollar[140];
+    double euro[140];
+    double sterlin[140];
+    double yen[140];
+    double bist[140];
+    double altin[140];
+    double petrol[140];
+    double faiz[140];
+
+    file.readLine(); //this is dummy
+    while (!file.atEnd()) {
+        QString str = file.readLine();
+        QString str1 = str.section(',',0,0);
+        QString str2 = str.section(',',2,2);
+        QString str3 = str.section(',',3,3);
+        QString str4 = str.section(',',4,4);
+        QString str5 = str.section(',',5,5);
+        QString str6 = str.section(',',6,6);
+        QString str7 = str.section(',',7,7);
+        QString str8 = str.section(',',8,8);
+        QString str9 = str.section(',',9,9);
+
+        number[line_no] = str1.toInt();
+        dollar[line_no] = str2.toDouble();
+        euro[line_no] = str3.toDouble();
+        sterlin[line_no] = str4.toDouble();
+        yen[line_no] = str5.toDouble();
+        bist[line_no] = str6.toDouble();
+        altin[line_no] = str7.toDouble();
+        petrol[line_no] = str8.toDouble();
+        faiz[line_no] = str9.toDouble();
+        line_no++;
+    }
+
+    for(u32 i = 0; i < line_no; i++){
+        qDebug() << QString("no : %1").arg(number[i]) << QString("dollar : %1").arg(dollar[i])
+                 << QString("euro : %1").arg(euro[i]) << QString("sterlin : %1").arg(sterlin[i])
+                 << QString("yen : %1").arg(yen[i]) << QString("bist : %1").arg(bist[i])
+                 << QString("altin : %1").arg(altin[i]) << QString("petrol : %1").arg(petrol[i]) << QString("faiz : %1").arg(faiz[i]);
+    }
 
 }
 void MainWindow::mousePressEvent(QMouseEvent *event){

@@ -72,6 +72,9 @@ private slots:
 
     void image_manipulation(void);
 
+    void read_money_values(void);
+
+
 public slots:
     void _76800_1024_1024_6_picture_to_arrays(u32 inset);
     void get_image(void);
