@@ -104,11 +104,6 @@ void ann::_76800_1024_1024_6_ann_test(double input[INPUT_COUNT],
         }
         calculated_output[j]   = output_sigmoid_func(output_in[j]);
     }
-    mainwindow->test_pos_x = classic_MA_1(calculated_output[0])*80 + 0.5;
-    mainwindow->test_pos_y = classic_MA_2(calculated_output[1])*60 + 0.5;
-
-    qDebug() << "x_pos : " << calculated_output[0]*80 << "int-x :" << mainwindow->test_pos_x;
-    qDebug() << "y_pos : " << calculated_output[1]*60 << "int-y :" << mainwindow->test_pos_y;
 }
 
 void ann::_76800_1024_1024_6_ann_train( double input[INPUT_COUNT],
@@ -157,7 +152,6 @@ void ann::_76800_1024_1024_6_ann_train( double input[INPUT_COUNT],
 
     for(u32 era = 0; era < epoch; era++){
         for(u32 inset = 0; inset < INPUT_SET; inset++){
-            mainwindow->_76800_1024_1024_6_picture_to_arrays(inset);
             learning_rate = mainwindow->ui->doubleSpinBox->value() * mainwindow->ui->doubleSpinBox_2->value();
 
             /*****************FORWARD PROPAGATION********************/
@@ -378,8 +372,6 @@ void MainWindow::_76800_1024_1024_6_train_handler(void){
 void MainWindow::_76800_1024_1024_6_test_handler(void){
     u8 tester[80][60][3];
 
-    image_to_array_80x60(tester_file_name,tester);
-
     for(u32 j = 0; j < 60; j++){
         for(u32 i = 0; i < 80; i++){
             ann_class->net_76800_1024_1024_6.test_input[3*(i + 80*j) + 0] = (double)tester[i][j][0]/255;
@@ -520,33 +512,4 @@ void MainWindow::_76800_1024_1024_6_load_saved_weights_handler(void){
 }
 void MainWindow::_76800_1024_1024_6_stop_train_handler(void){
     ann_class->stop_the_training = 1;
-}
-void MainWindow::image_to_array_80x60(QString location, u8 image_array[80][60][3]){
-    QImage read_image;
-
-    read_image.load(location);
-
-    for(u8 i = 0; i < read_image.width();i++){
-        for(u8 j = 0; j < read_image.height();j++){
-            image_array[i][j][0] = QColor(read_image.pixel(i,j)).red();
-            image_array[i][j][1] = QColor(read_image.pixel(i,j)).green();
-            image_array[i][j][2] = QColor(read_image.pixel(i,j)).blue();
-        }
-    }
-}
-void MainWindow::_76800_1024_1024_6_picture_to_arrays(u32 inset){
-    image_to_array_80x60(QString("/home/ahmet/Desktop/objects/object_%1.jpg").arg(inset+1),   object_image);
-
-    for(u32 j = 0; j < 60; j++){
-        for(u32 i = 0; i < 80; i++){
-            ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 0] = (double)object_image[i][j][0]/255;
-            ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 1] = (double)object_image[i][j][1]/255;
-            ann_class->net_76800_1024_1024_6.input[3*(i + 80*j) + 2] = (double)object_image[i][j][2]/255;
-        }
-    }
-    QSettings settings("x_y_pos.ini",QSettings::IniFormat);
-
-    ann_class->net_76800_1024_1024_6.desired_output[0] = (double)(settings.value(QString("pos/x_%1").arg(inset+1)).toInt())/80;
-    ann_class->net_76800_1024_1024_6.desired_output[1] = (double)(settings.value(QString("pos/y_%1").arg(inset+1)).toInt())/60;
-
 }

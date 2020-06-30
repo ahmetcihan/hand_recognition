@@ -31,8 +31,6 @@ public:
     u8 epoch_status;
     u32 epoch_no;
     u8 stop_the_training;
-    u8 game_command;
-    u8 start_animation;
 
     struct _76800_1024_1024_6_str{
         double input[INPUT_COUNT];
@@ -101,7 +99,6 @@ private:
 
 private slots:
     void thread_handler(void);
-    void play_game(void);
 
 };
 

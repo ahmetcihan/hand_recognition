@@ -19,7 +19,6 @@ ann::ann(MainWindow *master, QWidget *parent) :
     thread_1->start();
 
     stop_the_training = 0;
-    game_command = 255;
 
     periodic_timer = new QTimer(this);
     periodic_timer->setInterval(100);
@@ -27,55 +26,8 @@ ann::ann(MainWindow *master, QWidget *parent) :
     periodic_timer->start();
 
     //this->show();
-    start_animation = 0;
 
 }
-void ann::play_game(void){
-    if(start_animation == 0) return;
-
-    ui->pushButton_horizontal_1->setGeometry(ui->pushButton_horizontal_1->pos().x() + 5,ui->pushButton_horizontal_1->pos().y(),50,20);
-    if(ui->pushButton_horizontal_1->pos().x() > 800){
-        ui->pushButton_horizontal_1->setGeometry(0,((double) qrand()/RAND_MAX) * 460,50,20);
-    }
-    ui->pushButton_horizontal_2->setGeometry(ui->pushButton_horizontal_2->pos().x() + 5,ui->pushButton_horizontal_2->pos().y(),50,20);
-    if(ui->pushButton_horizontal_2->pos().x() > 800){
-        ui->pushButton_horizontal_2->setGeometry(0,((double) qrand()/RAND_MAX) * 460,50,20);
-    }
-    ui->pushButton_vertical_1->setGeometry(ui->pushButton_vertical_1->pos().x(),ui->pushButton_vertical_1->pos().y() + 5,20,50);
-    if(ui->pushButton_vertical_1->pos().y() > 480){
-        ui->pushButton_vertical_1->setGeometry(((double) qrand()/RAND_MAX) * 780,0,20,50);
-    }
-    ui->pushButton_vertical_2->setGeometry(ui->pushButton_vertical_2->pos().x(),ui->pushButton_vertical_2->pos().y() + 5,20,50);
-    if(ui->pushButton_vertical_2->pos().y() > 480){
-        ui->pushButton_vertical_2->setGeometry(((double) qrand()/RAND_MAX) * 780,0,20,50);
-    }
-
-    switch (game_command) {
-    case 2:
-        if(ui->pushButton->pos().y() > 5){
-            ui->pushButton->setGeometry(ui->pushButton->pos().x(),ui->pushButton->pos().y() - 10,100,100);
-        }
-        break;
-    case 3:
-        if(ui->pushButton->pos().x() > 5){
-            ui->pushButton->setGeometry(ui->pushButton->pos().x() - 10,ui->pushButton->pos().y(),100,100);
-        }
-        break;
-    case 4:
-        if(ui->pushButton->pos().x() < 695){
-            ui->pushButton->setGeometry(ui->pushButton->pos().x() + 10,ui->pushButton->pos().y(),100,100);
-        }
-        break;
-    case 5:
-        if(ui->pushButton->pos().y() < 380){
-            ui->pushButton->setGeometry(ui->pushButton->pos().x(),ui->pushButton->pos().y() + 10,100,100);
-        }
-        break;
-    default:
-        break;
-    }
-}
-
 void ann::thread_handler(void){
     if(train_status == 1){
         _76800_1024_1024_6_ann_train(   net_76800_1024_1024_6.input,
