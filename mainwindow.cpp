@@ -9,8 +9,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ann_class = new ann(this);
 
-    connect(ui->pushButton_snapshot_object_automatic,SIGNAL(clicked(bool)), this,SLOT(get_object_picture_automatic()));
-
     _100_msec_timer = new QTimer(this);
     _100_msec_timer->setInterval(1000);
     _100_msec_timer->start();
