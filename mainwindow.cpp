@@ -66,6 +66,7 @@ void MainWindow::read_money_values(void){
         altin[line_no] = str7.toDouble();
         petrol[line_no] = str8.toDouble();
         faiz[line_no] = str9.toDouble();
+
         line_no++;
     }
 
@@ -76,6 +77,31 @@ void MainWindow::read_money_values(void){
                  << QString("altin : %1").arg(altin[i]) << QString("petrol : %1").arg(petrol[i]) << QString("faiz : %1").arg(faiz[i]);
     }
 
+    for(u32 i = 0; i < INPUT_SET; i++){
+        ann_class->net_76800_1024_1024_6.input[0][i] = 0.1 * dollar[i];
+        ann_class->net_76800_1024_1024_6.input[1][i] = 0.1 * euro[i];
+        ann_class->net_76800_1024_1024_6.input[2][i] = 0.1 * sterlin[i];
+        ann_class->net_76800_1024_1024_6.input[3][i] = 0.001 * yen[i];
+        ann_class->net_76800_1024_1024_6.input[4][i] = 0.001 * bist[i];
+        ann_class->net_76800_1024_1024_6.input[5][i] = 0.1 * altin[i];
+        ann_class->net_76800_1024_1024_6.input[6][i] = 0.01 * petrol[i];
+        ann_class->net_76800_1024_1024_6.input[7][i] = 0.00001 * faiz[i];
+
+        ann_class->net_76800_1024_1024_6.desired_output[0][i] = 0.1 * dollar[i+1];
+        ann_class->net_76800_1024_1024_6.desired_output[1][i] = 0.1 * dollar[i+2];
+        ann_class->net_76800_1024_1024_6.desired_output[2][i] = 0.1 * dollar[i+3];
+    }
+
+    for(u32 i = 0; i < INPUT_SET; i++){
+        qDebug() << QString("set : %1").arg(number[i]) << QString("dollar : %1").arg(ann_class->net_76800_1024_1024_6.input[0][i])
+                 << QString("euro : %1").arg(ann_class->net_76800_1024_1024_6.input[1][i])
+                << QString("sterlin : %1").arg(ann_class->net_76800_1024_1024_6.input[2][i])
+                 << QString("yen : %1").arg(ann_class->net_76800_1024_1024_6.input[3][i])
+                << QString("bist : %1").arg(ann_class->net_76800_1024_1024_6.input[4][i])
+                 << QString("altin : %1").arg(ann_class->net_76800_1024_1024_6.input[5][i])
+                << QString("petrol : %1").arg(ann_class->net_76800_1024_1024_6.input[6][i])
+                << QString("faiz : %1").arg(ann_class->net_76800_1024_1024_6.input[7][i]);
+    }
 }
 void MainWindow::mousePressEvent(QMouseEvent *event){
 }

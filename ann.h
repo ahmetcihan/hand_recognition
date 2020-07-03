@@ -33,9 +33,9 @@ public:
     u8 stop_the_training;
 
     struct _76800_1024_1024_6_str{
-        double input[INPUT_COUNT];
-        double desired_output[OUTPUT_COUNT];
-        double calculated_output[OUTPUT_COUNT];
+        double input[INPUT_COUNT][INPUT_SET];
+        double desired_output[OUTPUT_COUNT][INPUT_SET];
+        double calculated_output[OUTPUT_COUNT][INPUT_SET];
         double hidden_neuron_bias_1[HIDDEN_COUNT_1];
         double hidden_neuron_bias_2[HIDDEN_COUNT_2];
         double hidden_neuron_bias_3[HIDDEN_COUNT_3];
@@ -55,8 +55,8 @@ public:
     };
     struct _76800_1024_1024_6_str net_76800_1024_1024_6;
 
-    void _76800_1024_1024_6_ann_train(  double input[INPUT_COUNT],
-                                        double desired_output[OUTPUT_COUNT], double calculated_output[OUTPUT_COUNT],
+    void _76800_1024_1024_6_ann_train(double input[INPUT_COUNT][INPUT_SET],
+                                        double desired_output[OUTPUT_COUNT][INPUT_SET], double calculated_output[OUTPUT_COUNT][INPUT_SET],
                                         double hidden_neuron_bias_1[HIDDEN_COUNT_1],
                                         double hidden_neuron_bias_2[HIDDEN_COUNT_2],
                                         double hidden_neuron_bias_3[HIDDEN_COUNT_3],
@@ -83,7 +83,7 @@ public:
                                         double w_hidden_3_to_hidden_4[HIDDEN_COUNT_3][HIDDEN_COUNT_4],
                                         double w_hidden_4_to_hidden_5[HIDDEN_COUNT_4][HIDDEN_COUNT_5],
                                         double w_hidden_5_to_output[HIDDEN_COUNT_5][OUTPUT_COUNT]);
-    double _76800_1024_1024_6_ann_calculate_total_error(double *max_err);
+    double _76800_1024_1024_6_ann_calculate_total_error(double *max_err, u32 set_no);
 
 private:
     Ui::ann *ui;
