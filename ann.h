@@ -33,9 +33,9 @@ public:
     u8 stop_the_training;
 
     struct _76800_1024_1024_6_str{
-        double input[INPUT_COUNT][INPUT_SET];
-        double desired_output[OUTPUT_COUNT][INPUT_SET];
-        double calculated_output[OUTPUT_COUNT][INPUT_SET];
+        double input[INPUT_COUNT];
+        double desired_output[OUTPUT_COUNT];
+        double calculated_output[OUTPUT_COUNT];
         double hidden_neuron_bias_1[HIDDEN_COUNT_1];
         double hidden_neuron_bias_2[HIDDEN_COUNT_2];
         double hidden_neuron_bias_3[HIDDEN_COUNT_3];
@@ -55,8 +55,8 @@ public:
     };
     struct _76800_1024_1024_6_str net_76800_1024_1024_6;
 
-    void _76800_1024_1024_6_ann_train(double input[INPUT_COUNT][INPUT_SET],
-                                        double desired_output[OUTPUT_COUNT][INPUT_SET], double calculated_output[OUTPUT_COUNT][INPUT_SET],
+    void _76800_1024_1024_6_ann_train(double input[INPUT_COUNT],
+                                        double desired_output[OUTPUT_COUNT], double calculated_output[OUTPUT_COUNT],
                                         double hidden_neuron_bias_1[HIDDEN_COUNT_1],
                                         double hidden_neuron_bias_2[HIDDEN_COUNT_2],
                                         double hidden_neuron_bias_3[HIDDEN_COUNT_3],
