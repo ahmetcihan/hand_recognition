@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-double ann::_76800_1024_1024_6_ann_calculate_total_error(double *max_err,u32 set_no){
+double ann::_76800_1024_1024_6_ann_calculate_total_error(double *max_err){
     double total_error = 0;
     double aux;
     double max_error = 0;
@@ -155,6 +155,7 @@ void ann::_76800_1024_1024_6_ann_train( double input[INPUT_COUNT],
 
     for(u32 era = 0; era < epoch; era++){
         for(u32 inset = 0; inset < INPUT_SET; inset++){
+            prepare_inputset(inset);
             learning_rate = mainwindow->ui->doubleSpinBox->value() * mainwindow->ui->doubleSpinBox_2->value();
 
             /*****************FORWARD PROPAGATION********************/
@@ -297,7 +298,7 @@ void ann::_76800_1024_1024_6_ann_train( double input[INPUT_COUNT],
             }
 
 
-            inset_sse[inset] = _76800_1024_1024_6_ann_calculate_total_error(&max_abs_err[inset],inset);
+            inset_sse[inset] = _76800_1024_1024_6_ann_calculate_total_error(&max_abs_err[inset]);
         }
         net_76800_1024_1024_6.total_err = 0;
         net_76800_1024_1024_6.max_error = 0;
@@ -516,4 +517,20 @@ void MainWindow::_76800_1024_1024_6_load_saved_weights_handler(void){
 }
 void MainWindow::_76800_1024_1024_6_stop_train_handler(void){
     ann_class->stop_the_training = 1;
+}
+void ann::prepare_inputset(u32 input_s){
+    for(u32 i = 0; i < 20; i++){
+        net_76800_1024_1024_6.input[20*0 + i] = 0.1 *       dollar[i + input_s];
+        net_76800_1024_1024_6.input[20*1 + i] = 0.1 *       euro[i + input_s];
+        net_76800_1024_1024_6.input[20*2 + i] = 0.01 *      yen[i + input_s];
+        net_76800_1024_1024_6.input[20*3 + i] = 0.1 *       sterlin[i + input_s];
+        net_76800_1024_1024_6.input[20*4 + i] = 0.1 *       altin[i + input_s];
+        net_76800_1024_1024_6.input[20*5 + i] = 0.01 *      petrol[i + input_s];
+        net_76800_1024_1024_6.input[20*6 + i] = 0.001 *     bist_100[i + input_s];
+        net_76800_1024_1024_6.input[20*7 + i] = 0.001 *     bist_all[i + input_s];
+        net_76800_1024_1024_6.input[20*8 + i] = 0.00001 *   faiz[i + input_s];
+    }
+    net_76800_1024_1024_6.desired_output[0] = 0.1 * dollar[20 + input_s];
+    net_76800_1024_1024_6.desired_output[1] = 0.1 * dollar[21 + input_s];
+    net_76800_1024_1024_6.desired_output[2] = 0.1 * dollar[22 + input_s];
 }

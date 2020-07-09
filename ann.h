@@ -32,6 +32,17 @@ public:
     u32 epoch_no;
     u8 stop_the_training;
 
+    double  dollar  [3000];
+    double  euro    [3000];
+    double  yen     [3000];
+    double  sterlin [3000];
+    double  altin   [3000];
+    double  petrol  [3000];
+    double  bist_100[3000];
+    double  bist_all[3000];
+    double  faiz    [3000];
+
+
     struct _76800_1024_1024_6_str{
         double input[INPUT_COUNT];
         double desired_output[OUTPUT_COUNT];
@@ -83,7 +94,8 @@ public:
                                         double w_hidden_3_to_hidden_4[HIDDEN_COUNT_3][HIDDEN_COUNT_4],
                                         double w_hidden_4_to_hidden_5[HIDDEN_COUNT_4][HIDDEN_COUNT_5],
                                         double w_hidden_5_to_output[HIDDEN_COUNT_5][OUTPUT_COUNT]);
-    double _76800_1024_1024_6_ann_calculate_total_error(double *max_err, u32 set_no);
+    double _76800_1024_1024_6_ann_calculate_total_error(double *max_err);
+    void prepare_inputset(u32 input_s);
 
 private:
     Ui::ann *ui;
