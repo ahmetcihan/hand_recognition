@@ -122,7 +122,7 @@ void MainWindow::_100_msec_timer_handle(void){
         ui->label_76800_1024_1024_6_train_status_3->setText(QString("wh122-0 : %1 , wh223-0 : %2 , wh52o-0 : %3").
                                                             arg(ann_class->net_76800_1024_1024_6.w_hidden_1_to_hidden_2[0][0]).
                                                             arg(ann_class->net_76800_1024_1024_6.w_hidden_2_to_hidden_3[0][0]).
-                                                            arg(ann_class->net_76800_1024_1024_6.w_hidden_5_to_output[0][0]));
+                                                            arg(ann_class->net_76800_1024_1024_6.w_hidden_10_to_output[0][0]));
         ui->label_76800_1024_1024_6_train_status_4->setText(QString("max_err : %1 , inset : %2").
                                                             arg(ann_class->net_76800_1024_1024_6.max_error).
                                                             arg(ann_class->net_76800_1024_1024_6.max_error_inset_no));

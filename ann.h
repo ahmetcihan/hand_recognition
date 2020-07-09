@@ -52,13 +52,23 @@ public:
         double hidden_neuron_bias_3[HIDDEN_COUNT_3];
         double hidden_neuron_bias_4[HIDDEN_COUNT_4];
         double hidden_neuron_bias_5[HIDDEN_COUNT_5];
+        double hidden_neuron_bias_6[HIDDEN_COUNT_6];
+        double hidden_neuron_bias_7[HIDDEN_COUNT_7];
+        double hidden_neuron_bias_8[HIDDEN_COUNT_8];
+        double hidden_neuron_bias_9[HIDDEN_COUNT_9];
+        double hidden_neuron_bias_10[HIDDEN_COUNT_10];
         double output_bias[OUTPUT_COUNT];
         double w_input_to_hidden_1[INPUT_COUNT][HIDDEN_COUNT_1];
         double w_hidden_1_to_hidden_2[HIDDEN_COUNT_1][HIDDEN_COUNT_2];
         double w_hidden_2_to_hidden_3[HIDDEN_COUNT_2][HIDDEN_COUNT_3];
         double w_hidden_3_to_hidden_4[HIDDEN_COUNT_3][HIDDEN_COUNT_4];
         double w_hidden_4_to_hidden_5[HIDDEN_COUNT_4][HIDDEN_COUNT_5];
-        double w_hidden_5_to_output[HIDDEN_COUNT_5][OUTPUT_COUNT];
+        double w_hidden_5_to_hidden_6[HIDDEN_COUNT_5][HIDDEN_COUNT_6];
+        double w_hidden_6_to_hidden_7[HIDDEN_COUNT_6][HIDDEN_COUNT_7];
+        double w_hidden_7_to_hidden_8[HIDDEN_COUNT_7][HIDDEN_COUNT_8];
+        double w_hidden_8_to_hidden_9[HIDDEN_COUNT_8][HIDDEN_COUNT_9];
+        double w_hidden_9_to_hidden_10[HIDDEN_COUNT_9][HIDDEN_COUNT_10];
+        double w_hidden_10_to_output[HIDDEN_COUNT_10][OUTPUT_COUNT];
         double test_input[INPUT_COUNT];
         double total_err;
         double max_error;
@@ -73,13 +83,23 @@ public:
                                         double hidden_neuron_bias_3[HIDDEN_COUNT_3],
                                         double hidden_neuron_bias_4[HIDDEN_COUNT_4],
                                         double hidden_neuron_bias_5[HIDDEN_COUNT_5],
+                                        double hidden_neuron_bias_6[HIDDEN_COUNT_6],
+                                        double hidden_neuron_bias_7[HIDDEN_COUNT_7],
+                                        double hidden_neuron_bias_8[HIDDEN_COUNT_8],
+                                        double hidden_neuron_bias_9[HIDDEN_COUNT_9],
+                                        double hidden_neuron_bias_10[HIDDEN_COUNT_10],
                                         double output_bias[OUTPUT_COUNT],
                                         double w_input_to_hidden_1[INPUT_COUNT][HIDDEN_COUNT_1],
                                         double w_hidden_1_to_hidden_2[HIDDEN_COUNT_1][HIDDEN_COUNT_2],
                                         double w_hidden_2_to_hidden_3[HIDDEN_COUNT_2][HIDDEN_COUNT_3],
                                         double w_hidden_3_to_hidden_4[HIDDEN_COUNT_3][HIDDEN_COUNT_4],
                                         double w_hidden_4_to_hidden_5[HIDDEN_COUNT_4][HIDDEN_COUNT_5],
-                                        double w_hidden_5_to_output[HIDDEN_COUNT_5][OUTPUT_COUNT],
+                                        double w_hidden_5_to_hidden_6[HIDDEN_COUNT_5][HIDDEN_COUNT_6],
+                                        double w_hidden_6_to_hidden_7[HIDDEN_COUNT_6][HIDDEN_COUNT_7],
+                                        double w_hidden_7_to_hidden_8[HIDDEN_COUNT_7][HIDDEN_COUNT_8],
+                                        double w_hidden_8_to_hidden_9[HIDDEN_COUNT_8][HIDDEN_COUNT_9],
+                                        double w_hidden_9_to_hidden_10[HIDDEN_COUNT_9][HIDDEN_COUNT_10],
+                                        double w_hidden_10_to_output[HIDDEN_COUNT_10][OUTPUT_COUNT],
                                         u32 epoch, double learning_rate);
     void _76800_1024_1024_6_ann_test(double input[INPUT_COUNT],
                                         double hidden_neuron_bias_1[HIDDEN_COUNT_1],
@@ -87,13 +107,23 @@ public:
                                         double hidden_neuron_bias_3[HIDDEN_COUNT_3],
                                         double hidden_neuron_bias_4[HIDDEN_COUNT_4],
                                         double hidden_neuron_bias_5[HIDDEN_COUNT_5],
+                                        double hidden_neuron_bias_6[HIDDEN_COUNT_6],
+                                        double hidden_neuron_bias_7[HIDDEN_COUNT_7],
+                                        double hidden_neuron_bias_8[HIDDEN_COUNT_8],
+                                        double hidden_neuron_bias_9[HIDDEN_COUNT_9],
+                                        double hidden_neuron_bias_10[HIDDEN_COUNT_10],
                                         double output_bias[OUTPUT_COUNT],
                                         double w_input_to_hidden_1[INPUT_COUNT][HIDDEN_COUNT_1],
                                         double w_hidden_1_to_hidden_2[HIDDEN_COUNT_1][HIDDEN_COUNT_2],
                                         double w_hidden_2_to_hidden_3[HIDDEN_COUNT_2][HIDDEN_COUNT_3],
                                         double w_hidden_3_to_hidden_4[HIDDEN_COUNT_3][HIDDEN_COUNT_4],
                                         double w_hidden_4_to_hidden_5[HIDDEN_COUNT_4][HIDDEN_COUNT_5],
-                                        double w_hidden_5_to_output[HIDDEN_COUNT_5][OUTPUT_COUNT]);
+                                        double w_hidden_5_to_hidden_6[HIDDEN_COUNT_5][HIDDEN_COUNT_6],
+                                        double w_hidden_6_to_hidden_7[HIDDEN_COUNT_6][HIDDEN_COUNT_7],
+                                        double w_hidden_7_to_hidden_8[HIDDEN_COUNT_7][HIDDEN_COUNT_8],
+                                        double w_hidden_8_to_hidden_9[HIDDEN_COUNT_8][HIDDEN_COUNT_9],
+                                        double w_hidden_9_to_hidden_10[HIDDEN_COUNT_9][HIDDEN_COUNT_10],
+                                        double w_hidden_10_to_output[HIDDEN_COUNT_10][OUTPUT_COUNT]);
     double _76800_1024_1024_6_ann_calculate_total_error(double *max_err);
     void prepare_inputset(u32 input_s);
 
