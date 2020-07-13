@@ -667,6 +667,21 @@ void MainWindow::_76800_1024_1024_6_save_weights_handler(void){
     for(u32 i = 0; i < HIDDEN_COUNT_5; i++){
         settings.setValue(QString("hb5-%1").arg(i),ann_class->net_76800_1024_1024_6.hidden_neuron_bias_5[i]);
     }
+    for(u32 i = 0; i < HIDDEN_COUNT_6; i++){
+        settings.setValue(QString("hb6-%1").arg(i),ann_class->net_76800_1024_1024_6.hidden_neuron_bias_6[i]);
+    }
+    for(u32 i = 0; i < HIDDEN_COUNT_7; i++){
+        settings.setValue(QString("hb7-%1").arg(i),ann_class->net_76800_1024_1024_6.hidden_neuron_bias_7[i]);
+    }
+    for(u32 i = 0; i < HIDDEN_COUNT_8; i++){
+        settings.setValue(QString("hb8-%1").arg(i),ann_class->net_76800_1024_1024_6.hidden_neuron_bias_8[i]);
+    }
+    for(u32 i = 0; i < HIDDEN_COUNT_9; i++){
+        settings.setValue(QString("hb9-%1").arg(i),ann_class->net_76800_1024_1024_6.hidden_neuron_bias_9[i]);
+    }
+    for(u32 i = 0; i < HIDDEN_COUNT_10; i++){
+        settings.setValue(QString("hb10-%1").arg(i),ann_class->net_76800_1024_1024_6.hidden_neuron_bias_10[i]);
+    }
     for(u32 i = 0; i < OUTPUT_COUNT; i++){
         settings.setValue(QString("ob-%1").arg(i),ann_class->net_76800_1024_1024_6.output_bias[i]);
     }
@@ -750,6 +765,21 @@ void MainWindow::_76800_1024_1024_6_load_saved_weights_handler(void){
     for(u32 i = 0; i < HIDDEN_COUNT_5; i++){
         ann_class->net_76800_1024_1024_6.hidden_neuron_bias_5[i] = settings.value(QString("w/hb5-%1").arg(i)).toDouble();
     }
+    for(u32 i = 0; i < HIDDEN_COUNT_6; i++){
+        ann_class->net_76800_1024_1024_6.hidden_neuron_bias_6[i] = settings.value(QString("w/hb6-%1").arg(i)).toDouble();
+    }
+    for(u32 i = 0; i < HIDDEN_COUNT_7; i++){
+        ann_class->net_76800_1024_1024_6.hidden_neuron_bias_7[i] = settings.value(QString("w/hb7-%1").arg(i)).toDouble();
+    }
+    for(u32 i = 0; i < HIDDEN_COUNT_8; i++){
+        ann_class->net_76800_1024_1024_6.hidden_neuron_bias_8[i] = settings.value(QString("w/hb8-%1").arg(i)).toDouble();
+    }
+    for(u32 i = 0; i < HIDDEN_COUNT_9; i++){
+        ann_class->net_76800_1024_1024_6.hidden_neuron_bias_9[i] = settings.value(QString("w/hb9-%1").arg(i)).toDouble();
+    }
+    for(u32 i = 0; i < HIDDEN_COUNT_10; i++){
+        ann_class->net_76800_1024_1024_6.hidden_neuron_bias_10[i] = settings.value(QString("w/hb10-%1").arg(i)).toDouble();
+    }
     for(u32 i = 0; i < OUTPUT_COUNT; i++){
         ann_class->net_76800_1024_1024_6.output_bias[i] = settings.value(QString("w/ob-%1").arg(i)).toDouble();
     }
@@ -824,8 +854,7 @@ void ann::prepare_inputset(u32 input_s){
         net_76800_1024_1024_6.input[20*4 + i] = 0.1 *       altin[i + input_s];
         net_76800_1024_1024_6.input[20*5 + i] = 0.01 *      petrol[i + input_s];
         net_76800_1024_1024_6.input[20*6 + i] = 0.001 *     bist_100[i + input_s];
-        net_76800_1024_1024_6.input[20*7 + i] = 0.001 *     bist_all[i + input_s];
-        net_76800_1024_1024_6.input[20*8 + i] = 0.00001 *   faiz[i + input_s];
+        net_76800_1024_1024_6.input[20*7 + i] = 0.00001 *   faiz[i + input_s];
     }
     net_76800_1024_1024_6.desired_output[0] = 0.1 * dollar[20 + input_s];
     net_76800_1024_1024_6.desired_output[1] = 0.1 * dollar[21 + input_s];

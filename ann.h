@@ -39,7 +39,6 @@ public:
     double  altin   [3000];
     double  petrol  [3000];
     double  bist_100[3000];
-    double  bist_all[3000];
     double  faiz    [3000];
 
 
