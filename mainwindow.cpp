@@ -85,38 +85,38 @@ void MainWindow::read_money_values(void){
                     << QString("tatil : %1")    .arg(ann_class->tatil[i]);
     }
 
-    for(u32 i = 0; i < 20; i++){
-        ann_class->net_76800_1024_1024_6.input[20*0 + i] = ann_class->dollar[i];
-        ann_class->net_76800_1024_1024_6.input[20*1 + i] = ann_class->euro[i];
-        ann_class->net_76800_1024_1024_6.input[20*2 + i] = ann_class->yen[i];
-        ann_class->net_76800_1024_1024_6.input[20*3 + i] = ann_class->sterlin[i];
-        ann_class->net_76800_1024_1024_6.input[20*4 + i] = ann_class->altin[i];
-        ann_class->net_76800_1024_1024_6.input[20*5 + i] = 0.1 * ann_class->petrol[i];
-        ann_class->net_76800_1024_1024_6.input[20*6 + i] = 0.1 * ann_class->bist_100[i];
-        ann_class->net_76800_1024_1024_6.input[20*7 + i] = 0.001 * ann_class->faiz[i];
-        ann_class->net_76800_1024_1024_6.input[20*8 + i] = 0.0001 * ann_class->dollar_index[i];
-        ann_class->net_76800_1024_1024_6.input[20*9 + i] = ann_class->ay[i];
-        ann_class->net_76800_1024_1024_6.input[20*10 + i] = ann_class->yil[i];
-        ann_class->net_76800_1024_1024_6.input[20*11 + i] = ann_class->tatil[i];
+    for(u32 i = 0; i < 10; i++){
+        ann_class->net_76800_1024_1024_6.input[10*0 + i] = ann_class->dollar[i];
+        ann_class->net_76800_1024_1024_6.input[10*1 + i] = ann_class->euro[i];
+        ann_class->net_76800_1024_1024_6.input[10*2 + i] = ann_class->yen[i];
+        ann_class->net_76800_1024_1024_6.input[10*3 + i] = ann_class->sterlin[i];
+        ann_class->net_76800_1024_1024_6.input[10*4 + i] = ann_class->altin[i];
+        ann_class->net_76800_1024_1024_6.input[10*5 + i] = 0.1 * ann_class->petrol[i];
+        ann_class->net_76800_1024_1024_6.input[10*6 + i] = 0.1 * ann_class->bist_100[i];
+        ann_class->net_76800_1024_1024_6.input[10*7 + i] = 0.001 * ann_class->faiz[i];
+        ann_class->net_76800_1024_1024_6.input[10*8 + i] = 0.0001 * ann_class->dollar_index[i];
+        ann_class->net_76800_1024_1024_6.input[10*9 + i] = ann_class->ay[i];
+        ann_class->net_76800_1024_1024_6.input[10*10 + i] = ann_class->yil[i];
+        ann_class->net_76800_1024_1024_6.input[10*11 + i] = ann_class->tatil[i];
     }
 
-    ann_class->net_76800_1024_1024_6.desired_output[0] = ann_class->dollar[20];
-    ann_class->net_76800_1024_1024_6.desired_output[1] = ann_class->dollar[21];
-    ann_class->net_76800_1024_1024_6.desired_output[2] = ann_class->dollar[22];
+    ann_class->net_76800_1024_1024_6.desired_output[0] = ann_class->dollar[10];
+    ann_class->net_76800_1024_1024_6.desired_output[1] = ann_class->dollar[11];
+    ann_class->net_76800_1024_1024_6.desired_output[2] = ann_class->dollar[12];
 
     qDebug()    << QString("set : %1")      .arg(number[0])
-                << QString("dollar : %1")   .arg(ann_class->net_76800_1024_1024_6.input[20*0])
-                << QString("euro : %1")     .arg(ann_class->net_76800_1024_1024_6.input[20*1])
-                << QString("yen : %1")      .arg(ann_class->net_76800_1024_1024_6.input[20*2])
-                << QString("sterlin : %1")  .arg(ann_class->net_76800_1024_1024_6.input[20*3])
-                << QString("altin : %1")    .arg(ann_class->net_76800_1024_1024_6.input[20*4])
-                << QString("petrol : %1")   .arg(ann_class->net_76800_1024_1024_6.input[20*5])
-                << QString("bist_100 : %1") .arg(ann_class->net_76800_1024_1024_6.input[20*6])
-                << QString("faiz : %1")     .arg(ann_class->net_76800_1024_1024_6.input[20*7])
-                << QString("dollar index : %1")     .arg(ann_class->net_76800_1024_1024_6.input[20*8])
-                << QString("ay : %1")       .arg(ann_class->net_76800_1024_1024_6.input[20*9])
-                << QString("yil : %1")      .arg(ann_class->net_76800_1024_1024_6.input[20*10])
-                << QString("tatil : %1")    .arg(ann_class->net_76800_1024_1024_6.input[20*11]);
+                << QString("dollar : %1")   .arg(ann_class->net_76800_1024_1024_6.input[10*0])
+                << QString("euro : %1")     .arg(ann_class->net_76800_1024_1024_6.input[10*1])
+                << QString("yen : %1")      .arg(ann_class->net_76800_1024_1024_6.input[10*2])
+                << QString("sterlin : %1")  .arg(ann_class->net_76800_1024_1024_6.input[10*3])
+                << QString("altin : %1")    .arg(ann_class->net_76800_1024_1024_6.input[10*4])
+                << QString("petrol : %1")   .arg(ann_class->net_76800_1024_1024_6.input[10*5])
+                << QString("bist_100 : %1") .arg(ann_class->net_76800_1024_1024_6.input[10*6])
+                << QString("faiz : %1")     .arg(ann_class->net_76800_1024_1024_6.input[10*7])
+                << QString("dollar index : %1")     .arg(ann_class->net_76800_1024_1024_6.input[10*8])
+                << QString("ay : %1")       .arg(ann_class->net_76800_1024_1024_6.input[10*9])
+                << QString("yil : %1")      .arg(ann_class->net_76800_1024_1024_6.input[10*10])
+                << QString("tatil : %1")    .arg(ann_class->net_76800_1024_1024_6.input[10*11]);
 }
 void MainWindow::mousePressEvent(QMouseEvent *event){
 }

@@ -663,19 +663,19 @@ void MainWindow::_76800_1024_1024_6_test_handler(void){
         line_no++;
     }
 
-    for(u32 i = 0; i < 20; i++){
-        ann_class->net_76800_1024_1024_6.test_input[20*0 + i] = tester_dollar[i];
-        ann_class->net_76800_1024_1024_6.test_input[20*1 + i] = tester_euro[i];
-        ann_class->net_76800_1024_1024_6.test_input[20*2 + i] = tester_yen[i];
-        ann_class->net_76800_1024_1024_6.test_input[20*3 + i] = tester_sterlin[i];
-        ann_class->net_76800_1024_1024_6.test_input[20*4 + i] = tester_altin[i];
-        ann_class->net_76800_1024_1024_6.test_input[20*5 + i] = 0.1 * tester_petrol[i];
-        ann_class->net_76800_1024_1024_6.test_input[20*6 + i] = 0.1 * tester_bist_100[i];
-        ann_class->net_76800_1024_1024_6.test_input[20*7 + i] = 0.001 * tester_faiz[i];
-        ann_class->net_76800_1024_1024_6.test_input[20*8 + i] = 0.0001 * tester_dollar_index[i];
-        ann_class->net_76800_1024_1024_6.test_input[20*9 + i] = tester_ay[i];
-        ann_class->net_76800_1024_1024_6.test_input[20*10 + i] = tester_yil[i];
-        ann_class->net_76800_1024_1024_6.test_input[20*11 + i] = tester_tatil[i];
+    for(u32 i = 0; i < 10; i++){
+        ann_class->net_76800_1024_1024_6.test_input[10*0 + i] = tester_dollar[i];
+        ann_class->net_76800_1024_1024_6.test_input[10*1 + i] = tester_euro[i];
+        ann_class->net_76800_1024_1024_6.test_input[10*2 + i] = tester_yen[i];
+        ann_class->net_76800_1024_1024_6.test_input[10*3 + i] = tester_sterlin[i];
+        ann_class->net_76800_1024_1024_6.test_input[10*4 + i] = tester_altin[i];
+        ann_class->net_76800_1024_1024_6.test_input[10*5 + i] = 0.1 * tester_petrol[i];
+        ann_class->net_76800_1024_1024_6.test_input[10*6 + i] = 0.1 * tester_bist_100[i];
+        ann_class->net_76800_1024_1024_6.test_input[10*7 + i] = 0.001 * tester_faiz[i];
+        ann_class->net_76800_1024_1024_6.test_input[10*8 + i] = 0.0001 * tester_dollar_index[i];
+        ann_class->net_76800_1024_1024_6.test_input[10*9 + i] = tester_ay[i];
+        ann_class->net_76800_1024_1024_6.test_input[10*10 + i] = tester_yil[i];
+        ann_class->net_76800_1024_1024_6.test_input[10*11 + i] = tester_tatil[i];
 
         qDebug()    << QString("No : %1")       .arg(tester_number[i])
                     << QString("dollar : %1")   .arg(tester_dollar[i])
@@ -692,9 +692,9 @@ void MainWindow::_76800_1024_1024_6_test_handler(void){
                     << QString("tatil : %1")    .arg(tester_tatil[i]);
     }
 
-    ann_class->net_76800_1024_1024_6.desired_output[0] = tester_dollar[20];
-    ann_class->net_76800_1024_1024_6.desired_output[1] = tester_dollar[21];
-    ann_class->net_76800_1024_1024_6.desired_output[2] = tester_dollar[22];
+    ann_class->net_76800_1024_1024_6.desired_output[0] = tester_dollar[10];
+    ann_class->net_76800_1024_1024_6.desired_output[1] = tester_dollar[11];
+    ann_class->net_76800_1024_1024_6.desired_output[2] = tester_dollar[12];
 
 
 
@@ -922,21 +922,21 @@ void MainWindow::_76800_1024_1024_6_stop_train_handler(void){
     ann_class->stop_the_training = 1;
 }
 void ann::prepare_inputset(u32 input_s){
-    for(u32 i = 0; i < 20; i++){
-        net_76800_1024_1024_6.input[20*0 + i] = dollar[i + input_s];
-        net_76800_1024_1024_6.input[20*1 + i] = euro[i + input_s];
-        net_76800_1024_1024_6.input[20*2 + i] = yen[i + input_s];
-        net_76800_1024_1024_6.input[20*3 + i] = sterlin[i + input_s];
-        net_76800_1024_1024_6.input[20*4 + i] = altin[i + input_s];
-        net_76800_1024_1024_6.input[20*5 + i] = 0.1 * petrol[i + input_s];
-        net_76800_1024_1024_6.input[20*6 + i] = 0.1 * bist_100[i + input_s];
-        net_76800_1024_1024_6.input[20*7 + i] = 0.001 * faiz[i + input_s];
-        net_76800_1024_1024_6.input[20*8 + i] = 0.0001 * dollar_index[i + input_s];
-        net_76800_1024_1024_6.input[20*9 + i] = ay[i + input_s];
-        net_76800_1024_1024_6.input[20*10 + i] = yil[i + input_s];
-        net_76800_1024_1024_6.input[20*11 + i] = tatil[i + input_s];
+    for(u32 i = 0; i < 10; i++){
+        net_76800_1024_1024_6.input[10*0 + i] = dollar[i + input_s];
+        net_76800_1024_1024_6.input[10*1 + i] = euro[i + input_s];
+        net_76800_1024_1024_6.input[10*2 + i] = yen[i + input_s];
+        net_76800_1024_1024_6.input[10*3 + i] = sterlin[i + input_s];
+        net_76800_1024_1024_6.input[10*4 + i] = altin[i + input_s];
+        net_76800_1024_1024_6.input[10*5 + i] = 0.1 * petrol[i + input_s];
+        net_76800_1024_1024_6.input[10*6 + i] = 0.1 * bist_100[i + input_s];
+        net_76800_1024_1024_6.input[10*7 + i] = 0.001 * faiz[i + input_s];
+        net_76800_1024_1024_6.input[10*8 + i] = 0.0001 * dollar_index[i + input_s];
+        net_76800_1024_1024_6.input[10*9 + i] = ay[i + input_s];
+        net_76800_1024_1024_6.input[10*10 + i] = yil[i + input_s];
+        net_76800_1024_1024_6.input[10*11 + i] = tatil[i + input_s];
     }
-    net_76800_1024_1024_6.desired_output[0] = dollar[20 + input_s];
-    net_76800_1024_1024_6.desired_output[1] = dollar[21 + input_s];
-    net_76800_1024_1024_6.desired_output[2] = dollar[22 + input_s];
+    net_76800_1024_1024_6.desired_output[0] = dollar[10 + input_s];
+    net_76800_1024_1024_6.desired_output[1] = dollar[11 + input_s];
+    net_76800_1024_1024_6.desired_output[2] = dollar[12 + input_s];
 }
