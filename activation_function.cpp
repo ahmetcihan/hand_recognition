@@ -17,6 +17,7 @@ double ann::sigmoid_func(double val){
 //    else if (val < -6) return 0;
 //    else return (val + 6)/12;
     /*****************************/
+    //return val/(1+fabs(val));           //softsign
 }
 double ann::derivative_of_sigmoid_func(double val){
     //return (sigmoid_func(val) * (1 - sigmoid_func(val)));                     //sigmoid   - good - u:0.8 is the best
@@ -35,22 +36,33 @@ double ann::derivative_of_sigmoid_func(double val){
 //    else if (val < -6) return 0;
 //    else return 1/12;
     /*****************************/
+    //return val/((1+fabs(val)) * (1+fabs(val)));           //softsign
 }
 double ann::output_sigmoid_func(double val){
     //return (1 / (1 + exp(-val)));     //sigmoid   - good
     //return exp(-1*val*val);           //gaussien
     /*********Leaky RELU**********/     //ReLU      -
-    if(val <= 0) return (0.01*val);
-    else return val;
+    //if(val <= 0) return (0.01*val);
+    //else return val;
     /*****************************/
+    return atan(val);                 //atan      - not bad but slower
+    //return (log(1+exp(val)));         //softplus  - good but slower
+    //return tanh(val);                 //tanh      - not worked
+    //return val;                       //identity  - not properly worked
+    //return val/(1+fabs(val));           //softsign
 }
 double ann::output_derivative_of_sigmoid_func(double val){
     //return (sigmoid_func(val) * (1 - sigmoid_func(val)));                     //sigmoid   - good - u:0.8 is the best
     //return -2*val*sigmoid_func(val);                                          //gaussien
     /***************RELU**********/                                             //ReLU      - very good training but test is bad u:0.000132 is the best
-    if(val <= 0) return 0.01;
-    else return 1;
+    //if(val <= 0) return 0.01;
+    //else return 1;
     /*****************************/
+    return (1 / (1 + val*val));                                               //atan      - not bad but slower
+    //return (1 / (1 + exp(-val)));                                             //softplus  - good but slower
+    //return (1 - tanh(val)*tanh(val));                                         //tanh      - not worked
+    //return 1;                                                                 //identity  - not properly worked
+    //return val/((1+fabs(val)) * (1+fabs(val)));           //softsign
 }
 double ann::classic_MA_1(double raw_signal){
     static double running_average[64];

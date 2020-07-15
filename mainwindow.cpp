@@ -74,19 +74,28 @@ void MainWindow::read_money_values(void){
     }
 
     for(u32 i = 0; i < 20; i++){
-        ann_class->net_76800_1024_1024_6.input[20*0 + i] = 0.1 *       ann_class->dollar[i];
-        ann_class->net_76800_1024_1024_6.input[20*1 + i] = 0.1 *       ann_class->euro[i];
-        ann_class->net_76800_1024_1024_6.input[20*2 + i] = 0.01 *      ann_class->yen[i];
-        ann_class->net_76800_1024_1024_6.input[20*3 + i] = 0.1 *       ann_class->sterlin[i];
-        ann_class->net_76800_1024_1024_6.input[20*4 + i] = 0.1 *       ann_class->altin[i];
-        ann_class->net_76800_1024_1024_6.input[20*5 + i] = 0.01 *      ann_class->petrol[i];
-        ann_class->net_76800_1024_1024_6.input[20*6 + i] = 0.001 *     ann_class->bist_100[i];
-        ann_class->net_76800_1024_1024_6.input[20*7 + i] = 0.00001 *   ann_class->faiz[i];
+//        ann_class->net_76800_1024_1024_6.input[20*0 + i] = 0.1 *       ann_class->dollar[i];
+//        ann_class->net_76800_1024_1024_6.input[20*1 + i] = 0.1 *       ann_class->euro[i];
+//        ann_class->net_76800_1024_1024_6.input[20*2 + i] = 0.01 *      ann_class->yen[i];
+//        ann_class->net_76800_1024_1024_6.input[20*3 + i] = 0.1 *       ann_class->sterlin[i];
+//        ann_class->net_76800_1024_1024_6.input[20*4 + i] = 0.1 *       ann_class->altin[i];
+//        ann_class->net_76800_1024_1024_6.input[20*5 + i] = 0.01 *      ann_class->petrol[i];
+//        ann_class->net_76800_1024_1024_6.input[20*6 + i] = 0.001 *     ann_class->bist_100[i];
+//        ann_class->net_76800_1024_1024_6.input[20*7 + i] = 0.00001 *   ann_class->faiz[i];
+
+        ann_class->net_76800_1024_1024_6.input[20*0 + i] = ann_class->dollar[i];
+        ann_class->net_76800_1024_1024_6.input[20*1 + i] = ann_class->euro[i];
+        ann_class->net_76800_1024_1024_6.input[20*2 + i] = ann_class->yen[i];
+        ann_class->net_76800_1024_1024_6.input[20*3 + i] = ann_class->sterlin[i];
+        ann_class->net_76800_1024_1024_6.input[20*4 + i] = ann_class->altin[i];
+        ann_class->net_76800_1024_1024_6.input[20*5 + i] = ann_class->petrol[i];
+        ann_class->net_76800_1024_1024_6.input[20*6 + i] = ann_class->bist_100[i];
+        ann_class->net_76800_1024_1024_6.input[20*7 + i] = ann_class->faiz[i];
     }
 
-    ann_class->net_76800_1024_1024_6.desired_output[0] = 0.1 * ann_class->dollar[1];
-    ann_class->net_76800_1024_1024_6.desired_output[1] = 0.1 * ann_class->dollar[2];
-    ann_class->net_76800_1024_1024_6.desired_output[2] = 0.1 * ann_class->dollar[3];
+    ann_class->net_76800_1024_1024_6.desired_output[0] = ann_class->dollar[1];
+    ann_class->net_76800_1024_1024_6.desired_output[1] = ann_class->dollar[2];
+    ann_class->net_76800_1024_1024_6.desired_output[2] = ann_class->dollar[3];
 
     qDebug()    << QString("set : %1")      .arg(number[0])
                 << QString("dollar : %1")   .arg(ann_class->net_76800_1024_1024_6.input[0])

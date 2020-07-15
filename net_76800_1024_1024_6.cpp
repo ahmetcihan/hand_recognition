@@ -165,9 +165,9 @@ void ann::_76800_1024_1024_6_ann_test(double input[INPUT_COUNT],
         }
         calculated_output[j]   = output_sigmoid_func(output_in[j]);
     }
-    qDebug() << "dolar-1" << calculated_output[0];
-    qDebug() << "dolar-2" << calculated_output[1];
-    qDebug() << "dolar-3" << calculated_output[2];
+    qDebug() << "desired-1" << net_76800_1024_1024_6.desired_output[0] << "calculated-1" << calculated_output[0];
+    qDebug() << "desired-2" << net_76800_1024_1024_6.desired_output[1] << "calculated-2" << calculated_output[1];
+    qDebug() << "desired-3" << net_76800_1024_1024_6.desired_output[2] << "calculated-3" << calculated_output[2];
 }
 
 void ann::_76800_1024_1024_6_ann_train( double input[INPUT_COUNT],
@@ -611,16 +611,81 @@ void MainWindow::_76800_1024_1024_6_train_handler(void){
     ann_class->stop_the_training = 0;
 }
 void MainWindow::_76800_1024_1024_6_test_handler(void){
+    QFile file("/home/ahmet/Desktop/doviz_tester.csv");
+    file.open(QIODevice::ReadOnly);
+
+    u32 line_no = 0;
+    u32 tester_number[30];
+    double tester_dollar[30];
+    double tester_euro[30];
+    double tester_yen[30];
+    double tester_sterlin[30];
+    double tester_altin[30];
+    double tester_petrol[30];
+    double tester_bist_100[30];
+    double tester_faiz[30];
+
+    file.readLine(); //this is dummy
+    while (!file.atEnd()) {
+        QString str = file.readLine();
+        QString str1 = str.section(',',0,0);
+        QString str2 = str.section(',',2,2);
+        QString str3 = str.section(',',3,3);
+        QString str4 = str.section(',',4,4);
+        QString str5 = str.section(',',5,5);
+        QString str6 = str.section(',',6,6);
+        QString str7 = str.section(',',7,7);
+        QString str8 = str.section(',',8,8);
+        QString str9 = str.section(',',9,9);
+
+        tester_number[line_no]     = str1.toInt();
+        tester_dollar[line_no]     = str2.toDouble();
+        tester_euro[line_no]       = str3.toDouble();
+        tester_yen[line_no]        = str4.toDouble();
+        tester_sterlin[line_no]    = str5.toDouble();
+        tester_altin[line_no]      = str6.toDouble();
+        tester_petrol[line_no]     = str7.toDouble();
+        tester_bist_100[line_no]   = str8.toDouble();
+        tester_faiz[line_no]       = str9.toDouble();
+
+        line_no++;
+    }
+
+    for(u32 i = 0; i < 20; i++){
+//        ann_class->net_76800_1024_1024_6.test_input[20*0 + i] = 0.1 *       tester_dollar[i];
+//        ann_class->net_76800_1024_1024_6.test_input[20*1 + i] = 0.1 *       tester_euro[i];
+//        ann_class->net_76800_1024_1024_6.test_input[20*2 + i] = 0.01 *      tester_yen[i];
+//        ann_class->net_76800_1024_1024_6.test_input[20*3 + i] = 0.1 *       tester_sterlin[i];
+//        ann_class->net_76800_1024_1024_6.test_input[20*4 + i] = 0.1 *       tester_altin[i];
+//        ann_class->net_76800_1024_1024_6.test_input[20*5 + i] = 0.01 *      tester_petrol[i];
+//        ann_class->net_76800_1024_1024_6.test_input[20*6 + i] = 0.001 *     tester_bist_100[i];
+//        ann_class->net_76800_1024_1024_6.test_input[20*7 + i] = 0.00001 *   tester_faiz[i];
+
+        ann_class->net_76800_1024_1024_6.test_input[20*0 + i] = tester_dollar[i];
+        ann_class->net_76800_1024_1024_6.test_input[20*1 + i] = tester_euro[i];
+        ann_class->net_76800_1024_1024_6.test_input[20*2 + i] = tester_yen[i];
+        ann_class->net_76800_1024_1024_6.test_input[20*3 + i] = tester_sterlin[i];
+        ann_class->net_76800_1024_1024_6.test_input[20*4 + i] = tester_altin[i];
+        ann_class->net_76800_1024_1024_6.test_input[20*5 + i] = tester_petrol[i];
+        ann_class->net_76800_1024_1024_6.test_input[20*6 + i] = tester_bist_100[i];
+        ann_class->net_76800_1024_1024_6.test_input[20*7 + i] = tester_faiz[i];
+
+        qDebug()    << QString("No : %1")       .arg(tester_number[i])
+                    << QString("dollar : %1")   .arg(tester_dollar[i])
+                    << QString("euro : %1")     .arg(tester_euro[i])
+                    << QString("yen : %1")      .arg(tester_yen[i])
+                    << QString("sterlin : %1")  .arg(tester_sterlin[i])
+                    << QString("altin : %1")    .arg(tester_altin[i])
+                    << QString("petrol : %1")   .arg(tester_petrol[i])
+                    << QString("bist_100 : %1") .arg(tester_bist_100[i])
+                    << QString("faiz : %1")     .arg(tester_faiz[i]);
+    }
+
+    ann_class->net_76800_1024_1024_6.desired_output[0] = tester_dollar[20];
+    ann_class->net_76800_1024_1024_6.desired_output[1] = tester_dollar[21];
+    ann_class->net_76800_1024_1024_6.desired_output[2] = tester_dollar[22];
 
 
-    ann_class->net_76800_1024_1024_6.test_input[0] = 0.68528;
-    ann_class->net_76800_1024_1024_6.test_input[1] = 0.77118;
-    ann_class->net_76800_1024_1024_6.test_input[2] = 0.84502;
-    ann_class->net_76800_1024_1024_6.test_input[3] = 0.10724;
-    ann_class->net_76800_1024_1024_6.test_input[4] = 0.115089;
-    ann_class->net_76800_1024_1024_6.test_input[5] = 0.178;
-    ann_class->net_76800_1024_1024_6.test_input[6] = 0.4047;
-    ann_class->net_76800_1024_1024_6.test_input[7] = 0.08990;
 
     ann_class->_76800_1024_1024_6_ann_test( ann_class->net_76800_1024_1024_6.test_input,
                                             ann_class->net_76800_1024_1024_6.hidden_neuron_bias_1,
@@ -847,16 +912,25 @@ void MainWindow::_76800_1024_1024_6_stop_train_handler(void){
 }
 void ann::prepare_inputset(u32 input_s){
     for(u32 i = 0; i < 20; i++){
-        net_76800_1024_1024_6.input[20*0 + i] = 0.1 *       dollar[i + input_s];
-        net_76800_1024_1024_6.input[20*1 + i] = 0.1 *       euro[i + input_s];
-        net_76800_1024_1024_6.input[20*2 + i] = 0.01 *      yen[i + input_s];
-        net_76800_1024_1024_6.input[20*3 + i] = 0.1 *       sterlin[i + input_s];
-        net_76800_1024_1024_6.input[20*4 + i] = 0.1 *       altin[i + input_s];
-        net_76800_1024_1024_6.input[20*5 + i] = 0.01 *      petrol[i + input_s];
-        net_76800_1024_1024_6.input[20*6 + i] = 0.001 *     bist_100[i + input_s];
-        net_76800_1024_1024_6.input[20*7 + i] = 0.00001 *   faiz[i + input_s];
+//        net_76800_1024_1024_6.input[20*0 + i] = 0.1 *       dollar[i + input_s];
+//        net_76800_1024_1024_6.input[20*1 + i] = 0.1 *       euro[i + input_s];
+//        net_76800_1024_1024_6.input[20*2 + i] = 0.01 *      yen[i + input_s];
+//        net_76800_1024_1024_6.input[20*3 + i] = 0.1 *       sterlin[i + input_s];
+//        net_76800_1024_1024_6.input[20*4 + i] = 0.1 *       altin[i + input_s];
+//        net_76800_1024_1024_6.input[20*5 + i] = 0.01 *      petrol[i + input_s];
+//        net_76800_1024_1024_6.input[20*6 + i] = 0.001 *     bist_100[i + input_s];
+//        net_76800_1024_1024_6.input[20*7 + i] = 0.00001 *   faiz[i + input_s];
+
+        net_76800_1024_1024_6.input[20*0 + i] = dollar[i + input_s];
+        net_76800_1024_1024_6.input[20*1 + i] = euro[i + input_s];
+        net_76800_1024_1024_6.input[20*2 + i] = yen[i + input_s];
+        net_76800_1024_1024_6.input[20*3 + i] = sterlin[i + input_s];
+        net_76800_1024_1024_6.input[20*4 + i] = altin[i + input_s];
+        net_76800_1024_1024_6.input[20*5 + i] = petrol[i + input_s];
+        net_76800_1024_1024_6.input[20*6 + i] = bist_100[i + input_s];
+        net_76800_1024_1024_6.input[20*7 + i] = faiz[i + input_s];
     }
-    net_76800_1024_1024_6.desired_output[0] = 0.1 * dollar[20 + input_s];
-    net_76800_1024_1024_6.desired_output[1] = 0.1 * dollar[21 + input_s];
-    net_76800_1024_1024_6.desired_output[2] = 0.1 * dollar[22 + input_s];
+    net_76800_1024_1024_6.desired_output[0] = dollar[20 + input_s];
+    net_76800_1024_1024_6.desired_output[1] = dollar[21 + input_s];
+    net_76800_1024_1024_6.desired_output[2] = dollar[22 + input_s];
 }
