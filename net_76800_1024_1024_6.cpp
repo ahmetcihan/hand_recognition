@@ -624,6 +624,10 @@ void MainWindow::_76800_1024_1024_6_test_handler(void){
     double tester_petrol[30];
     double tester_bist_100[30];
     double tester_faiz[30];
+    double tester_dollar_index[30];
+    double tester_ay[30];
+    double tester_yil[30];
+    double tester_tatil[30];
 
     file.readLine(); //this is dummy
     while (!file.atEnd()) {
@@ -637,16 +641,24 @@ void MainWindow::_76800_1024_1024_6_test_handler(void){
         QString str7 = str.section(',',7,7);
         QString str8 = str.section(',',8,8);
         QString str9 = str.section(',',9,9);
+        QString str10 = str.section(',',10,10);
+        QString str11 = str.section(',',11,11);
+        QString str12 = str.section(',',12,12);
+        QString str13 = str.section(',',13,13);
 
-        tester_number[line_no]     = str1.toInt();
-        tester_dollar[line_no]     = str2.toDouble();
-        tester_euro[line_no]       = str3.toDouble();
-        tester_yen[line_no]        = str4.toDouble();
-        tester_sterlin[line_no]    = str5.toDouble();
-        tester_altin[line_no]      = str6.toDouble();
-        tester_petrol[line_no]     = str7.toDouble();
-        tester_bist_100[line_no]   = str8.toDouble();
-        tester_faiz[line_no]       = str9.toDouble();
+        tester_number[line_no]      = str1.toInt();
+        tester_dollar[line_no]      = str2.toDouble();
+        tester_euro[line_no]        = str3.toDouble();
+        tester_yen[line_no]         = str4.toDouble();
+        tester_sterlin[line_no]     = str5.toDouble();
+        tester_altin[line_no]       = str6.toDouble();
+        tester_petrol[line_no]      = str7.toDouble();
+        tester_bist_100[line_no]    = str8.toDouble();
+        tester_faiz[line_no]        = str9.toDouble();
+        tester_dollar_index[line_no]= str10.toDouble();
+        tester_ay[line_no]          = str11.toDouble();
+        tester_yil[line_no]         = str12.toDouble();
+        tester_tatil[line_no]       = str13.toDouble();
 
         line_no++;
     }
@@ -669,6 +681,10 @@ void MainWindow::_76800_1024_1024_6_test_handler(void){
         ann_class->net_76800_1024_1024_6.test_input[20*5 + i] = tester_petrol[i];
         ann_class->net_76800_1024_1024_6.test_input[20*6 + i] = tester_bist_100[i];
         ann_class->net_76800_1024_1024_6.test_input[20*7 + i] = tester_faiz[i];
+        ann_class->net_76800_1024_1024_6.test_input[20*8 + i] = tester_dollar_index[i];
+        ann_class->net_76800_1024_1024_6.test_input[20*9 + i] = tester_ay[i];
+        ann_class->net_76800_1024_1024_6.test_input[20*10 + i] = tester_yil[i];
+        ann_class->net_76800_1024_1024_6.test_input[20*11 + i] = tester_tatil[i];
 
         qDebug()    << QString("No : %1")       .arg(tester_number[i])
                     << QString("dollar : %1")   .arg(tester_dollar[i])
@@ -678,7 +694,11 @@ void MainWindow::_76800_1024_1024_6_test_handler(void){
                     << QString("altin : %1")    .arg(tester_altin[i])
                     << QString("petrol : %1")   .arg(tester_petrol[i])
                     << QString("bist_100 : %1") .arg(tester_bist_100[i])
-                    << QString("faiz : %1")     .arg(tester_faiz[i]);
+                    << QString("faiz : %1")     .arg(tester_faiz[i])
+                    << QString("dollar index : %1").arg(tester_dollar_index[i])
+                    << QString("ay : %1")       .arg(tester_ay[i])
+                    << QString("yil : %1")      .arg(tester_yil[i])
+                    << QString("tatil : %1")    .arg(tester_tatil[i]);
     }
 
     ann_class->net_76800_1024_1024_6.desired_output[0] = tester_dollar[20];
@@ -929,6 +949,10 @@ void ann::prepare_inputset(u32 input_s){
         net_76800_1024_1024_6.input[20*5 + i] = petrol[i + input_s];
         net_76800_1024_1024_6.input[20*6 + i] = bist_100[i + input_s];
         net_76800_1024_1024_6.input[20*7 + i] = faiz[i + input_s];
+        net_76800_1024_1024_6.input[20*8 + i] = dollar_index[i + input_s];
+        net_76800_1024_1024_6.input[20*9 + i] = ay[i + input_s];
+        net_76800_1024_1024_6.input[20*10 + i] = yil[i + input_s];
+        net_76800_1024_1024_6.input[20*11 + i] = tatil[i + input_s];
     }
     net_76800_1024_1024_6.desired_output[0] = dollar[20 + input_s];
     net_76800_1024_1024_6.desired_output[1] = dollar[21 + input_s];

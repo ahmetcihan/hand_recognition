@@ -40,6 +40,10 @@ public:
     double  petrol  [3000];
     double  bist_100[3000];
     double  faiz    [3000];
+    double  dollar_index    [3000];
+    double  ay      [3000];
+    double  yil     [3000];
+    double  tatil   [3000];
 
 
     struct _76800_1024_1024_6_str{

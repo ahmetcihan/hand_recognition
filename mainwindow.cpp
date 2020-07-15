@@ -33,7 +33,7 @@ void MainWindow::read_money_values(void){
     file.open(QIODevice::ReadOnly);
 
     u32 line_no = 0;
-    u32     number  [3000];
+    u32 number  [3000];
 
     file.readLine(); //this is dummy
     while (!file.atEnd()) {
@@ -47,6 +47,10 @@ void MainWindow::read_money_values(void){
         QString str7 = str.section(',',7,7);
         QString str8 = str.section(',',8,8);
         QString str9 = str.section(',',9,9);
+        QString str10 = str.section(',',10,10);
+        QString str11 = str.section(',',11,11);
+        QString str12 = str.section(',',12,12);
+        QString str13 = str.section(',',13,13);
 
         number[line_no]     = str1.toInt();
         ann_class->dollar[line_no]     = str2.toDouble();
@@ -57,20 +61,28 @@ void MainWindow::read_money_values(void){
         ann_class->petrol[line_no]     = str7.toDouble();
         ann_class->bist_100[line_no]   = str8.toDouble();
         ann_class->faiz[line_no]       = str9.toDouble();
+        ann_class->dollar_index[line_no]       = str10.toDouble();
+        ann_class->ay[line_no]          = str11.toDouble();
+        ann_class->yil[line_no]         = str12.toDouble();
+        ann_class->tatil[line_no]       = str13.toDouble();
 
         line_no++;
     }
 
     for(u32 i = 0; i < line_no; i++){
-        qDebug() << QString("no : %1")      .arg(number[i])
-                 << QString("dollar : %1")  .arg(ann_class->dollar[i])
-                 << QString("euro : %1")    .arg(ann_class->euro[i])
-                 << QString("yen : %1")     .arg(ann_class->yen[i])
-                 << QString("sterlin : %1") .arg(ann_class->sterlin[i])
-                 << QString("altin : %1")   .arg(ann_class->altin[i])
-                 << QString("petrol : %1")  .arg(ann_class->petrol[i])
-                 << QString("bist_100 : %1").arg(ann_class->bist_100[i])
-                 << QString("faiz : %1")    .arg(ann_class->faiz[i]);
+        qDebug()    << QString("no : %1")       .arg(number[i])
+                    << QString("dollar : %1")   .arg(ann_class->dollar[i])
+                    << QString("euro : %1")     .arg(ann_class->euro[i])
+                    << QString("yen : %1")      .arg(ann_class->yen[i])
+                    << QString("sterlin : %1")  .arg(ann_class->sterlin[i])
+                    << QString("altin : %1")    .arg(ann_class->altin[i])
+                    << QString("petrol : %1")   .arg(ann_class->petrol[i])
+                    << QString("bist_100 : %1") .arg(ann_class->bist_100[i])
+                    << QString("faiz : %1")     .arg(ann_class->faiz[i])
+                    << QString("dollar index : %1")    .arg(ann_class->dollar_index[i])
+                    << QString("ay : %1")       .arg(ann_class->ay[i])
+                    << QString("yil : %1")      .arg(ann_class->yil[i])
+                    << QString("tatil : %1")    .arg(ann_class->tatil[i]);
     }
 
     for(u32 i = 0; i < 20; i++){
@@ -91,21 +103,29 @@ void MainWindow::read_money_values(void){
         ann_class->net_76800_1024_1024_6.input[20*5 + i] = ann_class->petrol[i];
         ann_class->net_76800_1024_1024_6.input[20*6 + i] = ann_class->bist_100[i];
         ann_class->net_76800_1024_1024_6.input[20*7 + i] = ann_class->faiz[i];
+        ann_class->net_76800_1024_1024_6.input[20*8 + i] = ann_class->dollar_index[i];
+        ann_class->net_76800_1024_1024_6.input[20*9 + i] = ann_class->ay[i];
+        ann_class->net_76800_1024_1024_6.input[20*10 + i] = ann_class->yil[i];
+        ann_class->net_76800_1024_1024_6.input[20*11 + i] = ann_class->tatil[i];
     }
 
-    ann_class->net_76800_1024_1024_6.desired_output[0] = ann_class->dollar[1];
-    ann_class->net_76800_1024_1024_6.desired_output[1] = ann_class->dollar[2];
-    ann_class->net_76800_1024_1024_6.desired_output[2] = ann_class->dollar[3];
+    ann_class->net_76800_1024_1024_6.desired_output[0] = ann_class->dollar[20];
+    ann_class->net_76800_1024_1024_6.desired_output[1] = ann_class->dollar[21];
+    ann_class->net_76800_1024_1024_6.desired_output[2] = ann_class->dollar[22];
 
     qDebug()    << QString("set : %1")      .arg(number[0])
-                << QString("dollar : %1")   .arg(ann_class->net_76800_1024_1024_6.input[0])
-                << QString("euro : %1")     .arg(ann_class->net_76800_1024_1024_6.input[1])
-                << QString("yen : %1")      .arg(ann_class->net_76800_1024_1024_6.input[2])
-                << QString("sterlin : %1")  .arg(ann_class->net_76800_1024_1024_6.input[3])
-                << QString("altin : %1")    .arg(ann_class->net_76800_1024_1024_6.input[4])
-                << QString("petrol : %1")   .arg(ann_class->net_76800_1024_1024_6.input[5])
-                << QString("bist_100 : %1") .arg(ann_class->net_76800_1024_1024_6.input[6])
-                << QString("faiz : %1")     .arg(ann_class->net_76800_1024_1024_6.input[7]);
+                << QString("dollar : %1")   .arg(ann_class->net_76800_1024_1024_6.input[20*0])
+                << QString("euro : %1")     .arg(ann_class->net_76800_1024_1024_6.input[20*1])
+                << QString("yen : %1")      .arg(ann_class->net_76800_1024_1024_6.input[20*2])
+                << QString("sterlin : %1")  .arg(ann_class->net_76800_1024_1024_6.input[20*3])
+                << QString("altin : %1")    .arg(ann_class->net_76800_1024_1024_6.input[20*4])
+                << QString("petrol : %1")   .arg(ann_class->net_76800_1024_1024_6.input[20*5])
+                << QString("bist_100 : %1") .arg(ann_class->net_76800_1024_1024_6.input[20*6])
+                << QString("faiz : %1")     .arg(ann_class->net_76800_1024_1024_6.input[20*7])
+                << QString("dollar index : %1")     .arg(ann_class->net_76800_1024_1024_6.input[20*8])
+                << QString("ay : %1")       .arg(ann_class->net_76800_1024_1024_6.input[20*9])
+                << QString("yil : %1")      .arg(ann_class->net_76800_1024_1024_6.input[20*10])
+                << QString("tatil : %1")    .arg(ann_class->net_76800_1024_1024_6.input[20*11]);
 }
 void MainWindow::mousePressEvent(QMouseEvent *event){
 }
