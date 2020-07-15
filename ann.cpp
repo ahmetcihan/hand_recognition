@@ -54,7 +54,7 @@ void ann::thread_handler(void){
                                         net_76800_1024_1024_6.w_hidden_8_to_hidden_9,
                                         net_76800_1024_1024_6.w_hidden_9_to_hidden_10,
                                         net_76800_1024_1024_6.w_hidden_10_to_output,
-                                        10000, 0.001);
+                                        1000000, 0.001);
 
         for(u32 i = 0; i < OUTPUT_COUNT; i++){
             qDebug() << QString("desired output[%1] : ").arg(i) << net_76800_1024_1024_6.desired_output[i] <<

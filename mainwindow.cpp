@@ -87,17 +87,17 @@ void MainWindow::read_money_values(void){
 
     for(u32 i = 0; i < 10; i++){
         ann_class->net_76800_1024_1024_6.input[10*0 + i] = ann_class->dollar[i];
-        ann_class->net_76800_1024_1024_6.input[10*1 + i] = ann_class->euro[i];
-        ann_class->net_76800_1024_1024_6.input[10*2 + i] = ann_class->yen[i];
-        ann_class->net_76800_1024_1024_6.input[10*3 + i] = ann_class->sterlin[i];
-        ann_class->net_76800_1024_1024_6.input[10*4 + i] = ann_class->altin[i];
-        ann_class->net_76800_1024_1024_6.input[10*5 + i] = 0.1 * ann_class->petrol[i];
-        ann_class->net_76800_1024_1024_6.input[10*6 + i] = 0.1 * ann_class->bist_100[i];
-        ann_class->net_76800_1024_1024_6.input[10*7 + i] = 0.001 * ann_class->faiz[i];
-        ann_class->net_76800_1024_1024_6.input[10*8 + i] = 0.0001 * ann_class->dollar_index[i];
-        ann_class->net_76800_1024_1024_6.input[10*9 + i] = ann_class->ay[i];
-        ann_class->net_76800_1024_1024_6.input[10*10 + i] = ann_class->yil[i];
-        ann_class->net_76800_1024_1024_6.input[10*11 + i] = ann_class->tatil[i];
+        ann_class->net_76800_1024_1024_6.input[10*1 + i] = 0.1 * ann_class->euro[i];
+        ann_class->net_76800_1024_1024_6.input[10*2 + i] = 0.1 * ann_class->yen[i];
+        ann_class->net_76800_1024_1024_6.input[10*3 + i] = 0.1 * ann_class->sterlin[i];
+        ann_class->net_76800_1024_1024_6.input[10*4 + i] = 0.1 * ann_class->altin[i];
+        ann_class->net_76800_1024_1024_6.input[10*5 + i] = 0.01 * ann_class->petrol[i];
+        ann_class->net_76800_1024_1024_6.input[10*6 + i] = 0.01 * ann_class->bist_100[i];
+        ann_class->net_76800_1024_1024_6.input[10*7 + i] = 0.0001 * ann_class->faiz[i];
+        ann_class->net_76800_1024_1024_6.input[10*8 + i] = 0.00001 * ann_class->dollar_index[i];
+        ann_class->net_76800_1024_1024_6.input[10*9 + i] = 0.1 * ann_class->ay[i];
+        ann_class->net_76800_1024_1024_6.input[10*10 + i] = 0.1 * ann_class->yil[i];
+        ann_class->net_76800_1024_1024_6.input[10*11 + i] = 0.1 * ann_class->tatil[i];
     }
 
     ann_class->net_76800_1024_1024_6.desired_output[0] = ann_class->dollar[10];

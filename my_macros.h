@@ -13,7 +13,7 @@
 #define HIDDEN_COUNT_9      64
 #define HIDDEN_COUNT_10     1024
 #define OUTPUT_COUNT        3
-#define INPUT_SET           10
+#define INPUT_SET           2300
 
 #endif // MY_MACROS
 

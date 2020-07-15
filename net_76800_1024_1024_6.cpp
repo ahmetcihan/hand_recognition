@@ -665,17 +665,17 @@ void MainWindow::_76800_1024_1024_6_test_handler(void){
 
     for(u32 i = 0; i < 10; i++){
         ann_class->net_76800_1024_1024_6.test_input[10*0 + i] = tester_dollar[i];
-        ann_class->net_76800_1024_1024_6.test_input[10*1 + i] = tester_euro[i];
-        ann_class->net_76800_1024_1024_6.test_input[10*2 + i] = tester_yen[i];
-        ann_class->net_76800_1024_1024_6.test_input[10*3 + i] = tester_sterlin[i];
-        ann_class->net_76800_1024_1024_6.test_input[10*4 + i] = tester_altin[i];
-        ann_class->net_76800_1024_1024_6.test_input[10*5 + i] = 0.1 * tester_petrol[i];
-        ann_class->net_76800_1024_1024_6.test_input[10*6 + i] = 0.1 * tester_bist_100[i];
-        ann_class->net_76800_1024_1024_6.test_input[10*7 + i] = 0.001 * tester_faiz[i];
-        ann_class->net_76800_1024_1024_6.test_input[10*8 + i] = 0.0001 * tester_dollar_index[i];
-        ann_class->net_76800_1024_1024_6.test_input[10*9 + i] = tester_ay[i];
-        ann_class->net_76800_1024_1024_6.test_input[10*10 + i] = tester_yil[i];
-        ann_class->net_76800_1024_1024_6.test_input[10*11 + i] = tester_tatil[i];
+        ann_class->net_76800_1024_1024_6.test_input[10*1 + i] = 0.1 * tester_euro[i];
+        ann_class->net_76800_1024_1024_6.test_input[10*2 + i] = 0.1 * tester_yen[i];
+        ann_class->net_76800_1024_1024_6.test_input[10*3 + i] = 0.1 * tester_sterlin[i];
+        ann_class->net_76800_1024_1024_6.test_input[10*4 + i] = 0.1 * tester_altin[i];
+        ann_class->net_76800_1024_1024_6.test_input[10*5 + i] = 0.01 * tester_petrol[i];
+        ann_class->net_76800_1024_1024_6.test_input[10*6 + i] = 0.01 * tester_bist_100[i];
+        ann_class->net_76800_1024_1024_6.test_input[10*7 + i] = 0.0001 * tester_faiz[i];
+        ann_class->net_76800_1024_1024_6.test_input[10*8 + i] = 0.00001 * tester_dollar_index[i];
+        ann_class->net_76800_1024_1024_6.test_input[10*9 + i] = 0.1 * tester_ay[i];
+        ann_class->net_76800_1024_1024_6.test_input[10*10 + i] = 0.1 * tester_yil[i];
+        ann_class->net_76800_1024_1024_6.test_input[10*11 + i] = 0.1 * tester_tatil[i];
 
         qDebug()    << QString("No : %1")       .arg(tester_number[i])
                     << QString("dollar : %1")   .arg(tester_dollar[i])
@@ -924,17 +924,17 @@ void MainWindow::_76800_1024_1024_6_stop_train_handler(void){
 void ann::prepare_inputset(u32 input_s){
     for(u32 i = 0; i < 10; i++){
         net_76800_1024_1024_6.input[10*0 + i] = dollar[i + input_s];
-        net_76800_1024_1024_6.input[10*1 + i] = euro[i + input_s];
-        net_76800_1024_1024_6.input[10*2 + i] = yen[i + input_s];
-        net_76800_1024_1024_6.input[10*3 + i] = sterlin[i + input_s];
-        net_76800_1024_1024_6.input[10*4 + i] = altin[i + input_s];
-        net_76800_1024_1024_6.input[10*5 + i] = 0.1 * petrol[i + input_s];
-        net_76800_1024_1024_6.input[10*6 + i] = 0.1 * bist_100[i + input_s];
-        net_76800_1024_1024_6.input[10*7 + i] = 0.001 * faiz[i + input_s];
-        net_76800_1024_1024_6.input[10*8 + i] = 0.0001 * dollar_index[i + input_s];
-        net_76800_1024_1024_6.input[10*9 + i] = ay[i + input_s];
-        net_76800_1024_1024_6.input[10*10 + i] = yil[i + input_s];
-        net_76800_1024_1024_6.input[10*11 + i] = tatil[i + input_s];
+        net_76800_1024_1024_6.input[10*1 + i] = 0.1 * euro[i + input_s];
+        net_76800_1024_1024_6.input[10*2 + i] = 0.1 * yen[i + input_s];
+        net_76800_1024_1024_6.input[10*3 + i] = 0.1 * sterlin[i + input_s];
+        net_76800_1024_1024_6.input[10*4 + i] = 0.1 * altin[i + input_s];
+        net_76800_1024_1024_6.input[10*5 + i] = 0.01 * petrol[i + input_s];
+        net_76800_1024_1024_6.input[10*6 + i] = 0.01 * bist_100[i + input_s];
+        net_76800_1024_1024_6.input[10*7 + i] = 0.0001 * faiz[i + input_s];
+        net_76800_1024_1024_6.input[10*8 + i] = 0.00001 * dollar_index[i + input_s];
+        net_76800_1024_1024_6.input[10*9 + i] = 0.1 * ay[i + input_s];
+        net_76800_1024_1024_6.input[10*10 + i] = 0.1 * yil[i + input_s];
+        net_76800_1024_1024_6.input[10*11 + i] = 0.1 * tatil[i + input_s];
     }
     net_76800_1024_1024_6.desired_output[0] = dollar[10 + input_s];
     net_76800_1024_1024_6.desired_output[1] = dollar[11 + input_s];
