@@ -363,15 +363,6 @@ void ann::_76800_1024_1024_6_ann_test(   double input[INPUT_COUNT],
         hidden_neuron_out_24[i] = sigmoid_func(hidden_neuron_in_24[i]);
     }
 
-    /*******************HIDDEN23 TO HIDDEN24*********************/
-    for(u32 i = 0; i < HIDDEN_COUNT_24; i++){
-        hidden_neuron_in_24[i] = hidden_neuron_bias_24[i];
-        for(u32 j = 0; j < HIDDEN_COUNT_23; j++){
-            hidden_neuron_in_24[i] += hidden_neuron_out_23[j]*w_hidden_23_to_hidden_24[j][i];
-        }
-        hidden_neuron_out_24[i] = sigmoid_func(hidden_neuron_in_24[i]);
-    }
-
     /*******************HIDDEN24 TO HIDDEN25*********************/
     for(u32 i = 0; i < HIDDEN_COUNT_25; i++){
         hidden_neuron_in_25[i] = hidden_neuron_bias_25[i];

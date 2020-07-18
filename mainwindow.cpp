@@ -122,6 +122,8 @@ void MainWindow::mousePressEvent(QMouseEvent *event){
 }
 
 void MainWindow::_100_msec_timer_handle(void){
+    static u32 old_epoch = 0;
+    static double old_err = 0;
 
     if(ann_class->train_status == 1){
         ui->label_76800_1024_1024_6_train->setText(QString("training status %  %1").arg(ann_class->epoch_status));
@@ -141,6 +143,14 @@ void MainWindow::_100_msec_timer_handle(void){
         ui->label_76800_1024_1024_6_train_status_4->setText(QString("max_err : %1 , inset : %2").
                                                             arg(ann_class->net_76800_1024_1024_6.max_error).
                                                             arg(ann_class->net_76800_1024_1024_6.max_error_inset_no));
+
+        if(ann_class->epoch_no != old_epoch){
+            qDebug() << QString("total err-%1 :").arg(ann_class->epoch_no) << ann_class->net_76800_1024_1024_6.total_err
+                     << "\t\t" << "diff :" << old_err - ann_class->net_76800_1024_1024_6.total_err;
+            old_err = ann_class->net_76800_1024_1024_6.total_err;
+        }
+
+        old_epoch = ann_class->epoch_no;
     }
 }
 MainWindow::~MainWindow()

@@ -3,12 +3,16 @@
 double ann::sigmoid_func(double val){
     //return (1 / (1 + exp(-val)));     //sigmoid   - good
     //return tanh(val);                 //tanh      - not worked
-    //return val;                       //identity  - not properly worked
-    return atan(val);                 //atan      - not bad but slower
+    return 0.01*val;                       //identity  - not properly worked
+    //return atan(val);                 //atan      - not bad but slower
     //return (log(1+exp(val)));         //softplus  - good but slower
     /*********Leaky RELU**********/     //ReLU      -
 //    if(val <= 0) return (0.01*val);
 //    else return val;
+    /*****************************/
+    /*********RELU**********/     //ReLU      -
+//    if(val <= 0) return 0.001*val;
+//    else return 0.1*val;
     /*****************************/
     //return (val / (1 + exp(-val)));   //swish     - not bad but not good
     //return exp(-1*val*val);           //gaussien  - not worked
@@ -22,12 +26,16 @@ double ann::sigmoid_func(double val){
 double ann::derivative_of_sigmoid_func(double val){
     //return (sigmoid_func(val) * (1 - sigmoid_func(val)));                     //sigmoid   - good - u:0.8 is the best
     //return (1 - tanh(val)*tanh(val));                                         //tanh      - not worked
-    //return 1;                                                                 //identity  - not properly worked
-    return (1 / (1 + val*val));                                               //atan      - not bad but slower
+    return 0.01;                                                                 //identity  - not properly worked
+    //return (1 / (1 + val*val));                                               //atan      - not bad but slower
     //return (1 / (1 + exp(-val)));                                             //softplus  - good but slower
-    /***************RELU**********/                                             //ReLU      - very good training but test is bad u:0.000132 is the best
+    /*********Leaky RELU**********/                                             //ReLU      - very good training but test is bad u:0.000132 is the best
 //    if(val <= 0) return 0.01;
 //    else return 1;
+    /*****************************/
+    /*********RELU**********/     //ReLU      -
+//    if(val <= 0) return 0.001;
+//    else return 0.1;
     /*****************************/
     //return (1 + exp(-val) + val*exp(-val))/((1 + exp(-val))*(1 + exp(-val))); //swish     - not bad but not good
     //return -2*val*sigmoid_func(val);                                          //gaussien  - not worked
@@ -42,27 +50,27 @@ double ann::output_sigmoid_func(double val){
     //return (1 / (1 + exp(-val)));     //sigmoid   - good
     //return exp(-1*val*val);           //gaussien
     /*********Leaky RELU**********/     //ReLU      -
-    //if(val <= 0) return (0.01*val);
-    //else return val;
+//    if(val <= 0) return (0.01*val);
+//    else return val;
     /*****************************/
-    return atan(val);                 //atan      - not bad but slower
-    //return (log(1+exp(val)));         //softplus  - good but slower
-    //return tanh(val);                 //tanh      - not worked
-    //return val;                       //identity  - not properly worked
-    //return val/(1+fabs(val));           //softsign
+    //return 10*atan(val);                 //atan
+    //return (log(1+exp(val)));         //softplus
+    //return tanh(val);                 //tanh
+    return val;                       //identity
+    //return val/(1+fabs(val));         //softsign
 }
 double ann::output_derivative_of_sigmoid_func(double val){
-    //return (sigmoid_func(val) * (1 - sigmoid_func(val)));                     //sigmoid   - good - u:0.8 is the best
-    //return -2*val*sigmoid_func(val);                                          //gaussien
-    /***************RELU**********/                                             //ReLU      - very good training but test is bad u:0.000132 is the best
-    //if(val <= 0) return 0.01;
-    //else return 1;
+    //return (sigmoid_func(val) * (1 - sigmoid_func(val)));     //sigmoid
+    //return -2*val*sigmoid_func(val);                          //gaussien
+    /***************RELU**********/                             //ReLU
+//    if(val <= 0) return 0.01;
+//    else return 1;
     /*****************************/
-    return (1 / (1 + val*val));                                               //atan      - not bad but slower
-    //return (1 / (1 + exp(-val)));                                             //softplus  - good but slower
-    //return (1 - tanh(val)*tanh(val));                                         //tanh      - not worked
-    //return 1;                                                                 //identity  - not properly worked
-    //return val/((1+fabs(val)) * (1+fabs(val)));           //softsign
+    //return (10 / (1 + val*val));                               //atan
+    //return (1 / (1 + exp(-val)));                             //softplus
+    //return (1 - tanh(val)*tanh(val));                         //tanh
+    return 1;                                                 //identity
+    //return val/((1+fabs(val)) * (1+fabs(val)));               //softsign
 }
 double ann::classic_MA_1(double raw_signal){
     static double running_average[64];
