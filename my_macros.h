@@ -1,12 +1,13 @@
 #ifndef MY_MACROS
 #define MY_MACROS
 
-#define INPUT_COUNT         12*10
-#define HIDDEN_COUNT_1      1024
-#define HIDDEN_COUNT_2      512
-#define HIDDEN_COUNT_3      256
-#define HIDDEN_COUNT_4      128
-#define HIDDEN_COUNT_5      64
+#define WAVE_LENGTH         3
+#define INPUT_COUNT         2*WAVE_LENGTH
+#define HIDDEN_COUNT_1      32
+#define HIDDEN_COUNT_2      32
+#define HIDDEN_COUNT_3      32
+#define HIDDEN_COUNT_4      32
+#define HIDDEN_COUNT_5      32
 #define HIDDEN_COUNT_6      32
 #define HIDDEN_COUNT_7      32
 #define HIDDEN_COUNT_8      32
@@ -27,13 +28,15 @@
 #define HIDDEN_COUNT_23     32
 #define HIDDEN_COUNT_24     32
 #define HIDDEN_COUNT_25     32
-#define HIDDEN_COUNT_26     64
-#define HIDDEN_COUNT_27     128
-#define HIDDEN_COUNT_28     256
-#define HIDDEN_COUNT_29     512
-#define HIDDEN_COUNT_30     1024
+#define HIDDEN_COUNT_26     32
+#define HIDDEN_COUNT_27     32
+#define HIDDEN_COUNT_28     32
+#define HIDDEN_COUNT_29     32
+#define HIDDEN_COUNT_30     32
 #define OUTPUT_COUNT        3
-#define INPUT_SET           2000
+#define INPUT_SET           10
+
+#define OUTPUT_MULTIPLIER   0.1
 
 #endif // MY_MACROS
 

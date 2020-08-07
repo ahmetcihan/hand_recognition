@@ -29,94 +29,39 @@ MainWindow::MainWindow(QWidget *parent) :
 
 }
 void MainWindow::read_money_values(void){
-    QFile file("/home/ahmet/Desktop/total_doviz.csv");
+    QFile file("/home/ahmet/Desktop/waveform.csv");
     file.open(QIODevice::ReadOnly);
 
     u32 line_no = 0;
-    u32 number  [3000];
 
     file.readLine(); //this is dummy
     while (!file.atEnd()) {
         QString str = file.readLine();
         QString str1 = str.section(',',0,0);
-        QString str2 = str.section(',',2,2);
-        QString str3 = str.section(',',3,3);
-        QString str4 = str.section(',',4,4);
-        QString str5 = str.section(',',5,5);
-        QString str6 = str.section(',',6,6);
-        QString str7 = str.section(',',7,7);
-        QString str8 = str.section(',',8,8);
-        QString str9 = str.section(',',9,9);
-        QString str10 = str.section(',',10,10);
-        QString str11 = str.section(',',11,11);
-        QString str12 = str.section(',',12,12);
-        QString str13 = str.section(',',13,13);
+        QString str2 = str.section(',',1,1);
 
-        number[line_no]     = str1.toInt();
-        ann_class->dollar[line_no]     = str2.toDouble();
-        ann_class->euro[line_no]       = str3.toDouble();
-        ann_class->yen[line_no]        = str4.toDouble();
-        ann_class->sterlin[line_no]    = str5.toDouble();
-        ann_class->altin[line_no]      = str6.toDouble();
-        ann_class->petrol[line_no]     = str7.toDouble();
-        ann_class->bist_100[line_no]   = str8.toDouble();
-        ann_class->faiz[line_no]       = str9.toDouble();
-        ann_class->dollar_index[line_no]       = str10.toDouble();
-        ann_class->ay[line_no]          = str11.toDouble();
-        ann_class->yil[line_no]         = str12.toDouble();
-        ann_class->tatil[line_no]       = str13.toDouble();
+        ann_class->index_no[line_no]     = str1.toInt();
+        ann_class->waveform[line_no]     = str2.toDouble();
 
         line_no++;
     }
 
     for(u32 i = 0; i < line_no; i++){
-        qDebug()    << QString("no : %1")       .arg(number[i])
-                    << QString("dollar : %1")   .arg(ann_class->dollar[i])
-                    << QString("euro : %1")     .arg(ann_class->euro[i])
-                    << QString("yen : %1")      .arg(ann_class->yen[i])
-                    << QString("sterlin : %1")  .arg(ann_class->sterlin[i])
-                    << QString("altin : %1")    .arg(ann_class->altin[i])
-                    << QString("petrol : %1")   .arg(ann_class->petrol[i])
-                    << QString("bist_100 : %1") .arg(ann_class->bist_100[i])
-                    << QString("faiz : %1")     .arg(ann_class->faiz[i])
-                    << QString("dollar index : %1")    .arg(ann_class->dollar_index[i])
-                    << QString("ay : %1")       .arg(ann_class->ay[i])
-                    << QString("yil : %1")      .arg(ann_class->yil[i])
-                    << QString("tatil : %1")    .arg(ann_class->tatil[i]);
+        qDebug()    << QString("index_no : %1") .arg(ann_class->index_no[i])
+                    << QString("waveform : %1") .arg(ann_class->waveform[i]);
     }
 
-    for(u32 i = 0; i < 10; i++){
-        ann_class->net_76800_1024_1024_6.input[10*0 + i] = ann_class->dollar[i];
-        ann_class->net_76800_1024_1024_6.input[10*1 + i] = 0.1 * ann_class->euro[i];
-        ann_class->net_76800_1024_1024_6.input[10*2 + i] = 0.1 * ann_class->yen[i];
-        ann_class->net_76800_1024_1024_6.input[10*3 + i] = 0.1 * ann_class->sterlin[i];
-        ann_class->net_76800_1024_1024_6.input[10*4 + i] = 0.1 * ann_class->altin[i];
-        ann_class->net_76800_1024_1024_6.input[10*5 + i] = 0.01 * ann_class->petrol[i];
-        ann_class->net_76800_1024_1024_6.input[10*6 + i] = 0.01 * ann_class->bist_100[i];
-        ann_class->net_76800_1024_1024_6.input[10*7 + i] = 0.0001 * ann_class->faiz[i];
-        ann_class->net_76800_1024_1024_6.input[10*8 + i] = 0.00001 * ann_class->dollar_index[i];
-        ann_class->net_76800_1024_1024_6.input[10*9 + i] = 0.1 * ann_class->ay[i];
-        ann_class->net_76800_1024_1024_6.input[10*10 + i] = 0.1 * ann_class->yil[i];
-        ann_class->net_76800_1024_1024_6.input[10*11 + i] = 0.1 * ann_class->tatil[i];
+    for(u32 i = 0; i < WAVE_LENGTH; i++){
+        ann_class->net_76800_1024_1024_6.input[WAVE_LENGTH*0 + i] = ann_class->index_no[i];
+        ann_class->net_76800_1024_1024_6.input[WAVE_LENGTH*1 + i] = ann_class->waveform[i];
     }
 
-    ann_class->net_76800_1024_1024_6.desired_output[0] = ann_class->dollar[10];
-    ann_class->net_76800_1024_1024_6.desired_output[1] = ann_class->dollar[11];
-    ann_class->net_76800_1024_1024_6.desired_output[2] = ann_class->dollar[12];
+    ann_class->net_76800_1024_1024_6.desired_output[0] = OUTPUT_MULTIPLIER * ann_class->waveform[WAVE_LENGTH];
+    ann_class->net_76800_1024_1024_6.desired_output[1] = OUTPUT_MULTIPLIER * ann_class->waveform[WAVE_LENGTH + 1];
+    ann_class->net_76800_1024_1024_6.desired_output[2] = OUTPUT_MULTIPLIER * ann_class->waveform[WAVE_LENGTH + 2];
 
-    qDebug()    << QString("set : %1")      .arg(number[0])
-                << QString("dollar : %1")   .arg(ann_class->net_76800_1024_1024_6.input[10*0])
-                << QString("euro : %1")     .arg(ann_class->net_76800_1024_1024_6.input[10*1])
-                << QString("yen : %1")      .arg(ann_class->net_76800_1024_1024_6.input[10*2])
-                << QString("sterlin : %1")  .arg(ann_class->net_76800_1024_1024_6.input[10*3])
-                << QString("altin : %1")    .arg(ann_class->net_76800_1024_1024_6.input[10*4])
-                << QString("petrol : %1")   .arg(ann_class->net_76800_1024_1024_6.input[10*5])
-                << QString("bist_100 : %1") .arg(ann_class->net_76800_1024_1024_6.input[10*6])
-                << QString("faiz : %1")     .arg(ann_class->net_76800_1024_1024_6.input[10*7])
-                << QString("dollar index : %1")     .arg(ann_class->net_76800_1024_1024_6.input[10*8])
-                << QString("ay : %1")       .arg(ann_class->net_76800_1024_1024_6.input[10*9])
-                << QString("yil : %1")      .arg(ann_class->net_76800_1024_1024_6.input[10*10])
-                << QString("tatil : %1")    .arg(ann_class->net_76800_1024_1024_6.input[10*11]);
+    qDebug()    << QString("index_no : %1") .arg(ann_class->net_76800_1024_1024_6.input[WAVE_LENGTH*0])
+                << QString("waveform : %1") .arg(ann_class->net_76800_1024_1024_6.input[WAVE_LENGTH*1]);
 }
 void MainWindow::mousePressEvent(QMouseEvent *event){
 }

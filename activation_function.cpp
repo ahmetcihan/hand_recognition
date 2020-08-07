@@ -1,9 +1,9 @@
 #include "mainwindow.h"
 
 double ann::sigmoid_func(double val){
-    //return (1 / (1 + exp(-val)));     //sigmoid   - good
+    return (1 / (1 + exp(-val)));     //sigmoid   - good
     //return tanh(val);                 //tanh      - not worked
-    return 0.01*val;                       //identity  - not properly worked
+    //return val;                       //identity  - not properly worked
     //return atan(val);                 //atan      - not bad but slower
     //return (log(1+exp(val)));         //softplus  - good but slower
     /*********Leaky RELU**********/     //ReLU      -
@@ -24,9 +24,9 @@ double ann::sigmoid_func(double val){
     //return val/(1+fabs(val));           //softsign
 }
 double ann::derivative_of_sigmoid_func(double val){
-    //return (sigmoid_func(val) * (1 - sigmoid_func(val)));                     //sigmoid   - good - u:0.8 is the best
+    return (sigmoid_func(val) * (1 - sigmoid_func(val)));                     //sigmoid   - good - u:0.8 is the best
     //return (1 - tanh(val)*tanh(val));                                         //tanh      - not worked
-    return 0.01;                                                                 //identity  - not properly worked
+    //return 1;                                                                 //identity  - not properly worked
     //return (1 / (1 + val*val));                                               //atan      - not bad but slower
     //return (1 / (1 + exp(-val)));                                             //softplus  - good but slower
     /*********Leaky RELU**********/                                             //ReLU      - very good training but test is bad u:0.000132 is the best
@@ -47,7 +47,7 @@ double ann::derivative_of_sigmoid_func(double val){
     //return val/((1+fabs(val)) * (1+fabs(val)));           //softsign
 }
 double ann::output_sigmoid_func(double val){
-    //return (1 / (1 + exp(-val)));     //sigmoid   - good
+    return (1 / (1 + exp(-val)));     //sigmoid   - good
     //return exp(-1*val*val);           //gaussien
     /*********Leaky RELU**********/     //ReLU      -
 //    if(val <= 0) return (0.01*val);
@@ -56,11 +56,11 @@ double ann::output_sigmoid_func(double val){
     //return 10*atan(val);                 //atan
     //return (log(1+exp(val)));         //softplus
     //return tanh(val);                 //tanh
-    return val;                       //identity
+    //return val;                       //identity
     //return val/(1+fabs(val));         //softsign
 }
 double ann::output_derivative_of_sigmoid_func(double val){
-    //return (sigmoid_func(val) * (1 - sigmoid_func(val)));     //sigmoid
+    return (sigmoid_func(val) * (1 - sigmoid_func(val)));     //sigmoid
     //return -2*val*sigmoid_func(val);                          //gaussien
     /***************RELU**********/                             //ReLU
 //    if(val <= 0) return 0.01;
@@ -69,7 +69,7 @@ double ann::output_derivative_of_sigmoid_func(double val){
     //return (10 / (1 + val*val));                               //atan
     //return (1 / (1 + exp(-val)));                             //softplus
     //return (1 - tanh(val)*tanh(val));                         //tanh
-    return 1;                                                 //identity
+    //return 1;                                                 //identity
     //return val/((1+fabs(val)) * (1+fabs(val)));               //softsign
 }
 double ann::classic_MA_1(double raw_signal){

@@ -32,18 +32,8 @@ public:
     u32 epoch_no;
     u8 stop_the_training;
 
-    double  dollar  [3000];
-    double  euro    [3000];
-    double  yen     [3000];
-    double  sterlin [3000];
-    double  altin   [3000];
-    double  petrol  [3000];
-    double  bist_100[3000];
-    double  faiz    [3000];
-    double  dollar_index    [3000];
-    double  ay      [3000];
-    double  yil     [3000];
-    double  tatil   [3000];
+    double  index_no  [3000];
+    double  waveform  [3000];
 
 
     struct _76800_1024_1024_6_str{
