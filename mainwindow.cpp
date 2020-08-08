@@ -50,6 +50,7 @@ void MainWindow::read_money_values(void){
         qDebug()    << QString("index_no : %1") .arg(ann_class->index_no[i])
                     << QString("waveform : %1") .arg(ann_class->waveform[i]);
     }
+    qDebug() << "--------------";
 
     for(u32 i = 0; i < WAVE_LENGTH; i++){
         ann_class->net_76800_1024_1024_6.input[WAVE_LENGTH*0 + i] = ann_class->index_no[i];
