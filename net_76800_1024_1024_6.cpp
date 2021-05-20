@@ -62,10 +62,6 @@ void ann::_76800_1024_1024_6_ann_test(   double input[INPUT_COUNT],
     double output_in[OUTPUT_COUNT];
     double calculated_output[OUTPUT_COUNT];
 
-//    for(u32 i = 0; i < INPUT_COUNT; i++){
-//        qDebug() << QString("input[%1] :").arg(i) << input[i];
-//    }
-
     /*****************FORWARD PROPAGATION********************/
     /*******************INPUT TO HIDDEN1*********************/
     for(u32 i = 0; i < HIDDEN_COUNT_1; i++){
@@ -869,8 +865,7 @@ void MainWindow::_76800_1024_1024_6_stop_train_handler(void){
 }
 void ann::prepare_inputset(u32 input_s){
     for(u32 i = 0; i < WAVE_LENGTH; i++){
-        net_76800_1024_1024_6.input[WAVE_LENGTH*0 + i] = index_no[i + input_s];
-        net_76800_1024_1024_6.input[WAVE_LENGTH*1 + i] = waveform[i + input_s];
+        net_76800_1024_1024_6.input[WAVE_LENGTH*0 + i] = waveform[i + input_s];
     }
     net_76800_1024_1024_6.desired_output[0] = OUTPUT_MULTIPLIER * waveform[WAVE_LENGTH + input_s];
     net_76800_1024_1024_6.desired_output[1] = OUTPUT_MULTIPLIER * waveform[WAVE_LENGTH + 1 + input_s];

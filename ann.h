@@ -32,7 +32,6 @@ public:
     u32 epoch_no;
     u8 stop_the_training;
 
-    double  index_no  [3000];
     double  waveform  [3000];
 
 

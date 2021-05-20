@@ -37,32 +37,28 @@ void MainWindow::read_money_values(void){
     file.readLine(); //this is dummy
     while (!file.atEnd()) {
         QString str = file.readLine();
-        QString str1 = str.section(',',0,0);
+        //QString str1 = str.section(',',0,0);
         QString str2 = str.section(',',1,1);
 
-        ann_class->index_no[line_no]     = str1.toInt();
         ann_class->waveform[line_no]     = str2.toDouble();
 
         line_no++;
     }
 
     for(u32 i = 0; i < line_no; i++){
-        qDebug()    << QString("index_no : %1") .arg(ann_class->index_no[i])
-                    << QString("waveform : %1") .arg(ann_class->waveform[i]);
+        qDebug()    << QString("waveform : %1") .arg(ann_class->waveform[i]);
     }
     qDebug() << "--------------";
 
     for(u32 i = 0; i < WAVE_LENGTH; i++){
-        ann_class->net_76800_1024_1024_6.input[WAVE_LENGTH*0 + i] = ann_class->index_no[i];
-        ann_class->net_76800_1024_1024_6.input[WAVE_LENGTH*1 + i] = ann_class->waveform[i];
+        ann_class->net_76800_1024_1024_6.input[WAVE_LENGTH*0 + i] = ann_class->waveform[i];
     }
 
     ann_class->net_76800_1024_1024_6.desired_output[0] = OUTPUT_MULTIPLIER * ann_class->waveform[WAVE_LENGTH];
     ann_class->net_76800_1024_1024_6.desired_output[1] = OUTPUT_MULTIPLIER * ann_class->waveform[WAVE_LENGTH + 1];
     ann_class->net_76800_1024_1024_6.desired_output[2] = OUTPUT_MULTIPLIER * ann_class->waveform[WAVE_LENGTH + 2];
 
-    qDebug()    << QString("index_no : %1") .arg(ann_class->net_76800_1024_1024_6.input[WAVE_LENGTH*0])
-                << QString("waveform : %1") .arg(ann_class->net_76800_1024_1024_6.input[WAVE_LENGTH*1]);
+    qDebug()    << QString("waveform : %1") .arg(ann_class->net_76800_1024_1024_6.input[WAVE_LENGTH*0]);
 }
 void MainWindow::mousePressEvent(QMouseEvent *event){
 }
